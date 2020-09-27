@@ -1,5 +1,5 @@
 import React from "react";
-import Service from "./../components/ServiceCard";
+import Service from "../components/ServiceCard";
 import { ServiceCard } from "../models/ServiceCard.model";
 
 class Services extends React.Component<any, any> {
