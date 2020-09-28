@@ -1,6 +1,9 @@
 import React from "react";
 import Service from "../components/ServiceCard";
 import { ServiceCard } from "../models/ServiceCard.model";
+import styles from './Services.module.scss';
+import './../scss/_utilities.scss';
+import {Container} from "react-bootstrap";
 
 class Services extends React.Component<any, any> {
     state = {
@@ -41,18 +44,17 @@ class Services extends React.Component<any, any> {
         ]
     }
     render() {
-        return <section className="services section-padding">
-            <h2>Dodatkowe usługi</h2>
-            <div className="container services-wrapper">
-                {
-                    this.state.services.map((service: ServiceCard) => (
-                        <Service {...service} />
-                    ))
-                }
-
-            </div>
-
-        </section>;
+        return (
+            <section className={[styles.services, 'sectionPadding'].join(' ')}>
+                <h2>Dodatkowe usługi</h2>
+                <Container className={styles.servicesWrapper}>
+                    {
+                        this.state.services.map((service: ServiceCard) => (
+                            <Service key={service.icon} {...service} />
+                        ))
+                    }
+                </Container>
+            </section>);
     }
 }
 

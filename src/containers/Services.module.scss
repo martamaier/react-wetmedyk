@@ -1,0 +1,23 @@
+@import './../scss/variables';
+@import './../scss/mixins';
+
+.services {
+  //background-color: $black;
+  background-image: radial-gradient(ellipse at top, #171d23, black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    @include font-title;
+    color: $white;
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+  &Wrapper {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 320px) {
+      flex-direction: column;
+    }
+  }
+}

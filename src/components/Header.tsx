@@ -1,15 +1,19 @@
 import React from 'react';
 import logo from './../images/logo.png';
+import styles from './Header.module.scss';
+import {Container, Row} from "react-bootstrap";
 
 const header = () => (
     <header>
-        <div className="container-fluid header-wrapper">
-            <div/>
-            <img className="logo" src={logo} alt="wetmedyk-logo"/>
-                <div className="navigation">
-                    <span className="navigation-icon menu">&nbsp;</span>
+        <Container fluid className={styles.headerWrapper}>
+            <Row>
+                <div/>
+                <img className={styles.logo} src={logo} alt="wetmedyk-logo"/>
+                <div className={styles.navigation}>
+                    <span className={[styles.navigationIcon, styles.menu].join(' ')}>&nbsp;</span>
                 </div>
-        </div>
+            </Row>
+        </Container>
     </header>
 );
 export default header;

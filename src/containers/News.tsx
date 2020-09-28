@@ -1,6 +1,8 @@
 import React from "react";
 import {NewsItem} from "../models/NewsItem.model";
 import NewsItemCard from './../components/NewsItem';
+import ControlArrows from "./../utilities/ControlArrows";
+
 
 class News extends React.Component<any, any> {
     state = {
@@ -29,8 +31,7 @@ class News extends React.Component<any, any> {
             <div className="row">
                 <div className="col-md-6" />
                 <div className="col-md-6">
-                    <span className="material-icons chevron">chevron_left</span>
-                    <span className="material-icons chevron">chevron_right</span>
+                    <ControlArrows/>
                 </div>
             </div>
         </section>;
