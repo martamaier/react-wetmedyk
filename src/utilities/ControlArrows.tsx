@@ -1,20 +1,15 @@
 import React from "react";
 import styles from './ControlArrows.module.scss';
+import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 
-const controlArrows = () => {
-    const arrows = ['left', 'right'];
-    return (
+
+const controlArrows = () => (
         <>
-            {
-                arrows.map((arrow: string) => (
-                    <span key={arrow}
-                          className={['materialIcons', styles.chevron].join(' ')}>
-                        chevron_{arrow}
-                    </span>
-                ))
-            }
+            <div className={styles.chevron}>
+                <MdChevronLeft/>
+                <MdChevronRight/>
+            </div>
         </>
-    )
-}
+    );
 
 export default controlArrows;

@@ -1,5 +1,7 @@
+import {IconTypes} from "./IconTypes";
+
 export interface ServiceCard {
-    icon: string;
+    icon: IconTypes;
     headingFront: string;
     headingBack: string;
     bulletPoints: string[];

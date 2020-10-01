@@ -1,11 +1,17 @@
 import React from "react";
 import {ServiceCard} from "../models/ServiceCard.model";
 import styles from './ServiceCard.module.scss';
+import {MdLocationCity, MdLoyalty, MdShoppingCart} from "react-icons/all";
+import {IconTypes} from "../models/IconTypes";
 
 const serviceCard = (props: ServiceCard) => (
     <article className={styles.cardService}>
         <div className={[styles.cardServiceSide, styles.cardServiceFront].join(' ')}>
-            <span className={styles.materialIcons}>{props.icon}</span>
+            <div className={styles.materialIcons}>
+                {props.icon === IconTypes.Hotel ?
+                    <MdLocationCity /> : (props.icon === IconTypes.Loyalty ?
+                        <MdLoyalty /> : <MdShoppingCart />) }
+            </div>
             <h3>{props.headingFront}</h3>
         </div>
         <div className={[styles.cardServiceSide, styles.cardServiceBack].join(' ')}>

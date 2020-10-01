@@ -1,20 +1,25 @@
 import React from "react";
+import styles from './Newsletter.module.scss';
+import {Container, Form, InputGroup} from "react-bootstrap";
+import './../scss/_utilities.scss';
 
 class Newsletter extends React.Component<any, any> {
     render() {
-        return <section className="newsletter section-padding">
-            <div className="container">
-                <form className="newsletter-form">
-                    <label htmlFor="email">Newsletter</label>
-                    <div className="input-group mb-3">
-                        <input type="email" className="form-control" placeholder="adres e-mail" id="email" />
-                            <div className="input-group-append">
-                                <input type="submit" value="Zapisz sie!" />
-                            </div>
-                    </div>
-                </form>
-            </div>
-        </section>;
+        return (
+            <section className={[styles.newsletter, 'sectionPadding'].join(' ')}>
+                <Container>
+                    <Form className={styles.newsletterForm}>
+                        <Form.Label className={styles.label} htmlFor="email">Newsletter</Form.Label>
+                        <InputGroup className={styles.inputGroup}>
+                            <Form.Control className={styles.formControl} type="email" placeholder="adres e-mail"
+                                          id="email"/>
+                            <InputGroup>
+                                <input type="submit" value="Zapisz sie!"/>
+                            </InputGroup>
+                        </InputGroup>
+                    </Form>
+                </Container>
+            </section>);
     }
 }
 

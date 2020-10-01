@@ -1,15 +1,16 @@
 import React from "react";
 import Service from "../components/ServiceCard";
-import { ServiceCard } from "../models/ServiceCard.model";
+import {ServiceCard} from "../models/ServiceCard.model";
 import styles from './Services.module.scss';
 import './../scss/_utilities.scss';
 import {Container} from "react-bootstrap";
+import {IconTypes} from "../models/IconTypes";
 
 class Services extends React.Component<any, any> {
     state = {
         services: [
             {
-                icon: 'location-city',
+                icon: IconTypes.Hotel,
                 headingFront: 'Hotel',
                 headingBack: 'Warunki przyjęcia',
                 bulletPoints: [
@@ -19,7 +20,7 @@ class Services extends React.Component<any, any> {
                 ]
             },
             {
-                icon: 'loyalty',
+                icon: IconTypes.Loyalty,
                 headingFront: 'Strzyżenie i pielęgnacja',
                 headingBack: 'Nasze usługi',
                 bulletPoints: [
@@ -31,7 +32,7 @@ class Services extends React.Component<any, any> {
                 ]
             },
             {
-                icon: 'shopping_cart',
+                icon: IconTypes.Shop,
                 headingFront: 'Sklep',
                 headingBack: 'Nasz asortyment',
                 bulletPoints: [
