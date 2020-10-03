@@ -1,35 +1,45 @@
 import React from "react";
 import logo from "./../images/logo.png";
+import styles from './Footer.module.scss';
+import {Container, Row, Col} from "react-bootstrap";
+import {Location} from "../models/Location.model";
+import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
+import * as _ from 'lodash';
+import {locations} from "../data/locations";
 
 class Footer extends React.Component<any, any> {
+    state = {
+        copyrights: '@ 2020 Wetmedyk. All rights reserved.',
+        locations: _.cloneDeep(locations),
+    }
     render() {
-        return <footer>
-            <div className="container footer">
-                <div className="footer-wrapper">
-                    <div className="row">
-                        <div className="col-md-6 footer-wrapper-icons">
-                            <i className="fab fa-facebook-square" />
-                            <i className="fab fa-twitter-square" />
-                            <i className="fas fa-envelope-square" />
-                        </div>
-                        <div className="col-md-6 footer-wrapper-locations">
+        return (
+        <footer>
+            <Container className={styles.footer}>
+                <div className={styles.footerWrapper}>
+                    <Row>
+                        <Col md={6} className={styles.footerWrapperIcons}>
+                            <FaFacebookSquare className={styles.icons} />
+                            <FaTwitterSquare className={styles.icons} />
+                            <FaEnvelopeSquare className={styles.icons} />
+                        </Col>
+                        <Col md={6} className={styles.footerWrapperLocations}>
                             <img src={logo} alt="" />
-                                <div className="location">
-                                    <h3>Przychodnia Banino</h3>
-                                    <span>ul. Różana 16, 80 - 297 Banino</span>
-                                    <span>+48 664 430 387</span>
-                                </div>
-                                <div className="location">
-                                    <h3>Gabinet Pępowo</h3>
-                                    <span>ul. Armii Krajowej 2, 80 - 330 Pępowo</span>
-                                    <span>+48 664 430 388</span>
-                                </div>
-                        </div>
-                    </div>
+                            {
+                                this.state.locations.map((location: Location) => (
+                                    <div key={location.id} className={styles.location}>
+                                        <h3>{location.name}</h3>
+                                        <span>{location.street}, {location.zipCode} {location.city}</span>
+                                        <span>{location.phone}</span>
+                                    </div>
+                                ))
+                            }
+                        </Col>
+                    </Row>
                 </div>
-                <span className="copyrights">@ 2020 Wetmedyk. All rights reserved.</span>
-            </div>
-        </footer>;
+                <span className={styles.copyrights}>{this.state.copyrights}</span>
+            </Container>
+        </footer>);
     }
 }
 

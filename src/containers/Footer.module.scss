@@ -1,0 +1,62 @@
+@import './../scss/variables';
+@import './../scss/mixins';
+
+footer {
+  padding: 7rem 0 3rem 0;
+  background-color: $black;
+  color: $white;
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &Wrapper{
+      padding-bottom: 7rem;
+      border-bottom: 2px solid;
+      @include primary-red-gradient;
+      &Icons {
+        font-size: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icons {
+          cursor: pointer;
+          transition: .5s;
+          &:not(:last-child) {
+            margin-right: 1.5rem;
+          }
+          &:hover {
+            color: $primary-red;
+          }
+        }
+      }
+      &Locations {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        img {
+          padding-bottom: 2rem;
+        }
+        .location {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          &:not(:last-child) {
+            margin-bottom: 2rem;
+          }
+          h3 {
+            font-size: 2rem;
+          }
+          span {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .copyrights {
+      text-align: center;
+      color: $white;
+      padding-top: 3rem;
+
+    }
+  }
+}
