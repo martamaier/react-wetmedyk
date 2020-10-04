@@ -3,6 +3,7 @@
 
 .newsletter {
   background-color: $black;
+
   &Form {
     display: flex;
     flex-direction: column;
@@ -12,6 +13,7 @@
       color: $white;
     }
     .inputGroup {
+      display: flex;
       flex-grow: 1;
       width: 100%;
       padding-top: 2rem;
@@ -22,6 +24,9 @@
       }
       input[type=submit] {
         @include primary-button;
+        &[disabled] {
+          cursor: not-allowed;
+        }
       }
     }
   }

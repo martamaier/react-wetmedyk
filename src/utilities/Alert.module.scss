@@ -1,0 +1,10 @@
+.alertContainer {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 1rem;
+  z-index: 1000;
+}
