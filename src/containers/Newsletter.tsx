@@ -6,6 +6,7 @@ import axios, {AxiosResponse} from 'axios';
 import {NewsletterResponse} from "../models/NewsletterResponse.model";
 import Alert from './../utilities/Alert';
 import {Statuses} from "../models/ResponseStatuses";
+import Button from './../utilities/Button';
 
 class Newsletter extends React.Component<any, any> {
     state = {
@@ -47,7 +48,8 @@ class Newsletter extends React.Component<any, any> {
                                     type={this.state.formControls.email.type}
                                     placeholder={this.state.formControls.email.placeholder}
                                     name={this.state.formControls.email.type} />
-                                <input type="submit" value="Zapisz sie!"/>
+                                {/*<input type="submit" value="Zapisz sie!"/>*/}
+                                <Button text="Zapisz sie!" type="submit" />
                             </InputGroup>
                         </div>
                     </Form>

@@ -22,12 +22,6 @@
         height: auto;
         font-size: 2rem;
       }
-      input[type=submit] {
-        @include primary-button;
-        &[disabled] {
-          cursor: not-allowed;
-        }
-      }
     }
   }
 }
