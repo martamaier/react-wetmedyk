@@ -1,0 +1,44 @@
+@import "./../scss/variables";
+@import "./../scss/mixins";
+
+.newsItem {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  min-width: 40rem;
+  border-radius: .5rem;
+  background-color: $white;
+  box-shadow: 0 6px 18px 0 rgba(199,195,199,1);
+  margin-right: 5rem;
+  margin-left: 3rem;
+  text-align: left;
+
+  & > img {
+    width: 100%;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    & > h3 {
+      font-weight: bolder;
+      margin-bottom: 1.5rem;
+    }
+    & > p {
+      font-size: 1.7rem;
+      line-height: 1.5em;
+    }
+
+    & > button {
+      @include primary-button;
+      max-width: 18rem;
+    }
+    padding: 3rem;
+  }
+
+  &:not(:last-child) {
+
+  }
+}

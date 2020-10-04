@@ -5,6 +5,7 @@
 .news, {
   background-color: $grey-background;
   &Content {
+    text-align: left;
     h2 {
       @include font-title;
 
@@ -38,5 +39,10 @@
       overflow: unset;
 
     }
+  }
+  .newsContainer {
+    display: flex;
+    overflow: scroll;
+    padding-bottom: 2rem;
   }
 }

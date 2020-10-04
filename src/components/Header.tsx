@@ -7,11 +7,11 @@ const header = () => (
     <header>
         <Container fluid className={styles.headerWrapper}>
             <Row>
-                <div/>
+                {/*<div/>*/}
                 <img className={styles.logo} src={logo} alt="wetmedyk-logo"/>
-                <div className={styles.navigation}>
-                    <span className={[styles.navigationIcon, styles.menu].join(' ')}>&nbsp;</span>
-                </div>
+                {/*<div className={styles.navigation}>*/}
+                {/*    <span className={[styles.navigationIcon, styles.menu].join(' ')}>&nbsp;</span>*/}
+                {/*</div>*/}
             </Row>
         </Container>
     </header>

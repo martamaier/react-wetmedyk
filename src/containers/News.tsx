@@ -1,14 +1,18 @@
 import React from "react";
-import {NewsItem} from "../models/NewsItem.model";
-import NewsItemCard from './../components/NewsItem';
+import PostCard from '../components/PostCard';
 import ControlArrows from "./../utilities/ControlArrows";
 import {Col, Row} from "react-bootstrap";
 import styles from './Employees.module.scss';
 import './../scss/_utilities.scss';
+import axios, {AxiosResponse} from 'axios';
+import {Post} from "../models/Post.model";
 
 class News extends React.Component<any, any> {
     state = {
-        news: []
+        news: [],
+        heading: 'Aktualności',
+        description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
+        footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
     }
 
     render() {
@@ -19,16 +23,14 @@ class News extends React.Component<any, any> {
                         <Col md={4} sm={12} />
                         <Col md={4} sm={12} />
                         <Col md={4} sm={12} className={styles.newsContent}>
-                            <h2>Aktualności</h2>
-                            <p>Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i
-                                radosnego
-                                życia. Do zobaczenia!</p>
-                            <span>Zespół Centrum Weterynaryjnego WET-MEDYK</span>
+                            <h2>{this.state.heading}</h2>
+                            <p>{this.state.description}</p>
+                            <span>{this.state.footer}</span>
                         </Col>
                     </Col>
                     <Col md={6} sm={12} className={styles.newsContainer}>
-                        {this.state.news.map((newsItem: NewsItem) => (
-                            <NewsItemCard {...newsItem} />
+                        {this.state.news.map((post: Post) => (
+                            <PostCard key={post.id} {...post} />
                         ))}
 
                     </Col>
@@ -40,6 +42,20 @@ class News extends React.Component<any, any> {
                     </Col>
                 </Row>
             </section>);
+    }
+
+    componentDidMount() {
+        this.getNews();
+    }
+
+    getNews() {
+        axios.get('http://localhost:8080/posts')
+            .then((res: AxiosResponse<Post[]>) => {
+                this.setState({
+                    ...this.state,
+                    news: res.data,
+                });
+            });
     }
 }
 

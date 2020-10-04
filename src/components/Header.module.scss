@@ -8,15 +8,15 @@ header {
   .headerWrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-grow: 1;
-    .menu {
-      color: $white;
-      cursor: pointer;
-      font-size: 4rem;
-      z-index: 1000;
-    }
+    //.menu {
+    //  color: $white;
+    //  cursor: pointer;
+    //  font-size: 4rem;
+    //  z-index: 1000;
+    //}
     .logo {
       width: 20rem;
       height: auto;
