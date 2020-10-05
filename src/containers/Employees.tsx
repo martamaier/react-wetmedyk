@@ -6,6 +6,7 @@ import styles from './Employees.module.scss';
 import './../scss/_utilities.scss';
 import {Col, Row} from "react-bootstrap";
 import axios, {AxiosResponse} from 'axios';
+import Modal from './../utilities/Modal';
 
 class Employees extends React.Component<any, any> {
     state = {
@@ -13,6 +14,8 @@ class Employees extends React.Component<any, any> {
         heading: 'O nas',
         description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
         footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
+        displayModal: false,
+        selected: null,
     }
     render() {
         return (
@@ -30,7 +33,10 @@ class Employees extends React.Component<any, any> {
                     <Col md={6} sm={12} className={styles.cardsContainer}>
                         {
                             this.state.employees.map((employee: Employee) => (
-                                <EmployeeCard key={employee.id} {...employee} />
+                                <EmployeeCard
+                                    key={employee.id}
+                                    employee={employee}
+                                    toggleModal={this.toggleModal.bind(this)} />
                             ))
                         }
                     </Col>
@@ -41,10 +47,22 @@ class Employees extends React.Component<any, any> {
                         <ControlArrows/>
                     </Col>
                 </Row>
+                <Modal toggleModal={this.toggleModal.bind(this)}
+                       displayModal={this.state.displayModal}>
+                    {this.state.employees.length && this.state.selected ? (this.state.employees.find((employee: Employee) => employee.id === this.state.selected) as any)?.firstName : ''}
+                </Modal>
             </section>);
     }
     componentDidMount() {
         this.getEmployees();
+    }
+
+    toggleModal(id: number = 0) {
+        this.setState({
+            ...this.state,
+            displayModal: !this.state.displayModal,
+            selected: id,
+        });
     }
 
     getEmployees() {

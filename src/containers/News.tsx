@@ -6,6 +6,7 @@ import styles from './Employees.module.scss';
 import './../scss/_utilities.scss';
 import axios, {AxiosResponse} from 'axios';
 import {Post} from "../models/Post.model";
+import Modal from "./../utilities/Modal";
 
 class News extends React.Component<any, any> {
     state = {
@@ -13,6 +14,8 @@ class News extends React.Component<any, any> {
         heading: 'Aktualności',
         description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
         footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
+        displayModal: false,
+        selectedId: null,
     }
 
     render() {
@@ -30,7 +33,7 @@ class News extends React.Component<any, any> {
                     </Col>
                     <Col md={6} sm={12} className={styles.newsContainer}>
                         {this.state.news.map((post: Post) => (
-                            <PostCard key={post.id} {...post} />
+                            <PostCard key={post.id} post={post} onClick={this.toggleModal.bind(this)} />
                         ))}
 
                     </Col>
@@ -41,11 +44,18 @@ class News extends React.Component<any, any> {
                         <ControlArrows/>
                     </Col>
                 </Row>
+                <Modal toggleModal={() => this.toggleModal()} displayModal={this.state.displayModal}>
+                    {this.state.selectedId}
+                </Modal>
             </section>);
     }
 
     componentDidMount() {
         this.getNews();
+    }
+
+    toggleModal(id: number = 0) {
+        this.setState({...this.state, displayModal: !this.state.displayModal, selectedId: id})
     }
 
     getNews() {
