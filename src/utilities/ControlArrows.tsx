@@ -3,13 +3,18 @@ import styles from './ControlArrows.module.scss';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 
 
-const controlArrows = () => (
+const controlArrows = (props: ControlArrows) => (
         <>
             <div className={styles.chevron}>
-                <MdChevronLeft/>
-                <MdChevronRight/>
+                <MdChevronLeft onClick={() => props.onLeftClick('left')}/>
+                <MdChevronRight onClick={() => props.onRightClick('right')}/>
             </div>
         </>
     );
 
 export default controlArrows;
+
+interface ControlArrows {
+    onRightClick: Function;
+    onLeftClick: Function;
+}

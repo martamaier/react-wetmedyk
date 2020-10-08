@@ -1,6 +1,10 @@
 @import "src/scss/variables";
 @import "src/scss/mixins";
 
+.h100 {
+  height: 50rem;
+}
+
 .site {
   &Heading {
     background-color: $grey-background;
@@ -24,10 +28,10 @@
   &Body {
     padding: 6rem 0;
     &Data {
+      text-align: left;
       h3 {
         font-size: 3rem;
         color: $primary-green;
-
       }
     }
     &Map {
@@ -38,8 +42,4 @@
       }
     }
   }
-}
-
-.carouselIndicators li.indicator {
-  background-color: $primary-red;
 }

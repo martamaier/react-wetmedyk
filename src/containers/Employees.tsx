@@ -7,6 +7,7 @@ import './../scss/_utilities.scss';
 import {Col, Row} from "react-bootstrap";
 import axios, {AxiosResponse} from 'axios';
 import Modal from './../utilities/Modal';
+import {mapEmployeeToModalItem} from "../models/ModalData.model";
 
 class Employees extends React.Component<any, any> {
     state = {
@@ -17,7 +18,10 @@ class Employees extends React.Component<any, any> {
         displayModal: false,
         selected: null,
     }
+
     render() {
+        const selectedEmployee = this.state.employees
+            .find((employee: Employee) => employee.id === this.state.selected);
         return (
             <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
                 <Row>
@@ -33,10 +37,13 @@ class Employees extends React.Component<any, any> {
                     <Col md={6} sm={12} className={styles.cardsContainer}>
                         {
                             this.state.employees.map((employee: Employee) => (
-                                <EmployeeCard
-                                    key={employee.id}
-                                    employee={employee}
-                                    toggleModal={this.toggleModal.bind(this)} />
+                                <div id={String(employee.id)} key={employee.id}>
+                                    <EmployeeCard
+                                        key={employee.id}
+                                        employee={employee}
+                                        toggleModal={this.toggleModal.bind(this)} />
+                                </div>
+
                             ))
                         }
                     </Col>
@@ -44,13 +51,17 @@ class Employees extends React.Component<any, any> {
                 <Row>
                     <Col md={6}/>
                     <Col md={6}>
-                        <ControlArrows/>
+                        <ControlArrows
+                            onLeftClick={() => console.log('left click')}
+                            onRightClick={() => console.log('right click')}/>
                     </Col>
                 </Row>
-                <Modal toggleModal={this.toggleModal.bind(this)}
-                       displayModal={this.state.displayModal}>
-                    {this.state.employees.length && this.state.selected ? (this.state.employees.find((employee: Employee) => employee.id === this.state.selected) as any)?.firstName : ''}
-                </Modal>
+                {
+                    selectedEmployee ?
+                        <Modal toggleModal={this.toggleModal.bind(this)}
+                               displayModal={this.state.displayModal}
+                               data={mapEmployeeToModalItem(selectedEmployee as Employee)} /> : null
+                }
             </section>);
     }
     componentDidMount() {

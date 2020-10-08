@@ -7,6 +7,7 @@ import './../scss/_utilities.scss';
 import axios, {AxiosResponse} from 'axios';
 import {Post} from "../models/Post.model";
 import Modal from "./../utilities/Modal";
+import {mapPostToModalItem} from "../models/ModalData.model";
 
 class News extends React.Component<any, any> {
     state = {
@@ -19,6 +20,8 @@ class News extends React.Component<any, any> {
     }
 
     render() {
+        const selectedPost = this.state.news
+            .find((post: Post) => post.id === this.state.selectedId);
         return (
             <section className={[styles.news, 'sectionPadding'].join(' ')}>
                 <Row>
@@ -41,12 +44,17 @@ class News extends React.Component<any, any> {
                 <Row>
                     <Col md={6}/>
                     <Col md={6}>
-                        <ControlArrows/>
+                        <ControlArrows
+                            onLeftClick={() => console.log('left click')}
+                            onRightClick={() => console.log('right click')}/>
                     </Col>
                 </Row>
-                <Modal toggleModal={() => this.toggleModal()} displayModal={this.state.displayModal}>
-                    {this.state.selectedId}
-                </Modal>
+                {
+                    selectedPost ?  <Modal
+                        data={mapPostToModalItem(selectedPost)}
+                        toggleModal={() => this.toggleModal()}
+                        displayModal={this.state.displayModal}/> : null
+                }
             </section>);
     }
 
