@@ -2,22 +2,25 @@
 @import './../scss/mixins';
 
 .person {
-  //background-color: $black;
   background-image: radial-gradient(ellipse at top, #171d23, black);
   color: $white;
   border-radius: .8rem;
-  overflow: hidden;
-  height: 50rem;
-  min-width: 50rem;
-  margin-right: 5rem;
-  margin-left: 3rem;
+  margin: 3rem;
+  display: flex;
+  flex-direction: column-reverse;
   text-align: left;
 
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+  }
   &Content {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 3rem;
+    @media only screen and (min-width: 800px) {
+      width: 40%;
+    }
     p {
       font-size: 3rem;
       font-weight: lighter;
@@ -38,12 +41,20 @@
       @include primary-button;
       width: 15rem;
       padding: .8rem 1rem;
+      display: none;
+      @media only screen and (min-width: 800px) {
+        display: block;
+      }
     }
   }
   &Image {
-    padding: 0;
+    display: flex;
+    @media only screen and (min-width: 800px) {
+      width: 60%;
+    }
     img {
-      height: 100%;
+      flex-grow: 1;
+      min-height: 70rem;
     }
   }
 }

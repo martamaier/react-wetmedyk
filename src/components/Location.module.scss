@@ -8,7 +8,7 @@
 .site {
   &Heading {
     background-color: $grey-background;
-    padding: 4rem 0;
+    padding: 4rem 1rem;
     color: $white;
     font-size: 3rem;
     text-align: center;
@@ -26,7 +26,8 @@
     }
   }
   &Body {
-    padding: 6rem 0;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     &Data {
       text-align: left;
       h3 {

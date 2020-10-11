@@ -24,25 +24,23 @@ class Employees extends React.Component<any, any> {
             .find((employee: Employee) => employee.id === this.state.selected);
         return (
             <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
-                <Row>
-                    <Col md={6} sm={12} className={['row', styles.title].join(' ')}>
-                        <Col md={4} sm={12}/>
-                        <Col md={4} sm={12}/>
-                        <Col md={4} sm={12} className={styles.aboutUsContent}>
-                            <h2>{this.state.heading}</h2>
-                            <p>{this.state.description}</p>
-                            <span>{this.state.footer}</span>
-                        </Col>
+                <Row className={styles.row}>
+                    <Col lg={6} md={12} sm={12} className={styles.title}>
+                        <div className={styles.aboutUsWrapper}>
+                            <div className={styles.aboutUsContent}>
+                                <h2>{this.state.heading}</h2>
+                                <p>{this.state.description}</p>
+                                <span>{this.state.footer}</span>
+                            </div>
+                        </div>
                     </Col>
-                    <Col md={6} sm={12} className={styles.cardsContainer}>
+                    <Col lg={6} md={12} sm={12} className={styles.cardsContainer}>
                         {
                             this.state.employees.map((employee: Employee) => (
-                                <div id={String(employee.id)} key={employee.id}>
-                                    <EmployeeCard
-                                        key={employee.id}
-                                        employee={employee}
-                                        toggleModal={this.toggleModal.bind(this)} />
-                                </div>
+                                <EmployeeCard
+                                    key={employee.id}
+                                    employee={employee}
+                                    toggleModal={this.toggleModal.bind(this)}/>
 
                             ))
                         }
@@ -60,10 +58,11 @@ class Employees extends React.Component<any, any> {
                     selectedEmployee ?
                         <Modal toggleModal={this.toggleModal.bind(this)}
                                displayModal={this.state.displayModal}
-                               data={mapEmployeeToModalItem(selectedEmployee as Employee)} /> : null
+                               data={mapEmployeeToModalItem(selectedEmployee as Employee)}/> : null
                 }
             </section>);
     }
+
     componentDidMount() {
         this.getEmployees();
     }

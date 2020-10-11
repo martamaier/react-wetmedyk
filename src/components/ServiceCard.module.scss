@@ -13,6 +13,16 @@
   position: relative;
   transition: all .5s ease;
 
+  @media screen and (max-width: 890px) {
+    width: 100%;
+  }
+
+  &:not(:last-child) {
+    @media screen and (max-width: 890px) {
+      margin-bottom: 2rem;
+    }
+  }
+
   &Side {
     position: absolute;
     top: 0;
@@ -45,6 +55,7 @@
     }
     ul {
       list-style: none;
+      padding-inline-start: 0;
 
       li {
         font-size: 1.5rem;

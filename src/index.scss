@@ -3,19 +3,19 @@
 @import "scss/mixins";
 @import "scss/utilities";
 
-*,
-*:before,
-*:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+//*,
+//*:before,
+//*:after {
+//  margin: 0;
+//  padding: 0;
+//  box-sizing: border-box;
+//}
 
 html {
   font-size: 62.5%;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 600px){
   html {
     font-size: 50%;
   }
@@ -26,7 +26,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100vw;
   min-height: 100vh;
   font-family: $font;
   position: relative;
