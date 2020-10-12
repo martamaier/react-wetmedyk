@@ -16,8 +16,12 @@ footer {
       &Icons {
         font-size: 5rem;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        margin-bottom: 5rem;
+        @media only screen and (min-width: 790px) {
+          justify-content: center;
+        }
         .icons {
           cursor: pointer;
           transition: .5s;

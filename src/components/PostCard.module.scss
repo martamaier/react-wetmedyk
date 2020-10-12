@@ -12,6 +12,9 @@
   margin-right: 5rem;
   margin-left: 3rem;
   text-align: left;
+  @media only screen and (max-width: 900px) {
+    margin-bottom: 5rem;
+  }
 
   & > img {
     width: 100%;

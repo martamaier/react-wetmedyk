@@ -3,4 +3,7 @@
   font-size: 4rem;
   cursor: pointer;
   text-align: left;
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 }

@@ -55,6 +55,8 @@
     img {
       flex-grow: 1;
       min-height: 70rem;
+      overflow-x: hidden;
+      object-fit: cover;
     }
   }
 }
