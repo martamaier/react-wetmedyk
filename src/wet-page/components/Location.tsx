@@ -1,4 +1,4 @@
-import {Location} from "../models/Location.model";
+import {Location} from "../../models/Location.model";
 import React from "react";
 import styles from './Location.module.scss';
 import {Container, Row, Col} from "react-bootstrap";

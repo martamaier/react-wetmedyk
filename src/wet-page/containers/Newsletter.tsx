@@ -1,12 +1,12 @@
 import React, {FormEvent} from "react";
 import styles from './Newsletter.module.scss';
 import {Container, Form, InputGroup} from "react-bootstrap";
-import './../scss/_utilities.scss';
+import '../../scss/_utilities.scss';
 import axios, {AxiosResponse} from 'axios';
-import {NewsletterResponse} from "../models/NewsletterResponse.model";
-import Alert from './../utilities/Alert';
-import {Statuses} from "../models/ResponseStatuses";
-import Button from './../utilities/Button';
+import {NewsletterResponse} from "../../models/NewsletterResponse.model";
+import Alert from '../../shared/Alert';
+import {Statuses} from "../../models/ResponseStatuses";
+import Button from '../../shared/Button';
 
 class Newsletter extends React.Component<any, any> {
     state = {

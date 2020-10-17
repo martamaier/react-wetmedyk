@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "./../images/logo.png";
+import logo from "../../images/logo.png";
 import styles from './Footer.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
-import {Location} from "../models/Location.model";
+import {Location} from "../../models/Location.model";
 import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
 import * as _ from 'lodash';
-import {locations} from "../data/locations";
+import {locations} from "../../data/locations";
 
 class Footer extends React.Component<any, any> {
     state = {

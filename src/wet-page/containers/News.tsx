@@ -1,13 +1,13 @@
 import React from "react";
 import PostCard from '../components/PostCard';
-import ControlArrows from "./../utilities/ControlArrows";
+import ControlArrows from "../../shared/ControlArrows";
 import {Col, Row} from "react-bootstrap";
 import styles from './Employees.module.scss';
-import './../scss/_utilities.scss';
+import '../../scss/_utilities.scss';
 import axios, {AxiosResponse} from 'axios';
-import {Post} from "../models/Post.model";
-import Modal from "./../utilities/Modal";
-import {mapPostToModalItem} from "../models/ModalData.model";
+import {Post} from "../../models/Post.model";
+import Modal from "../../shared/Modal";
+import {mapPostToModalItem} from "../../models/ModalData.model";
 
 class News extends React.Component<any, any> {
     state = {

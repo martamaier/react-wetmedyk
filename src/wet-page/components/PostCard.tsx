@@ -1,5 +1,5 @@
 import React from "react";
-import {Post} from "../models/Post.model";
+import {Post} from "../../models/Post.model";
 import styles from './PostCard.module.scss';
 
 const postCard = (props:{post: Post, onClick: Function}) => (

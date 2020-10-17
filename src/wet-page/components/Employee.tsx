@@ -1,5 +1,5 @@
 import React from "react";
-import {Employee} from "../models/Employee.model";
+import {Employee} from "../../models/Employee.model";
 import styles from './Employee.module.scss';
 
 const employee = (props: { toggleModal: Function, employee: Employee }) => (

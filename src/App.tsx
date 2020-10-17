@@ -1,26 +1,16 @@
 import React from 'react';
-import './App.scss';
-import Header from "./components/Header";
-import Locations from "./containers/Locations";
-import Services from "./containers/Services";
-import Employees from "./containers/Employees";
-import Newsletter from "./containers/Newsletter";
-import News from "./containers/News";
-import Footer from "./containers/Footer";
+import MainPage from './wet-page/MainPage';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LoginPage from "./wet-manager/LoginPage";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-        <main>
-            <Locations/>
-            <Services />
-            <Employees />
-            <Newsletter />
-            <News />
-        </main>
-        <Footer />
-    </div>
+      <BrowserRouter>
+          <div className="App">
+              <Route path="/login" component={LoginPage} />
+              <Route path="/home" component={MainPage} />
+          </div>
+      </BrowserRouter>
   );
 }
 

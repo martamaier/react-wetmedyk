@@ -1,10 +1,10 @@
 import React from "react";
 import Service from "../components/ServiceCard";
-import {ServiceCard} from "../models/ServiceCard.model";
+import {ServiceCard} from "../../models/ServiceCard.model";
 import styles from './Services.module.scss';
-import './../scss/_utilities.scss';
+import '../../scss/_utilities.scss';
 import {Container} from "react-bootstrap";
-import {IconTypes} from "../models/IconTypes";
+import {IconTypes} from "../../models/IconTypes";
 
 class Services extends React.Component<any, any> {
     state = {

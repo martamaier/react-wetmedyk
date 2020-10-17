@@ -1,8 +1,8 @@
 import React from "react";
-import {ServiceCard} from "../models/ServiceCard.model";
+import {ServiceCard} from "../../models/ServiceCard.model";
 import styles from './ServiceCard.module.scss';
 import {MdLocationCity, MdLoyalty, MdShoppingCart} from "react-icons/all";
-import {IconTypes} from "../models/IconTypes";
+import {IconTypes} from "../../models/IconTypes";
 
 const serviceCard = (props: ServiceCard) => (
     <article className={styles.cardService}>
