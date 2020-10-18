@@ -1,53 +1,46 @@
-import React, {FormEvent} from "react";
+import React, {FormEvent, useState} from "react";
 import styles from './Newsletter.module.scss';
 import {Container, Form, InputGroup} from "react-bootstrap";
 import '../../scss/_utilities.scss';
 import axios, {AxiosResponse} from 'axios';
 import {NewsletterResponse} from "../../models/NewsletterResponse.model";
-import Alert from '../../shared/Alert';
 import {Statuses} from "../../models/ResponseStatuses";
 import Button from '../../shared/Button';
+import {AlertMessage} from "../../models/AlertMessage.model";
+import Alert from './../../shared/Alert';
 
-class Newsletter extends React.Component<any, any> {
-    state = {
-        form: {
-            isValid: false,
-            touched: false,
-        },
-        formControls: {
-            email: {
-                type: 'email',
-                placeholder: 'adres e-mail',
-            }
-        },
-        alert: {
-            shouldDisplay: false,
-            message: null,
-            status: null,
-        }
-    };
-    render() {
+function Newsletter() {
+    const [isValid, setIsValid] = useState<boolean>(false);
+    const [touched, setTouched] = useState<boolean>(false);
+    const inputType = 'email';
+    const placeholder = 'adres e-mail';
+    const [alert, setAlert] = useState<AlertMessage>({
+        shouldDisplay: false,
+        message: null,
+        status: null,
+    });
+
         return (
             <section className={[styles.newsletter, 'sectionPadding'].join(' ')}>
                 <Container>
                     {
-                        !this.state.alert.shouldDisplay ? null : (
-                            <Alert message={this.state.alert.message as any}
-                                   onClose={this.updateAlert.bind(this)}
-                                   status={this.state.alert.status as any} />
+                        !alert.shouldDisplay ? null : (
+                            <Alert message={alert.message as any}
+                                   onClose={updateAlert}
+                                   status={alert.status as any} />
                         )
                     }
                     <Form
                         className={styles.newsletterForm}
-                        onSubmit={(event: FormEvent<HTMLFormElement>) => this.onSubmit(event)}>
+                        onSubmit={(event: FormEvent<HTMLFormElement>) => onSubmit(event)}>
                         <Form.Label className={styles.label} htmlFor="email">Newsletter</Form.Label>
                         <div className={styles.inputGroup}>
                             <InputGroup>
                                 <Form.Control
                                     className={styles.formControl}
-                                    type={this.state.formControls.email.type}
-                                    placeholder={this.state.formControls.email.placeholder}
-                                    name={this.state.formControls.email.type} />
+                                    type={inputType}
+                                    placeholder={placeholder}
+                                    name={inputType} />
                                 {/*<input type="submit" value="Zapisz sie!"/>*/}
                                 <Button text="Zapisz sie!" type="submit" />
                             </InputGroup>
@@ -55,9 +48,9 @@ class Newsletter extends React.Component<any, any> {
                     </Form>
                 </Container>
             </section>);
-    }
 
-    onSubmit(event: FormEvent<HTMLFormElement>) {
+
+    function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get('email');
@@ -65,30 +58,35 @@ class Newsletter extends React.Component<any, any> {
         if ((email as string).length) {
             axios.post('http://localhost:8080/newsletter', { email })
                 .then((res: AxiosResponse<NewsletterResponse>) => (
-                    this.handleAlert(res.data)))
+                    handleAlert(res.data)))
         } else {
             const payload: NewsletterResponse = {
                 status: Statuses.Warning,
                 message: 'E-mail address cannot be empty'
             };
-            this.handleAlert(payload);
+            handleAlert(payload);
         }
     }
 
-    handleAlert(newsletter: NewsletterResponse) {
-        this.updateAlert(true, newsletter.message, newsletter.status);
+    function handleAlert(newsletter: NewsletterResponse) {
+        const alert: AlertMessage = {
+            shouldDisplay: true,
+            message: newsletter.message,
+            status: newsletter.status,
+        }
+        updateAlert(alert);
         setTimeout(() => {
-            this.updateAlert(false, null, null);
+            const clearAlert: AlertMessage = {
+                shouldDisplay: false,
+                message: null,
+                status: null,
+            }
+            updateAlert(clearAlert);
         }, 5000);
     }
 
-    updateAlert(shouldDisplay: boolean, message: string | null = null, status: number | null): void {
-        this.setState({
-            ...this.state,
-            alert: {
-                shouldDisplay, message, status
-            }
-        })
+    function updateAlert(alert: AlertMessage): void {
+      setAlert(alert);
     }
 }
 

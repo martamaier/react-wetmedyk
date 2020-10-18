@@ -1,32 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../../images/logo.png";
 import styles from './Footer.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
 import {Location} from "../../models/Location.model";
 import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
-import * as _ from 'lodash';
-import {locations} from "../../data/locations";
+import axios, {AxiosResponse} from 'axios';
 
-class Footer extends React.Component<any, any> {
-    state = {
-        copyrights: '@ 2020 Wetmedyk. All rights reserved.',
-        locations: _.cloneDeep(locations),
-    }
-    render() {
-        return (
+function Footer() {
+    const copyrights = '@ 2020 Wetmedyk. All rights reserved.';
+    const [locations, setLocations] = useState<Location[]>([]);
+
+    useEffect(() => {
+        getLocations();
+    }, [])
+
+    return (
         <footer>
             <Container className={styles.footer}>
                 <div className={styles.footerWrapper}>
                     <Row>
                         <Col md={6} className={styles.footerWrapperIcons}>
-                            <FaFacebookSquare className={styles.icons} />
-                            <FaTwitterSquare className={styles.icons} />
-                            <FaEnvelopeSquare className={styles.icons} />
+                            <FaFacebookSquare className={styles.icons}/>
+                            <FaTwitterSquare className={styles.icons}/>
+                            <FaEnvelopeSquare className={styles.icons}/>
                         </Col>
                         <Col md={6} className={styles.footerWrapperLocations}>
-                            <img src={logo} alt="" />
+                            <img src={logo} alt=""/>
                             {
-                                this.state.locations.map((location: Location) => (
+                                locations.map((location: Location) => (
                                     <div key={location.id} className={styles.location}>
                                         <h3>{location.name}</h3>
                                         <span>{location.street}, {location.zipCode} {location.city}</span>
@@ -37,10 +38,16 @@ class Footer extends React.Component<any, any> {
                         </Col>
                     </Row>
                 </div>
-                <span className={styles.copyrights}>{this.state.copyrights}</span>
+                <span className={styles.copyrights}>{copyrights}</span>
             </Container>
         </footer>);
+
+    function getLocations() {
+        axios.get('http://localhost:8080/locations').then((res:AxiosResponse<Location[]>) => {
+            setLocations(res.data);
+        })
     }
+
 }
 
 export default Footer;

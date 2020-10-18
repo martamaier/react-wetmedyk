@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PostCard from '../components/PostCard';
 import ControlArrows from "../../shared/ControlArrows";
 import {Col, Row} from "react-bootstrap";
@@ -9,19 +9,20 @@ import {Post} from "../../models/Post.model";
 import Modal from "../../shared/Modal";
 import {mapPostToModalItem} from "../../models/ModalData.model";
 
-class News extends React.Component<any, any> {
-    state = {
-        news: [],
-        heading: 'Aktualności',
-        description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
-        footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
-        displayModal: false,
-        selectedId: null,
-    }
+function News() {
+    const [news, setNews] = useState<Post[]>([]);
+    const heading = 'Aktualności';
+    const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
+    const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';
+    const [displayModal, setDisplayModal] = useState<boolean>(false);
+    const [selectedId, setSelectedId] = useState<number>(0);
+    const selectedPost = news
+        .find((post: Post) => post.id === selectedId);
 
-    render() {
-        const selectedPost = this.state.news
-            .find((post: Post) => post.id === this.state.selectedId);
+    useEffect(() => {
+        getNews();
+    }, [])
+
         return (
             <section className={[styles.news, 'sectionPadding'].join(' ')}>
                 <Row>
@@ -29,14 +30,14 @@ class News extends React.Component<any, any> {
                         <Col md={4} sm={12} />
                         <Col md={4} sm={12} />
                         <Col md={4} sm={12} className={styles.newsContent}>
-                            <h2>{this.state.heading}</h2>
-                            <p>{this.state.description}</p>
-                            <span>{this.state.footer}</span>
+                            <h2>{heading}</h2>
+                            <p>{description}</p>
+                            <span>{footer}</span>
                         </Col>
                     </Col>
                     <Col md={6} sm={12} className={styles.newsContainer}>
-                        {this.state.news.map((post: Post) => (
-                            <PostCard key={post.id} post={post} onClick={this.toggleModal.bind(this)} />
+                        {news.map((post: Post) => (
+                            <PostCard key={post.id} post={post} onClick={toggleModal} />
                         ))}
 
                     </Col>
@@ -52,27 +53,20 @@ class News extends React.Component<any, any> {
                 {
                     selectedPost ?  <Modal
                         data={mapPostToModalItem(selectedPost)}
-                        toggleModal={() => this.toggleModal()}
-                        displayModal={this.state.displayModal}/> : null
+                        toggleModal={toggleModal}
+                        displayModal={displayModal}/> : null
                 }
             </section>);
+
+    function toggleModal(id: number = 0) {
+        setDisplayModal(!displayModal);
+        setSelectedId(id);
     }
 
-    componentDidMount() {
-        this.getNews();
-    }
-
-    toggleModal(id: number = 0) {
-        this.setState({...this.state, displayModal: !this.state.displayModal, selectedId: id})
-    }
-
-    getNews() {
+    function getNews() {
         axios.get('http://localhost:8080/posts')
             .then((res: AxiosResponse<Post[]>) => {
-                this.setState({
-                    ...this.state,
-                    news: res.data,
-                });
+                setNews(res.data);
             });
     }
 }

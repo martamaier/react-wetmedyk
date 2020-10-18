@@ -15,64 +15,59 @@ function Employees() {
     const heading = 'O nas';
     const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
     const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';
-    const [displayModal, setDisplayModal] = useState(false);
-    const [selectedId, setSelected] = useState(null);
+    const [displayModal, setDisplayModal] = useState<boolean>(false);
+    const [selectedId, setSelected] = useState<number>(0);
     const selectedEmployee = employees
-            .find((employee: Employee) => employee.id === selectedId);
+        .find((employee: Employee) => employee.id === selectedId);
 
     useEffect(() => {
-        if (!employees.length) {
-            getEmployees();
-        }
-    })
+        getEmployees();
+    }, [])
 
-        return (
-            <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
-                <Row className={styles.row}>
-                    <Col lg={6} md={12} sm={12} className={styles.title}>
-                        <div className={styles.aboutUsWrapper}>
-                            <div className={styles.aboutUsContent}>
-                                <h2>{heading}</h2>
-                                <p>{description}</p>
-                                <span>{footer}</span>
-                            </div>
+    return (
+        <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
+            <Row className={styles.row}>
+                <Col lg={6} md={12} sm={12} className={styles.title}>
+                    <div className={styles.aboutUsWrapper}>
+                        <div className={styles.aboutUsContent}>
+                            <h2>{heading}</h2>
+                            <p>{description}</p>
+                            <span>{footer}</span>
                         </div>
-                    </Col>
-                    <Col lg={6} md={12} sm={12} className={styles.cardsContainer}>
-                        {
-                            employees.map((employee: Employee) => (
-                                <EmployeeCard
-                                    key={employee.id + employee.firstName}
-                                    employee={employee}
-                                    toggleModal={toggleModal}/>
-
-                            ))
-                        }
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={6}/>
-                    <Col md={6}>
-                        <ControlArrows
-                            onLeftClick={() => console.log('left click')}
-                            onRightClick={() => console.log('right click')}/>
-                    </Col>
-                </Row>
-                {
-                    selectedEmployee ?
-                        <Modal toggleModal={toggleModal}
-                               displayModal={displayModal}
-                               data={mapEmployeeToModalItem(selectedEmployee as Employee)}/> : null
-                }
-            </section>);
+                    </div>
+                </Col>
+                <Col lg={6} md={12} sm={12} className={styles.cardsContainer}>
+                    {
+                        employees.map((employee: Employee) => (
+                            <EmployeeCard
+                                key={employee.id + employee.firstName}
+                                employee={employee}
+                                toggleModal={toggleModal}/>
+                        ))
+                    }
+                </Col>
+            </Row>
+            <Row>
+                <Col md={6}/>
+                <Col md={6}>
+                    <ControlArrows
+                        onLeftClick={() => console.log('left click')}
+                        onRightClick={() => console.log('right click')}/>
+                </Col>
+            </Row>
+            {
+                selectedEmployee ?
+                    <Modal toggleModal={toggleModal}
+                           displayModal={displayModal}
+                           data={mapEmployeeToModalItem(selectedEmployee as Employee)}/> : null
+            }
+        </section>);
 
     function getEmployees() {
         axios.get('http://localhost:8080/employees')
             .then((res: AxiosResponse<Employee[]>) => {
-                console.log(res.data);
-
                 res.data.forEach((employee: Employee) => {
-                    setEmployees({ type: 'AddOne', payload: employee });
+                    setEmployees({type: 'AddOne', payload: employee});
                 });
 
             });
@@ -80,7 +75,6 @@ function Employees() {
 
     function toggleModal(id: number = 0) {
         setDisplayModal(!displayModal);
-        // @ts-ignore
         setSelected(id);
     }
 }

@@ -4,7 +4,7 @@ import styles from './Location.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
 
 const location = (props: Location) => {
-    const [hour1, hour2] = props.openHours.split('<br>');
+    const [hour1, hour2] = props.openHours.split('<br/>');
     return (
         <div className={styles.site}>
             <div className={styles.siteHeading}>

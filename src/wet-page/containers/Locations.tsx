@@ -1,27 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Carousel} from 'react-bootstrap';
-import {locations} from "../../data/locations";
-import * as _ from "lodash";
 import {Location} from "../../models/Location.model";
 import LocationCard from '../components/Location';
+import axios, {AxiosResponse} from 'axios';
 
-class Locations extends React.Component<any, any> {
-    state = {
-        locations: _.cloneDeep(locations),
-    }
+function Locations() {
+    const [locations, setLocations] = useState<Location[]>([]);
 
-    render() {
-        return (
-            <Carousel>
-                {
-                    this.state.locations.map((location: Location) => (
-                        <Carousel.Item key={location.id}>
-                            <LocationCard key={location.id} {...location} />
-                        </Carousel.Item>
-                    ))
-                }
-            </Carousel>
-        );
+    useEffect(() => {
+        getLocations();
+    }, []);
+
+    return (
+        <Carousel>
+            {
+                locations.map((location: Location) => (
+                    <Carousel.Item key={location.id}>
+                        <LocationCard key={location.id} {...location} />
+                    </Carousel.Item>
+                ))
+            }
+        </Carousel>
+    );
+
+    function getLocations() {
+        axios.get(`http://localhost:8080/locations`)
+            .then((res: AxiosResponse<Location[]>) => {
+                setLocations(res.data);
+            });
     }
 }
 
