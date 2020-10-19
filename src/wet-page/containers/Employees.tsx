@@ -8,8 +8,8 @@ import {Col, Row} from "react-bootstrap";
 import axios, {AxiosResponse} from 'axios';
 import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
-import * as _ from "lodash";
 import {CURRENT_ENV} from "../../environment";
+import {employeeReducer} from "../../store/employees-store/reducer";
 
 function Employees() {
     const [employees, setEmployees] = useReducer(employeeReducer, []);
@@ -82,22 +82,3 @@ function Employees() {
 
 export default Employees;
 
-function employeeReducer(
-    state: Employee[],
-    action: { type: string, payload: Employee },
-): Employee[] {
-    const newState = _.cloneDeep(state);
-    switch (action.type) {
-        case 'AddOne':
-            return [...newState, action.payload];
-        case 'Delete':
-            return newState
-                .filter((employee: Employee) => employee.id !== action.payload.id);
-        case 'Update':
-            const filteredArray = newState
-                .filter((employee: Employee) => employee.id !== action.payload.id)
-            return [...filteredArray, action.payload];
-        default:
-            return newState;
-    }
-}

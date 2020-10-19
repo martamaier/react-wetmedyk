@@ -13,6 +13,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {useStyles} from "./manager.styles";
 import Navigation from "../components/Navigation";
+import {Route} from "react-router";
+import EmployeesManager from "./employees-manager";
+import {BrowserRouter} from "react-router-dom";
+import LocationsManager from "./locations-manager";
+import PostsManager from "./posts-manager";
+import UsersManager from "./users-manager";
+import SubscribersManager from "./subscribers-manager";
 
 function Manager() {
     const classes = useStyles();
@@ -39,6 +46,7 @@ function Manager() {
     }, []);
 
     return (
+        <BrowserRouter>
         <div className={classes.root}>
             <CssBaseline/>
             <AppBar
@@ -85,8 +93,14 @@ function Manager() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar}/>
+                <Route path="/manager/employees" component={EmployeesManager}/>
+                <Route path="/manager/locations" component={LocationsManager}/>
+                <Route path="/manager/posts" component={PostsManager}/>
+                <Route path="/manager/users" component={UsersManager}/>
+                <Route path="/manager/subscribers" component={SubscribersManager}/>
             </main>
         </div>
+        </BrowserRouter>
     );
 }
 
