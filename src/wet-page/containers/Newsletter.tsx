@@ -8,6 +8,7 @@ import {Statuses} from "../../models/ResponseStatuses";
 import Button from '../../shared/Button';
 import {AlertMessage} from "../../models/AlertMessage.model";
 import Alert from './../../shared/Alert';
+import {CURRENT_ENV} from "../../environment";
 
 function Newsletter() {
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -56,7 +57,7 @@ function Newsletter() {
         const email = formData.get('email');
 
         if ((email as string).length) {
-            axios.post('http://localhost:8080/newsletter', { email })
+            axios.post(`${CURRENT_ENV}/newsletter`, { email })
                 .then((res: AxiosResponse<NewsletterResponse>) => (
                     handleAlert(res.data)))
         } else {

@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import styles from './LoginPage.module.scss';
 import {Login} from "../models/Login.model";
 import axios, {AxiosResponse} from 'axios';
+import {CURRENT_ENV} from "../environment";
 
 class LoginPage extends React.Component<any, any> {
     render() {
@@ -84,7 +85,7 @@ class LoginPage extends React.Component<any, any> {
         }
         console.log(login);
 
-        axios.post('http://localhost:8080/authenticate', login)
+        axios.post(`${CURRENT_ENV}/authenticate`, login)
             .then((res: AxiosResponse) => console.log(res.data));
 
     }

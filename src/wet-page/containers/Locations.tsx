@@ -3,6 +3,7 @@ import {Carousel} from 'react-bootstrap';
 import {Location} from "../../models/Location.model";
 import LocationCard from '../components/Location';
 import axios, {AxiosResponse} from 'axios';
+import {CURRENT_ENV} from "../../environment";
 
 function Locations() {
     const [locations, setLocations] = useState<Location[]>([]);
@@ -24,7 +25,7 @@ function Locations() {
     );
 
     function getLocations() {
-        axios.get(`http://localhost:8080/locations`)
+        axios.get(`${CURRENT_ENV}/locations`)
             .then((res: AxiosResponse<Location[]>) => {
                 setLocations(res.data);
             });

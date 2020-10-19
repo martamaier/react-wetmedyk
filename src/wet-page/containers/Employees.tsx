@@ -9,6 +9,7 @@ import axios, {AxiosResponse} from 'axios';
 import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
 import * as _ from "lodash";
+import {CURRENT_ENV} from "../../environment";
 
 function Employees() {
     const [employees, setEmployees] = useReducer(employeeReducer, []);
@@ -64,7 +65,7 @@ function Employees() {
         </section>);
 
     function getEmployees() {
-        axios.get('http://localhost:8080/employees')
+        axios.get(`${CURRENT_ENV}/employees`)
             .then((res: AxiosResponse<Employee[]>) => {
                 res.data.forEach((employee: Employee) => {
                     setEmployees({type: 'AddOne', payload: employee});

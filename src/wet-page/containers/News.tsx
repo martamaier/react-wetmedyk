@@ -8,6 +8,7 @@ import axios, {AxiosResponse} from 'axios';
 import {Post} from "../../models/Post.model";
 import Modal from "../../shared/Modal";
 import {mapPostToModalItem} from "../../models/ModalData.model";
+import {CURRENT_ENV} from "../../environment";
 
 function News() {
     const [news, setNews] = useState<Post[]>([]);
@@ -64,7 +65,7 @@ function News() {
     }
 
     function getNews() {
-        axios.get('http://localhost:8080/posts')
+        axios.get(`${CURRENT_ENV}/posts`)
             .then((res: AxiosResponse<Post[]>) => {
                 setNews(res.data);
             });

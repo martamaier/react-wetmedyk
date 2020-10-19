@@ -5,6 +5,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {Location} from "../../models/Location.model";
 import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
 import axios, {AxiosResponse} from 'axios';
+import {CURRENT_ENV} from "../../environment";
 
 function Footer() {
     const copyrights = '@ 2020 Wetmedyk. All rights reserved.';
@@ -43,7 +44,7 @@ function Footer() {
         </footer>);
 
     function getLocations() {
-        axios.get('http://localhost:8080/locations').then((res:AxiosResponse<Location[]>) => {
+        axios.get(`${CURRENT_ENV}/locations`).then((res:AxiosResponse<Location[]>) => {
             setLocations(res.data);
         })
     }
