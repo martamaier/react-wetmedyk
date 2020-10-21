@@ -13,12 +13,18 @@ footer {
       padding-bottom: 7rem;
       border-bottom: 2px solid;
       @include primary-red-gradient;
+
+      a {
+        color: $white;
+      }
+
       &Icons {
         font-size: 5rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         margin-bottom: 5rem;
+        color: $white;
         @media only screen and (min-width: 790px) {
           justify-content: center;
         }

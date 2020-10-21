@@ -21,9 +21,19 @@ function Footer() {
                 <div className={styles.footerWrapper}>
                     <Row>
                         <Col md={6} className={styles.footerWrapperIcons}>
-                            <FaFacebookSquare className={styles.icons}/>
-                            <FaTwitterSquare className={styles.icons}/>
-                            <FaEnvelopeSquare className={styles.icons}/>
+                            <a className={styles.icons} target="_blank"
+                               href="https://pl-pl.facebook.com/pages/category/Veterinarian/WetMedyk-390130391162994/"
+                               rel="noopener noreferrer">
+                                <FaFacebookSquare/>
+                            </a>
+                            <a className={styles.icons} href="https://twitter.com/wetmedyk?lang=en"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <FaTwitterSquare/>
+                            </a>
+                            <a className={styles.icons} href="mailto:kontakt@wetmedyk.pl">
+                                <FaEnvelopeSquare/>
+                            </a>
                         </Col>
                         <Col md={6} className={styles.footerWrapperLocations}>
                             <img src={logo} alt=""/>
