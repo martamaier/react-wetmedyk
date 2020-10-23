@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useRef, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import {Employee} from "../../models/Employee.model";
 import EmployeeCard from "../components/Employee";
 import ControlArrows from "../../shared/ControlArrows";

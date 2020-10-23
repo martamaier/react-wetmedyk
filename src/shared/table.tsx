@@ -6,11 +6,11 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import * as _ from "lodash";
 import TableBody from "@material-ui/core/TableBody";
-import {Employee} from "../models/Employee.model";
 import {Avatar, Button, Checkbox, Table} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Edit, PersonAdd} from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {DataTableModel, DataTableRow, mapArrayToDataTable} from "../models/DataTable.model";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function DataTable(props: { data: Employee[] }) {
+function DataTable<T>(props: { data: T[] }) {
     const classes = useStyles();
+    const dataTable: DataTableModel<T> = mapArrayToDataTable(props.data);
 
     return (
         <>
@@ -36,28 +37,24 @@ function DataTable(props: { data: Employee[] }) {
                         <TableRow>
                             <TableCell/>
                             {
-                                Object.keys(props.data[0]).map((key: string) => (
+                                dataTable.headings.map((key: string) => (
                                     <TableCell key={key}>{_.startCase(key)}</TableCell>
                                 ))
                             }
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.data.map((row: Employee) => (
-                            <TableRow key={row.id}>
+                        {dataTable.rows.map((row: DataTableRow<T>[]) => (
+                            <TableRow key={JSON.stringify(row)}>
                                 <TableCell padding="checkbox">
-                                    <Checkbox />
+                                    <Checkbox/>
                                 </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {row.id}
-                                </TableCell>
-                                <TableCell align="left">{row.firstName}</TableCell>
-                                <TableCell align="left">{row.lastName}</TableCell>
-                                <TableCell align="left">{row.description}</TableCell>
-                                <TableCell align="left">
-                                    <Avatar alt="Cindy Baker" src={row.photo}/>
-                                </TableCell>
-                                <TableCell align="left">{row.title}</TableCell>
+                                {row.map((column: DataTableRow<T>) => (
+                                    <TableCell align="left" key={column.value}>
+                                        {column.type === 'image' ?
+                                            <Avatar alt="avatar" src={column.value.toString()}/> : column.value}
+                                    </TableCell>
+                                ))}
                             </TableRow>
                         ))}
                     </TableBody>
@@ -68,21 +65,21 @@ function DataTable(props: { data: Employee[] }) {
                     variant="contained"
                     color="primary"
                     className={classes.button}
-                    startIcon={<PersonAdd />}>
+                    startIcon={<PersonAdd/>}>
                     Add
                 </Button>
                 <Button
                     variant="contained"
                     color="default"
                     className={classes.button}
-                    startIcon={<Edit />}>
+                    startIcon={<Edit/>}>
                     Edit
                 </Button>
                 <Button
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    startIcon={<DeleteIcon />}>
+                    startIcon={<DeleteIcon/>}>
                     Delete
                 </Button>
             </div>

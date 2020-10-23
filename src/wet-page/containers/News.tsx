@@ -29,7 +29,6 @@ function News() {
         const newsContainer = document.querySelector('.news-scroll');
 
         (newsContainer as any).scrollTo({ left: offset, behavior: 'smooth' });
-
     }, [offset])
 
         return (
