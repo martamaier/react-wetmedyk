@@ -10,7 +10,7 @@ import {Avatar, Button, Checkbox, Table} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Edit, PersonAdd} from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {DataTableModel, DataTableRow, mapArrayToDataTable} from "../models/DataTable.model";
+import {DataTableModel, DataTableRow, DataTypes, mapArrayToDataTable} from "../models/DataTable.model";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -51,7 +51,7 @@ function DataTable<T>(props: { data: T[] }) {
                                 </TableCell>
                                 {row.map((column: DataTableRow<T>) => (
                                     <TableCell align="left" key={column.value}>
-                                        {column.type === 'image' ?
+                                        {column.type === DataTypes.image ?
                                             <Avatar alt="avatar" src={column.value.toString()}/> : column.value}
                                     </TableCell>
                                 ))}

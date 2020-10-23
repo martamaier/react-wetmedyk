@@ -6,12 +6,17 @@ export interface DataTableModel<T> {
 }
 
 export interface DataTableRow<T> {
-    type: 'image' | 'text' | 'number';
+    type: DataTypes;
     value: string | number;
 }
 
-export function mapArrayToDataTable<T>(data: T[]): DataTableModel<T> {
+export enum DataTypes {
+    image = 'image',
+    text = 'text',
+    number = 'number',
+}
 
+export function mapArrayToDataTable<T>(data: T[]): DataTableModel<T> {
     return {
         headings: Object.keys(data[0]),
         rows: data.map((dataItem: T) => mapObjectToDataTableRow(dataItem))
@@ -20,12 +25,11 @@ export function mapArrayToDataTable<T>(data: T[]): DataTableModel<T> {
 
 
 export function mapObjectToDataTableRow<T>(dataItem: T): DataTableRow<T>[] {
-    return Object.values(dataItem).map((value: string | number) => {
-        return {
+    return Object.values(dataItem).map((value: string | number) => ({
             value,
             type: value.toString().startsWith('http') ?
-                'image' :
-                (!_.isNaN(value) ? 'number' : 'text'),
-        }
-    });
+                DataTypes.image :
+                (!_.isNaN(value) ? DataTypes.number : DataTypes.text),
+        })
+    );
 }
