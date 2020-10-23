@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useEffect, useReducer, useRef, useState} from "react";
 import {Employee} from "../../models/Employee.model";
 import EmployeeCard from "../components/Employee";
 import ControlArrows from "../../shared/ControlArrows";
@@ -20,10 +20,16 @@ function Employees() {
     const [selectedId, setSelected] = useState<number>(0);
     const selectedEmployee = employees
         .find((employee: Employee) => employee.id === selectedId);
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         getEmployees();
     }, [])
+
+    useEffect(() => {
+        const cardsContainer = document.querySelector('.employee-scroll');
+        (cardsContainer as any).scrollTo({ left: offset, behavior: 'smooth' });
+    }, [offset])
 
     return (
         <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
@@ -37,11 +43,11 @@ function Employees() {
                         </div>
                     </div>
                 </Col>
-                <Col lg={6} md={12} sm={12} className={styles.cardsContainer}>
+                <Col lg={6} md={12} sm={12} className={[styles.cardsContainer, 'employee-scroll'].join(' ')}>
                     {
                         employees.map((employee: Employee) => (
                             <EmployeeCard
-                                key={employee.id + employee.firstName}
+                                key={employee.id}
                                 employee={employee}
                                 toggleModal={toggleModal}/>
                         ))
@@ -52,8 +58,9 @@ function Employees() {
                 <Col md={6}/>
                 <Col md={6}>
                     <ControlArrows
-                        onLeftClick={() => console.log('left click')}
-                        onRightClick={() => console.log('right click')}/>
+                        maxCount={employees.length}
+                        onLeftClick={() => setOffset(offset - 750)}
+                        onRightClick={() => setOffset(offset + 750)}/>
                 </Col>
             </Row>
             {

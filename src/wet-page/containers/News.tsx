@@ -19,10 +19,18 @@ function News() {
     const [selectedId, setSelectedId] = useState<number>(0);
     const selectedPost = news
         .find((post: Post) => post.id === selectedId);
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         getNews();
     }, [])
+
+    useEffect(() => {
+        const newsContainer = document.querySelector('.news-scroll');
+
+        (newsContainer as any).scrollTo({ left: offset, behavior: 'smooth' });
+
+    }, [offset])
 
         return (
             <section className={[styles.news, 'sectionPadding'].join(' ')}>
@@ -36,7 +44,7 @@ function News() {
                             <span>{footer}</span>
                         </Col>
                     </Col>
-                    <Col md={6} sm={12} className={styles.newsContainer}>
+                    <Col md={6} sm={12} className={[styles.newsContainer, 'news-scroll'].join(' ')}>
                         {news.map((post: Post) => (
                             <PostCard key={post.id} post={post} onClick={toggleModal} />
                         ))}
@@ -47,8 +55,9 @@ function News() {
                     <Col md={6}/>
                     <Col md={6}>
                         <ControlArrows
-                            onLeftClick={() => console.log('left click')}
-                            onRightClick={() => console.log('right click')}/>
+                            maxCount={news.length}
+                            onLeftClick={() => setOffset(offset - 400)}
+                            onRightClick={() => setOffset(offset + 400)}/>
                     </Col>
                 </Row>
                 {
