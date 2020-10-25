@@ -91,7 +91,11 @@ function LoginPage() {
 
         axiosInstance.post(`${CURRENT_ENV}/authenticate`, login)
             .then((res: AxiosResponse<AuthToken>) => {
-                sessionStorage.setItem('user', JSON.stringify(res.data));
+                const userData: AuthToken = {
+                    ...res.data,
+                    userName: login.userName,
+                }
+                sessionStorage.setItem('user', JSON.stringify(userData));
                 setLoggedIn(true);
             });
     }

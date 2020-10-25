@@ -1,0 +1,14 @@
+.userWrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  align-items: center;
+  & > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+  .logoutButton {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
