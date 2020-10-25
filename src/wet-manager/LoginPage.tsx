@@ -1,4 +1,4 @@
-import React, {FormEvent} from "react";
+import React, {FormEvent, useState} from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,11 +12,14 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styles from './LoginPage.module.scss';
 import {Login} from "../models/Login.model";
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {CURRENT_ENV} from "../environment";
+import axiosInstance from "../services/interceptor";
+import {AuthToken} from "../models/AuthToken.model";
+import {Redirect} from "react-router";
 
-class LoginPage extends React.Component<any, any> {
-    render() {
+function LoginPage() {
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
         return (
             <Container maxWidth="xs">
                 <CssBaseline />
@@ -30,7 +33,7 @@ class LoginPage extends React.Component<any, any> {
                     <form
                         className={styles.form}
                         noValidate
-                        onSubmit={(event: FormEvent<HTMLFormElement>) => this.onSubmit(event)}>
+                        onSubmit={(event: FormEvent<HTMLFormElement>) => onSubmit(event)}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -72,22 +75,25 @@ class LoginPage extends React.Component<any, any> {
                         {' '}{new Date().getFullYear()}{'.'}
                     </Typography>
                 </Box>
+                {
+                    loggedIn ? <Redirect to="/manager"/> : null
+                }
             </Container>
         );
-    }
 
-    onSubmit(event: FormEvent<HTMLFormElement>) {
+    function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const formData = new FormData(event.target as any);
         const login: Login = {
             userName: String(formData.get('email')),
             password: String(formData.get('password')),
         }
-        console.log(login);
 
-        axios.post(`${CURRENT_ENV}/authenticate`, login)
-            .then((res: AxiosResponse) => console.log(res.data));
-
+        axiosInstance.post(`${CURRENT_ENV}/authenticate`, login)
+            .then((res: AxiosResponse<AuthToken>) => {
+                sessionStorage.setItem('user', JSON.stringify(res.data));
+                setLoggedIn(true);
+            });
     }
 }
 

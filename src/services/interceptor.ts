@@ -1,5 +1,7 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {CURRENT_ENV} from "../environment";
+import {AuthToken} from "../models/AuthToken.model";
+import * as _ from 'lodash';
 
 const axiosInstance = axios.create({
     baseURL: CURRENT_ENV,
@@ -8,11 +10,17 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((req: AxiosRequestConfig) => {
-    console.log(`${req.method} ${req.url} ${req.headers}`);
-    return {
-        ...req,
-        headers: { ...req.headers, 'Authorization': `Bearer ${372673647372648732}` }
+    const authData: AuthToken = JSON.parse(sessionStorage.getItem('user') as string);
+    if (!_.isEmpty(authData) && !!authData.token) {
+        return {
+            ...req,
+            headers: {
+                ...req.headers,
+                'Authorization': `Bearer ${authData.token}`,
+            },
+        };
     }
+    return req;
 })
 
 export default axiosInstance;
