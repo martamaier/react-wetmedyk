@@ -2,17 +2,16 @@ import React, {FormEvent, useState} from "react";
 import styles from './Newsletter.module.scss';
 import {Container, Form, InputGroup} from "react-bootstrap";
 import '../../scss/_utilities.scss';
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {NewsletterResponse} from "../../models/NewsletterResponse.model";
 import {Statuses} from "../../models/ResponseStatuses";
 import Button from '../../shared/Button';
 import {AlertMessage} from "../../models/AlertMessage.model";
 import Alert from './../../shared/Alert';
 import {CURRENT_ENV} from "../../environment";
+import axiosInstance from "../../services/interceptor";
 
 function Newsletter() {
-    const [isValid, setIsValid] = useState<boolean>(false);
-    const [touched, setTouched] = useState<boolean>(false);
     const inputType = 'email';
     const placeholder = 'adres e-mail';
     const [alert, setAlert] = useState<AlertMessage>({
@@ -57,7 +56,7 @@ function Newsletter() {
         const email = formData.get('email');
 
         if ((email as string).length) {
-            axios.post(`${CURRENT_ENV}/newsletter`, { email })
+            axiosInstance.post(`${CURRENT_ENV}/newsletter`, { email })
                 .then((res: AxiosResponse<NewsletterResponse>) => (
                     handleAlert(res.data)))
         } else {

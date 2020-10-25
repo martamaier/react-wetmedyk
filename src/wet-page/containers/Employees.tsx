@@ -5,11 +5,12 @@ import ControlArrows from "../../shared/ControlArrows";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
 import {Col, Row} from "react-bootstrap";
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
 import {CURRENT_ENV} from "../../environment";
 import {employeeReducer} from "../../store/employees-store/reducer";
+import axiosInstance from "../../services/interceptor";
 
 function Employees() {
     const [employees, setEmployees] = useReducer(employeeReducer, []);
@@ -72,7 +73,7 @@ function Employees() {
         </section>);
 
     function getEmployees() {
-        axios.get(`${CURRENT_ENV}/employees`)
+        axiosInstance.get(`${CURRENT_ENV}/employees`)
             .then((res: AxiosResponse<Employee[]>) => {
                 res.data.forEach((employee: Employee) => {
                     setEmployees({type: 'AddOne', payload: employee});

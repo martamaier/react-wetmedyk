@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Carousel} from 'react-bootstrap';
 import {Location} from "../../models/Location.model";
 import LocationCard from '../components/Location';
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {CURRENT_ENV} from "../../environment";
+import axiosInstance from "../../services/interceptor";
 
 function Locations() {
     const [locations, setLocations] = useState<Location[]>([]);
@@ -25,7 +26,7 @@ function Locations() {
     );
 
     function getLocations() {
-        axios.get(`${CURRENT_ENV}/locations`)
+        axiosInstance.get(`${CURRENT_ENV}/locations`)
             .then((res: AxiosResponse<Location[]>) => {
                 setLocations(res.data);
             });

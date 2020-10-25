@@ -4,11 +4,12 @@ import ControlArrows from "../../shared/ControlArrows";
 import {Col, Row} from "react-bootstrap";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
-import axios, {AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {Post} from "../../models/Post.model";
 import Modal from "../../shared/Modal";
 import {mapPostToModalItem} from "../../models/ModalData.model";
 import {CURRENT_ENV} from "../../environment";
+import axiosInstance from "../../services/interceptor";
 
 function News() {
     const [news, setNews] = useState<Post[]>([]);
@@ -73,7 +74,7 @@ function News() {
     }
 
     function getNews() {
-        axios.get(`${CURRENT_ENV}/posts`)
+        axiosInstance.get(`${CURRENT_ENV}/posts`)
             .then((res: AxiosResponse<Post[]>) => {
                 setNews(res.data);
             });

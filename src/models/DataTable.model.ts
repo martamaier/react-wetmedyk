@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 export interface DataTableModel<T> {
     headings: string[];
     rows: DataTableRow<T>[][];
@@ -18,7 +16,7 @@ export enum DataTypes {
 
 export function mapArrayToDataTable<T>(data: T[]): DataTableModel<T> {
     return {
-        headings: Object.keys(data[0]),
+        headings: Object.keys(data[0] || {}),
         rows: data.map((dataItem: T) => mapObjectToDataTableRow(dataItem))
     };
 }
@@ -29,7 +27,7 @@ export function mapObjectToDataTableRow<T>(dataItem: T): DataTableRow<T>[] {
             value,
             type: value.toString().startsWith('http') ?
                 DataTypes.image :
-                (!_.isNaN(value) ? DataTypes.number : DataTypes.text),
+                (typeof value === 'number' ? DataTypes.number : DataTypes.text),
         })
     );
 }
