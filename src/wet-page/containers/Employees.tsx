@@ -60,8 +60,8 @@ function Employees() {
                 <Col md={6}>
                     <ControlArrows
                         maxCount={employees.length}
-                        onLeftClick={() => setOffset(offset - 750)}
-                        onRightClick={() => setOffset(offset + 750)}/>
+                        onLeftClick={() => setOffset(offset - 600)}
+                        onRightClick={() => setOffset(offset + 600)}/>
                 </Col>
             </Row>
             {

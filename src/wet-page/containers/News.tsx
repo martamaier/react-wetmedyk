@@ -56,8 +56,8 @@ function News() {
                     <Col md={6}>
                         <ControlArrows
                             maxCount={news.length}
-                            onLeftClick={() => setOffset(offset - 400)}
-                            onRightClick={() => setOffset(offset + 400)}/>
+                            onLeftClick={() => setOffset(offset - 470)}
+                            onRightClick={() => setOffset(offset + 470)}/>
                     </Col>
                 </Row>
                 {
