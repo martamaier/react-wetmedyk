@@ -43,7 +43,7 @@
     transform: rotateY(0);
   }
   &Back {
-    background: linear-gradient(to right bottom, $primary-red, darken($primary-red, 20%));
+    background: linear-gradient(to right bottom, $primary-green, darken($primary-green, 20%));
     transform: rotateY(180deg);
     padding: 2rem;
     border: none;
@@ -60,7 +60,7 @@
       li {
         font-size: 1.5rem;
         padding: 1rem 0;
-        border-bottom: 1px solid $primary-red;
+        border-bottom: 1px solid rgba($white, 0.2);
         text-align: center;
       }
     }

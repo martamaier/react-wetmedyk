@@ -1,0 +1,156 @@
+[{
+  "id": 0,
+  "title": "Chirurgia",
+  "image": "",
+  "description": "",
+  "details": [
+    "badania klasyfikujące pajentów do znieczulenia i zabiegu",
+    "intensywną opiekę pooperacyjną",
+    "tlenoterapię",
+    "zabiegi chirurgiczne jamy brzusznej",
+    "cesarskie cięcie w znieczulenie inhalacyjnym",
+    "chirurgię onkologiczną",
+    "chirurgię kosmetyczną i korekcyjną",
+    "szycie ran, leczenie trudno gojacych się ran",
+    "zabiegi ortopedyczne m.in.operacyjne odtworzenie więzadła krzyżowego, resekcja glowy kości udowej"
+  ]
+},
+  {
+    "id": 1,
+    "title": "Sterylizacja",
+    "image": "",
+    "description": "Zabieg polegający na usunięciu macicy wraz z jajnikami,w wyniku którego zmniejsza się ryzyko wystąpienia nowotworów gruczołu mlekowego, zanika ryzyko wystąpienia nowotworów narządów rodnych, ropomacicza (zapalenia macicy), niechcianej ciąży czy ciąży urojonej. Kotki i suki sterylizujemy w wieku powyżej 7 miesiąca życia.U suk wykonujemy cięcie w linii pośrodkowej a u kotek cięcie w linii bocznej lub pośrodkowej.",
+    "details": []
+  },
+  {
+    "id": 2,
+    "title": "Kastracja",
+    "image": "",
+    "description": "Zabieg polegający na usunięciu jąder.Zaletą kastracji jest zapobieganie lub zmniejszenie ryzyka wystąienia chorób takich jak: nowotwory jąder, choroby prostaty, przepukliny okołoodbytowe. Zwierzęta kastrowane są mniej agresywne, nie wykazują tendencji do włóczęgostwa oraz zachowań pseudokopulacyjnych. Psy i koty kastrujemy w wieku powyżej 7 miesiąca życia.",
+    "details": []
+  },
+  {
+    "id": 3,
+    "title": "Dermatologia",
+    "image": "",
+    "description": "Badania diagnostyczne wykonujemy we własnym laboratorium lub przy współpracy laboratorium weterynaryjnego.",
+    "details": [
+      "diagnozowanie i leczenie chorób uszu",
+      "diagnozowanie i leczenie bakteryjnych, grzybiczych i pasożytniczych chorób skóry",
+      "diagnozowanie i leczenie zaburzeń hormonalnych oraz chorób autommunologicznych",
+      "diagnozowanie i leczenie alergii",
+      "zeskrobiny skórne",
+      "badania włosa (trichogram)",
+      "baddania cytologiczne",
+      "badania otoskopowe kanału słuchowego",
+      "biopsje cienkoigłowe",
+      "badania histopatologiczne wycinków skóry",
+      "pobieranie materiału na badanie hodowlane bakteriologiczne, mikologiczne, antybiogramy"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Gryzonie",
+    "image": "",
+    "description": "",
+    "details": [
+      "diagnostykę i leczenie chorób gryzoni",
+      "zabiegi sterylizacji i kastracji",
+      "szczepienia profilaktyczne",
+      "korektę zębów",
+      "zabiegi chirurgiczne",
+      "porady okulistyczne",
+      "diagnostykę i terapię chorób oczu",
+      "leczenie trudno gojących się wrzodów rogówki"
+
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Okulistyka",
+    "image": "",
+    "description": "",
+    "details": [
+      "diagnostykę i leczenie chorób gryzoni",
+      "zabiegi sterylizacji i kastracji",
+      "szczepienia profilaktyczne",
+      "korektę zębów",
+      "zabiegi chirurgiczne",
+      "porady okulistyczne",
+      "diagnostykę i terapię chorób oczu",
+      "leczenie trudno gojących się wrzodów rogówki"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Onkologia",
+    "image": "",
+    "description": "Zdiagnozowanie nowotworu u zwierzęcia jest sytuacją stresującą dla właściciela, tak samo jak myśl o rozpoczęciu chemioterapii. Zapoznanie się i zrozumienie na czym polega proces chemioterapii oraz czego można się spodziewać podczas leczenia, ułatwi podjęcie decyzji. Celem chemioterapii u zwierząt jest przedłużenie i polepszenie jakości życia chorego zwierzęcia.",
+    "details": [
+      "diagnozowanie chorób nowotworowych",
+      "leczenie chirurgiczne zmian nowotworowych",
+      "szczepienia profilaktyczne"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Paszporty dla zwierząt",
+    "image": "",
+    "description": "",
+    "details": [
+      "diagnozowanie chorób nowotworowych",
+      "leczenie chirurgiczne zmian nowotworowych",
+      "szczepienia profilaktyczne",
+      "implantację mikroczipów",
+      "odczytywanie numerów mikroczipów przy pomocy czytnika",
+      "szczepienie przeciwko wściekliźnie",
+      "wyrabianie paszportów dla zwierząt",
+      "aktualizowanie paszportów dla zwierząt",
+      "podawanie preparatów odrobaczających",
+      "badanie kliniczne zwierzęcia przed podróżą",
+      "zaświadczenia o stanie zdrowia zwierzęcia"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Stomatologia",
+    "image": "",
+    "description": "",
+    "details": [
+      "porady z zakresu stomatologii psów, kotów oraz gryzoni",
+      "ultradźwiekowe usuwanie kamienia nazębnego wraz z polerowaniem koron",
+      "ekstrakcje przetrwałych zebów mlecznych",
+      "ekstrakcje zębów stałych",
+      "leczenie chorób dziąseł i przyzębia",
+      "korekty zębów u gryzoni"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Szpital dla zwierząt",
+    "image": "",
+    "description": "NIE WYDAJEMY KROPLÓWEK DO PODAWANIA ZWIERZĘCIU W DOMU. DLACZEGO? Bez ścisłej kontroli ilości podawanych płynów można doprowadzić do poważnych komplikacji a nawet śmierci zwierzęcia.",
+    "details": [
+      "zwierzęta po zabiegach – każde zwierzę po znieczuleniu jest obserwowane przez nas w szpitalu i wysyłane do domu dopiero po pełnym wybudzeniu (zazwyczaj w kilka godzin po zabiegu). Pozwala to na uniknięcie ewentualnych komplikacji w czasie rekonwalescencji i naszą szybką reakcję jeśli zajdzie taka potrzeba.",
+      "zwierzęta chore, pozostające na obserwacji – pod naszym okiem zwierzęta przechodzą w szpitalu okres leczenia i rekonwalescencji. To tutaj w zależności od potrzeby wykonywane są dożylne wlewy kroplówkowe – najbardziej efektywny sposób nawadniania zwierzęcia, normowania pracy nerek czy pęcherza moczowego, pozajelitowego dostarczania elektrolitów. Kroplówka podawana jest zazwyczaj przez 24h – 48h, a ilość podawanego płynu jest ściśle przez nas monitorowana.",
+      "izolatka – zwierzęta wymagające odosobnienia przebywają w izolatce, gdzie przechodzą okres leczenia i rekonwalescencji pod naszą ścisłą kontrolą"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "USG/Echo Serca",
+    "image": "",
+    "description": "",
+    "details": [
+      "USG – wykonujemy badania diagnostyczne jamy brzusznej oraz USG ciąży. Badania USG wykonywane są od poniedziałku do piątku w godzinach porannych. KONIECZNA JEST WCZEŚNIEJSZA REJESTRACJA. Zalecana jest 12h głodówka. W większości przypadków nie ma potrzeby znieczulania zwierzęcia. Czasem niezbędne jest wygolenie sierści w okolicy brzusznej.",
+      "ECHO/USG SERCA ( ECHOKARDIOGRAFIA SERCA) – badanie specjalistyczne wykonywane przez współpracującego z nami specjalistę dr nauk weterynaryjnych Michała Bartnickiego. Niezbędna wcześniejsza rejestracja."
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Wizyty Domowe",
+    "image": "",
+    "description": "Jeśli zajdzie potrzeba wykonujemy podstawowe usługi lekarsko- weterynaryjne w domu właściciela. Jeżeli choroba, bądź zabiegi u Waszego zwierzęcia, będą wymagały dłuższego leczenia lub szeregu badań diagnostycznych, konieczna będzie wizyta w Przychodni Weterynaryjnej (nie zapewniamy transportu zwierzęcia). Koszt wizyty oraz dojazdu ustalamy indywidualnie. Wizyty domowe wykonywane są od poniedziałku do piątku w godz. 12.00 – 16.00 po wcześniejszym umówieniu telefonicznym lub osobistym. Nie wykonujemy wizyt domowych w godzinach nocnych oraz w soboty.",
+    "details": []
+  }
+]

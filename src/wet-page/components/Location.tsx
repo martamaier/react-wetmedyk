@@ -3,10 +3,16 @@ import React from "react";
 import styles from './Location.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
 
+const image = 'http://wetmedyk.pl/wp-content/uploads/2015/01/41.png';
+// const image = 'http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-14.jpg';
 const location = (props: Location) => {
     const [hour1, hour2] = props.openHours.split('<br/>');
+    const imageStyling = {
+        backgroundImage: `linear-gradient(to right bottom, ${styles.primaryGreen}, ${styles.primaryGreen}), url(${image})`,
+        backgroundSize: 'cover',
+    }
     return (
-        <div className={styles.site}>
+        <div className={styles.site} style={imageStyling}>
             <div className={styles.siteHeading}>
                 <h2>{props.name}</h2>
             </div>
@@ -28,6 +34,7 @@ const location = (props: Location) => {
                     </Col>
                 </Row>
             </Container>
+            <div className={styles.siteFooter} />
         </div>
     );
 }

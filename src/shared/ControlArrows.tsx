@@ -1,31 +1,19 @@
 import React, {useState} from "react";
 import styles from './ControlArrows.module.scss';
-import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
-import {Fab} from "@material-ui/core";
+import CustomChevronRight from "./CustomChevronRight";
+import CustomChevronLeft from "./CustomChevronLeft";
 
 
 function ControlArrows(props: ControlArrows) {
     const [count, setCount] = useState(0);
     return (
         <div className={styles.chevron}>
-            <Fab
-                className={styles.noOutline}
-                color="primary"
-                aria-label="left"
-                disabled={!count}>
-                <MdChevronLeft
-                    size={'40px'}
-                    onClick={() => handleClick('decrease')}/>
-            </Fab>
-            <Fab
-                className={styles.noOutline}
-                color="primary"
+            <CustomChevronLeft
+                disabled={!count}
+                handleClick={() => handleClick('decrease')} />
+            <CustomChevronRight
                 disabled={count === props.maxCount - 1}
-                aria-label="right">
-                <MdChevronRight
-                    size={'40px'}
-                    onClick={() => handleClick('increase')}/>
-            </Fab>
+                handleClick={() => handleClick('increase')} />
         </div>)
 
     function handleClick(actionType: string) {

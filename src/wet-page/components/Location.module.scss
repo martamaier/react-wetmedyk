@@ -1,20 +1,25 @@
 @import "src/scss/variables";
 @import "src/scss/mixins";
 
+:export { primaryGreen: rgba($primary-green, .8) };
+
+$transition: 23rem;
+
 .h100 {
-  height: 50rem;
+  height: 45rem;
 }
 
 .site {
+  //background-image: url("http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-14.jpg");
   &Heading {
-    background-color: $grey-background;
-    padding: 4rem 1rem;
+    //background-color: rgba($grey-background, .5);
+    padding: 3rem 0 0 0;
     color: $white;
     font-size: 3rem;
     text-align: center;
     h2 {
       @include font-title;
-      color: $black;
+      color: $white;
     }
     @media screen and (max-width: 320px) {
       h2 {
@@ -26,21 +31,27 @@
     }
   }
   &Body {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
     &Data {
       text-align: left;
       h3 {
         font-size: 3rem;
-        color: $primary-green;
+        color: $white;
       }
     }
     &Map {
       iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
+        width: 40rem;
+        height: 35rem;
+        border: 1rem solid $white;
+        //border-radius: 50%;
+        transform: translateY($transition);
       }
     }
+  }
+  &Footer {
+    height: $transition;
+    background-color: $white;
   }
 }

@@ -2,7 +2,8 @@
 @import "src/scss/mixins";
 
 .newsletter {
-  background-color: $black;
+  background-color: $primary-green;
+  //background-color: $black;
 
   &Form {
     display: flex;

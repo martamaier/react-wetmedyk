@@ -26,7 +26,7 @@ function EmployeesManager() {
                 onDelete={deleteEmployee}
                 onEdit={editEmployee}/> : <LinearProgress/>}
             {
-                !_.isUndefined(selectedEmployee) ? <EmployeeForm employee={selectedEmployee} /> : null
+                !_.isUndefined(selectedEmployee) ? <EmployeeForm employee={selectedEmployee} onCreate={setEmployees} /> : null
 
             }
         </>
@@ -48,15 +48,13 @@ function EmployeesManager() {
     }
 
     function deleteEmployee(id: number) {
-        console.log('should delete employee', id)
+        axiosInstance.delete(`${CURRENT_ENV}/employees/${id}`).then((res: AxiosResponse) => {
+            setEmployees({ type: 'Delete', payload: employees.find((emp: Employee) => emp.id === id) as Employee })
+        })
     }
+
     function editEmployee(id: number) {
-        console.log('should edit employee', id)
-        // axios.get(`${CURRENT_ENV}/employees/${id}`).then((res:AxiosResponse<Employee>) => {
-        //     console.log(res.data)
-        // })
         const employee: Employee = employees.find((emp: Employee) => emp.id === id) as Employee;
-        console.log(employee);
         setSelectedEmployee({ ...employee });
     }
 }

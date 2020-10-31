@@ -2,8 +2,8 @@
 @import 'src/scss/mixins';
 
 .services {
-  //background-color: $black;
-  background-image: radial-gradient(ellipse at top, #171d23, black);
+  background-color: $black;
+  //background-image: radial-gradient(ellipse at top, #171d23, black);
   display: flex;
   flex-direction: column;
   align-items: center;
