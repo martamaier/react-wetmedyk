@@ -29,6 +29,8 @@
   h3 {
     margin-top: 1.5rem;
     font-weight: bold;
+    color: $primary-green;
+    text-transform: uppercase;
   }
   &:hover {
     box-shadow: 0 6px 18px 0 rgba($black, .5);

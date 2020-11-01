@@ -1,0 +1,48 @@
+@import "./../../scss/variables";
+
+.primaryServiceContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  .containerHeading {
+    display: flex;
+    h2 {
+      text-align: center;
+      font-size: 3.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $primary-green;
+    }
+
+    img {
+      height: 4rem;
+      margin-right: .5rem;
+    }
+  }
+
+  .containerBody {
+    display: flex;
+
+    .containerContent {
+      font-size: 2rem;
+      ul {
+        display: flex;
+        flex-direction: column;
+        li {
+          list-style: none;
+          display: flex;
+          flex-grow: 1;
+          align-items: center;
+
+          .icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            fill: $primary-green;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

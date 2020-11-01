@@ -2,7 +2,7 @@
   "id": 0,
   "title": "Chirurgia",
   "image": "images/pole.png",
-  "description": "",
+  "description": "Oferujemy:",
   "details": [
     "badania klasyfikujące pajentów do znieczulenia i zabiegu",
     "intensywną opiekę pooperacyjną",
@@ -52,7 +52,7 @@
     "id": 4,
     "title": "Gryzonie",
     "image": "images/hamster.png",
-    "description": "",
+    "description": "Oferujemy:",
     "details": [
       "diagnostykę i leczenie chorób gryzoni",
       "zabiegi sterylizacji i kastracji",
@@ -69,7 +69,7 @@
     "id": 5,
     "title": "Okulistyka",
     "image": "images/eye.png",
-    "description": "",
+    "description": "Oferujemy:",
     "details": [
       "diagnostykę i leczenie chorób gryzoni",
       "zabiegi sterylizacji i kastracji",
@@ -96,7 +96,7 @@
     "id": 7,
     "title": "Paszporty dla zwierząt",
     "image": "images/medical-report.png",
-    "description": "",
+    "description": "Oferujemy:",
     "details": [
       "diagnozowanie chorób nowotworowych",
       "leczenie chirurgiczne zmian nowotworowych",
@@ -115,7 +115,7 @@
     "id": 8,
     "title": "Stomatologia",
     "image": "images/dog_dentist.png",
-    "description": "",
+    "description": "Oferujemy:",
     "details": [
       "porady z zakresu stomatologii psów, kotów oraz gryzoni",
       "ultradźwiekowe usuwanie kamienia nazębnego wraz z polerowaniem koron",
