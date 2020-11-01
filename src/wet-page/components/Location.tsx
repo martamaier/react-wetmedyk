@@ -3,12 +3,16 @@ import React from "react";
 import styles from './Location.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
 
-const image = 'http://wetmedyk.pl/wp-content/uploads/2015/01/41.png';
-// const image = 'http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-14.jpg';
+const image = [
+    'http://wetmedyk.pl/wp-content/uploads/2015/01/41.png',
+    'http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-14.jpg',
+];
+
 const location = (props: Location) => {
+    const displayImage = props.id === 1 ? image[props.id] : image[0];
     const [hour1, hour2] = props.openHours.split('<br/>');
     const imageStyling = {
-        backgroundImage: `linear-gradient(to right bottom, ${styles.primaryGreen}, ${styles.primaryGreen}), url(${image})`,
+        backgroundImage: `linear-gradient(to right bottom, ${styles.primaryGreen}, ${styles.primaryGreen}), url(${displayImage})`,
         backgroundSize: 'cover',
     }
     return (

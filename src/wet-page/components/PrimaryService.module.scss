@@ -9,19 +9,14 @@
   align-items: center;
   box-shadow: 0 3px 6px 0 rgba(199,195,199,1);
   margin-bottom: 5rem;
-  padding: 2rem 0;
+  padding: 4rem 0;
   cursor: pointer;
   transition: all .5s;
   position: relative;
 
   & > .actionButton {
     position: absolute;
-    bottom: 0;
-    transform: translateY(2.8rem);
-
-    &:hover {
-      color: $primary-green;
-    }
+    bottom: -25px;
   }
 
   & > img {

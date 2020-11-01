@@ -3,11 +3,12 @@ import {PrimaryServiceCard} from "../../models/PrimaryServiceCard.model";
 import styles from './PrimaryService.module.scss';
 import chevronWrapperStyles from './../../shared/ControlArrows.module.scss';
 import CustomChevronRight from "../../shared/CustomChevronRight";
+import {CURRENT_ENV} from "../../environment";
 
-function PrimaryService(props: PrimaryServiceCard) {
+function PrimaryService(props: PrimaryServiceCard & { handleClick: any }) {
     return (
         <article className={styles.primaryService}>
-            <img src={props.image} alt={props.title} />
+            <img src={`${CURRENT_ENV}/${props.image}`} alt={props.title} />
             <h3>{props.title}</h3>
             {
                 props.description.length ? <p>{props.description}</p> : null
@@ -23,8 +24,11 @@ function PrimaryService(props: PrimaryServiceCard) {
                     </ul>
                 ) : null
             }
-            <div className={chevronWrapperStyles.chevron}>
-                <CustomChevronRight disabled={false} handleClick={console.log('click')} />
+            <div className={[chevronWrapperStyles.chevron, styles.actionButton].join(' ')}>
+                <CustomChevronRight
+                    disabled={false}
+                    handleClick={props.handleClick}
+                    topMargin={false} />
             </div>
         </article>)
 }

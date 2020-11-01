@@ -41,6 +41,8 @@ $transition: 23rem;
       }
     }
     &Map {
+      display: flex;
+      justify-content: flex-end;
       iframe {
         width: 40rem;
         height: 35rem;

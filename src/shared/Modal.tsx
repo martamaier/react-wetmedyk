@@ -14,18 +14,23 @@ const appModal = (props: ModalData) => {
             onHide={() => props.toggleModal()}
             show={props.displayModal}>
             <Modal.Body>
-                <div className={styles.modal}>
-                    <div className={styles.modalContent}>
-                        <div className={styles.modalContentImg}>
-                            <img src={img} alt=""/>
+                {
+                    props.children ? props.children : (
+                        <div className={styles.modal}>
+                            <div className={styles.modalContent}>
+                                <div className={styles.modalContentImg}>
+                                    <img src={img} alt=""/>
+                                </div>
+                                <div className={styles.modalContentInfo}>
+                                    <h3>{props.data?.heading}</h3>
+                                    <h4>{props.data?.subHeading}</h4>
+                                    <p>{props.data?.description}</p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div className={styles.modalContentInfo}>
-                            <h3>{props.data?.heading}</h3>
-                            <h4>{props.data?.subHeading}</h4>
-                            <p>{props.data?.description}</p>
-                        </div>
-                    </div>
-                </div>
+                    )
+                }
             </Modal.Body>
         </Modal>)
 }

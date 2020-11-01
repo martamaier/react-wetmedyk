@@ -6,7 +6,7 @@ import {MdChevronLeft} from "react-icons/md";
 function CustomChevronLeft(props: { disabled: boolean, handleClick: any }) {
     return (
         <Fab
-            className={styles.noOutline}
+            className={[styles.noOutline, styles.topMargin].join(' ')}
             color="primary"
             aria-label="left"
             disabled={props.disabled}>

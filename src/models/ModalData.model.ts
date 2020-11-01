@@ -1,6 +1,7 @@
 import React from "react";
 import {Employee} from "./Employee.model";
 import {Post} from "./Post.model";
+import {PrimaryServiceCard} from "./PrimaryServiceCard.model";
 
 export interface ModalData {
     toggleModal: Function;
@@ -30,5 +31,13 @@ export function mapPostToModalItem(post: Post): ModalItem {
         heading: post.title,
         subHeading: post.date,
         description: post.content,
+    }
+}
+
+export function mapPrimaryServiceToModalItem(primaryService: PrimaryServiceCard): ModalItem {
+    return {
+        heading: primaryService.title,
+        subHeading: primaryService.description,
+        description: primaryService.details.join(' '),
     }
 }

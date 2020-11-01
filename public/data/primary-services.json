@@ -1,7 +1,7 @@
 [{
   "id": 0,
   "title": "Chirurgia",
-  "image": "",
+  "image": "images/pole.png",
   "description": "",
   "details": [
     "badania klasyfikujące pajentów do znieczulenia i zabiegu",
@@ -18,21 +18,21 @@
   {
     "id": 1,
     "title": "Sterylizacja",
-    "image": "",
+    "image": "images/spay.png",
     "description": "Zabieg polegający na usunięciu macicy wraz z jajnikami,w wyniku którego zmniejsza się ryzyko wystąpienia nowotworów gruczołu mlekowego, zanika ryzyko wystąpienia nowotworów narządów rodnych, ropomacicza (zapalenia macicy), niechcianej ciąży czy ciąży urojonej. Kotki i suki sterylizujemy w wieku powyżej 7 miesiąca życia.U suk wykonujemy cięcie w linii pośrodkowej a u kotek cięcie w linii bocznej lub pośrodkowej.",
     "details": []
   },
   {
     "id": 2,
     "title": "Kastracja",
-    "image": "",
+    "image": "images/neuter.png",
     "description": "Zabieg polegający na usunięciu jąder.Zaletą kastracji jest zapobieganie lub zmniejszenie ryzyka wystąienia chorób takich jak: nowotwory jąder, choroby prostaty, przepukliny okołoodbytowe. Zwierzęta kastrowane są mniej agresywne, nie wykazują tendencji do włóczęgostwa oraz zachowań pseudokopulacyjnych. Psy i koty kastrujemy w wieku powyżej 7 miesiąca życia.",
     "details": []
   },
   {
     "id": 3,
     "title": "Dermatologia",
-    "image": "",
+    "image": "images/bandage.png",
     "description": "Badania diagnostyczne wykonujemy we własnym laboratorium lub przy współpracy laboratorium weterynaryjnego.",
     "details": [
       "diagnozowanie i leczenie chorób uszu",
@@ -51,7 +51,7 @@
   {
     "id": 4,
     "title": "Gryzonie",
-    "image": "",
+    "image": "images/hamster.png",
     "description": "",
     "details": [
       "diagnostykę i leczenie chorób gryzoni",
@@ -66,9 +66,9 @@
     ]
   },
   {
-    "id": 11,
+    "id": 5,
     "title": "Okulistyka",
-    "image": "",
+    "image": "images/eye.png",
     "description": "",
     "details": [
       "diagnostykę i leczenie chorób gryzoni",
@@ -82,9 +82,9 @@
     ]
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "Onkologia",
-    "image": "",
+    "image": "images/phonendoscope.png",
     "description": "Zdiagnozowanie nowotworu u zwierzęcia jest sytuacją stresującą dla właściciela, tak samo jak myśl o rozpoczęciu chemioterapii. Zapoznanie się i zrozumienie na czym polega proces chemioterapii oraz czego można się spodziewać podczas leczenia, ułatwi podjęcie decyzji. Celem chemioterapii u zwierząt jest przedłużenie i polepszenie jakości życia chorego zwierzęcia.",
     "details": [
       "diagnozowanie chorób nowotworowych",
@@ -93,9 +93,9 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "Paszporty dla zwierząt",
-    "image": "",
+    "image": "images/medical-report.png",
     "description": "",
     "details": [
       "diagnozowanie chorób nowotworowych",
@@ -112,9 +112,9 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "title": "Stomatologia",
-    "image": "",
+    "image": "images/dog_dentist.png",
     "description": "",
     "details": [
       "porady z zakresu stomatologii psów, kotów oraz gryzoni",
@@ -126,9 +126,9 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "title": "Szpital dla zwierząt",
-    "image": "",
+    "image": "images/hospital.png",
     "description": "NIE WYDAJEMY KROPLÓWEK DO PODAWANIA ZWIERZĘCIU W DOMU. DLACZEGO? Bez ścisłej kontroli ilości podawanych płynów można doprowadzić do poważnych komplikacji a nawet śmierci zwierzęcia.",
     "details": [
       "zwierzęta po zabiegach – każde zwierzę po znieczuleniu jest obserwowane przez nas w szpitalu i wysyłane do domu dopiero po pełnym wybudzeniu (zazwyczaj w kilka godzin po zabiegu). Pozwala to na uniknięcie ewentualnych komplikacji w czasie rekonwalescencji i naszą szybką reakcję jeśli zajdzie taka potrzeba.",
@@ -137,9 +137,9 @@
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "title": "USG/Echo Serca",
-    "image": "",
+    "image": "images/dog-cardio.png",
     "description": "",
     "details": [
       "USG – wykonujemy badania diagnostyczne jamy brzusznej oraz USG ciąży. Badania USG wykonywane są od poniedziałku do piątku w godzinach porannych. KONIECZNA JEST WCZEŚNIEJSZA REJESTRACJA. Zalecana jest 12h głodówka. W większości przypadków nie ma potrzeby znieczulania zwierzęcia. Czasem niezbędne jest wygolenie sierści w okolicy brzusznej.",
@@ -147,9 +147,9 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "title": "Wizyty Domowe",
-    "image": "",
+    "image": "images/first-aid-pet.png",
     "description": "Jeśli zajdzie potrzeba wykonujemy podstawowe usługi lekarsko- weterynaryjne w domu właściciela. Jeżeli choroba, bądź zabiegi u Waszego zwierzęcia, będą wymagały dłuższego leczenia lub szeregu badań diagnostycznych, konieczna będzie wizyta w Przychodni Weterynaryjnej (nie zapewniamy transportu zwierzęcia). Koszt wizyty oraz dojazdu ustalamy indywidualnie. Wizyty domowe wykonywane są od poniedziałku do piątku w godz. 12.00 – 16.00 po wcześniejszym umówieniu telefonicznym lub osobistym. Nie wykonujemy wizyt domowych w godzinach nocnych oraz w soboty.",
     "details": []
   }

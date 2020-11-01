@@ -1,7 +1,6 @@
 @import "./../scss/variables";
 
 .chevron {
-  margin-top: 4rem;
   font-size: 4rem;
   cursor: pointer;
   text-align: left;
@@ -9,6 +8,9 @@
     display: none;
   }
 
+  .topMargin {
+    margin-top: 4rem;
+  }
   .noOutline {
     outline: none;
     background-color: $primary-red;
