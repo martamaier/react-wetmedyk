@@ -23,8 +23,7 @@ import SubscribersManager from "./subscribers-manager";
 import {PowerSettingsNew} from "@material-ui/icons";
 import styles from './manager.module.scss';
 import { AuthState } from "../../store/auth-store";
-import { AuthToken } from "../../models/AuthToken.model";
-import { LogInSuccessAction } from "../../store/auth-store/actions";
+import { LogOutAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Manager() {
@@ -33,7 +32,7 @@ function Manager() {
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
-    const logOutAction = (props: AuthToken) => dispatch(LogInSuccessAction(props));
+    const logOutAction = () => dispatch(LogOutAction());
     const authState = useSelector((state: { auth: AuthState }) => state.auth);
 
     const handleDrawerOpen = () => {
@@ -120,7 +119,7 @@ function Manager() {
     );
 
     function logOut() {
-        sessionStorage.removeItem('user');
+        logOutAction();
         history.push('/login');
     }
 }

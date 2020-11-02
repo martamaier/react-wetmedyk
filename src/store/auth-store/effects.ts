@@ -1,6 +1,6 @@
 import { ActionsObservable, ofType } from "redux-observable";
-import { AuthActions, AuthActionsTypes, LogInErrorAction, LogInSuccessAction } from "./actions";
-import { mergeMap, map, catchError } from "rxjs/operators";
+import { AuthActions, AuthActionsTypes, LogInErrorAction, LogInSuccessAction, LogOutSuccessAction } from "./actions";
+import { mergeMap, map, catchError, tap } from "rxjs/operators";
 import { fromPromise } from "rxjs/internal-compatibility";
 import axiosInstance from "../../services/interceptor";
 import { CURRENT_ENV } from "../../environment";
@@ -25,4 +25,10 @@ export const loginUser$ = (action$: ActionsObservable<AuthActionsTypes>) => acti
                 catchError((err) => of(LogInErrorAction(err.message)))
             )
     }),
+);
+
+export const logoutUser$ = (action$: ActionsObservable<AuthActionsTypes>) => action$.pipe(
+    ofType(AuthActions.LogOut),
+    tap(() => sessionStorage.removeItem('user')),
+    map(() => LogOutSuccessAction()),
 );

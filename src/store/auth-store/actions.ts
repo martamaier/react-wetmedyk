@@ -11,7 +11,7 @@ export enum AuthActions {
 
 export interface AuthActionsTypes {
     type: AuthActions;
-    payload: AuthToken | { userName: string, password: string } | string;
+    payload?: AuthToken | { userName: string, password: string } | string;
 }
 
 export function LogInAction(payload: Login): AuthActionsTypes {
@@ -32,5 +32,17 @@ export function LogInErrorAction(payload: string): AuthActionsTypes {
     return {
         type: AuthActions.LogInError,
         payload,
+    }
+}
+
+export function LogOutAction(): AuthActionsTypes {
+    return {
+        type: AuthActions.LogOut,
+    }
+}
+
+export function LogOutSuccessAction(): AuthActionsTypes {
+    return {
+        type: AuthActions.LogOutSuccess,
     }
 }
