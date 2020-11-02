@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent} from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,14 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styles from './LoginPage.module.scss';
 import {Login} from "../models/Login.model";
-import {AxiosResponse} from 'axios';
-import {CURRENT_ENV} from "../environment";
-import axiosInstance from "../services/interceptor";
-import {AuthToken} from "../models/AuthToken.model";
 import {Redirect} from "react-router";
+import { LogInAction } from "../store/auth-store/actions";
+import { connect } from "react-redux";
+import { AuthState } from "../store/auth-store";
+import * as _ from 'lodash';
 
-function LoginPage() {
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+function LoginPage(props: any) {
         return (
             <Container maxWidth="xs">
                 <CssBaseline />
@@ -76,7 +75,10 @@ function LoginPage() {
                     </Typography>
                 </Box>
                 {
-                    loggedIn ? <Redirect to="/manager"/> : null
+                    !_.isEmpty(props.user) ? <Redirect to="/manager"/> : null
+                }
+                {
+                    props.user?.userName
                 }
             </Container>
         );
@@ -89,16 +91,21 @@ function LoginPage() {
             password: String(formData.get('password')),
         }
 
-        axiosInstance.post(`${CURRENT_ENV}/authenticate`, login)
-            .then((res: AxiosResponse<AuthToken>) => {
-                const userData: AuthToken = {
-                    ...res.data,
-                    userName: login.userName,
-                }
-                sessionStorage.setItem('user', JSON.stringify(userData));
-                setLoggedIn(true);
-            });
+        props.logIn(login);
+        sessionStorage.setItem('user', JSON.stringify(login));
     }
 }
 
-export default LoginPage;
+const mapStateToProps = (state: {auth: AuthState} ) => {
+    return {
+        user: state.auth.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        logIn: (props: Login) => dispatch(LogInAction(props))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

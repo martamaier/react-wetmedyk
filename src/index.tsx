@@ -3,9 +3,47 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import GuardedRoute from "./shared/GuardedRoute";
+import Manager from "./wet-manager/containers/manager";
+import LoginPage from "./wet-manager/LoginPage";
+import MainPage from "./wet-page/MainPage";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reducers, { rootEpic } from './store/index';
+import { createEpicMiddleware } from "redux-observable";
+
+const epicMiddleware = createEpicMiddleware();
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+function configureStore() {
+    const store = createStore(
+        reducers,
+        {},
+        composeEnhancers(applyMiddleware(epicMiddleware)),
+    )
+
+    epicMiddleware.run(rootEpic as any);
+
+    return store;
+}
+
+
 
 ReactDOM.render(
-    <App />,
+    <Provider store={configureStore()}>
+        <BrowserRouter>
+            <App>
+                <Switch>
+                    <Route exact path="/" component={MainPage} />
+                    <GuardedRoute path="/manager" component={Manager} />
+                    <Route path="/login" component={LoginPage} />
+                </Switch>
+            </App>
+        </BrowserRouter>
+    </Provider>
+    ,
   document.getElementById('root')
 );
 

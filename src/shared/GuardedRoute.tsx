@@ -1,19 +1,23 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 import * as _ from "lodash";
+import { connect } from "react-redux";
+import { AuthState } from "../store/auth-store";
 
 // @ts-ignore
-const GuardedRoute = ({ component: Component, ...rest }) => {
+const GuardedRoute = ({ component: Component, user, ...rest }) => {
+    const isAuthenticated = (): boolean  => !_.isEmpty(user);
     return <Route {...rest} render={(props) => (
         isAuthenticated()
             ? <Component {...props} />
             : <Redirect to='/' />
     )} />
+}
 
-    function isAuthenticated(): boolean {
-        // noinspection PointlessBooleanExpressionJS
-        return !!_.get(JSON.parse(sessionStorage.getItem('user') as string), 'token', false);
+const mapStateToProps = (state: {auth: AuthState} ) => {
+    return {
+        user: state.auth.user,
     }
 }
 
-export default GuardedRoute;
+export default connect(mapStateToProps)(GuardedRoute);

@@ -22,6 +22,10 @@ import UsersManager from "./users-manager";
 import SubscribersManager from "./subscribers-manager";
 import {PowerSettingsNew} from "@material-ui/icons";
 import styles from './manager.module.scss';
+import { AuthState } from "../../store/auth-store";
+import { AuthToken } from "../../models/AuthToken.model";
+import { LogInSuccessAction } from "../../store/auth-store/actions";
+import { connect } from "react-redux";
 
 function Manager() {
     const classes = useStyles();
@@ -119,4 +123,16 @@ function Manager() {
     }
 }
 
-export default Manager;
+const mapStateToProps = (state: {auth: AuthState} ) => {
+    return {
+        user: state.auth.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        logInSuccess: (props: AuthToken) => dispatch(LogInSuccessAction(props))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Manager);
