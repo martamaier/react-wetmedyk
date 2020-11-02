@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 import * as _ from "lodash";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { AuthState } from "../store/auth-store";
 
 // @ts-ignore
-const GuardedRoute = ({ component: Component, user, ...rest }) => {
-    const isAuthenticated = (): boolean  => !_.isEmpty(user);
+const GuardedRoute = ({ component: Component, ...rest }) => {
+    const authState = useSelector((state: { auth: AuthState }) => state.auth);
+    const isAuthenticated = (): boolean  => !_.isEmpty(authState.user);
     return <Route {...rest} render={(props) => (
         isAuthenticated()
             ? <Component {...props} />
@@ -14,10 +15,4 @@ const GuardedRoute = ({ component: Component, user, ...rest }) => {
     )} />
 }
 
-const mapStateToProps = (state: {auth: AuthState} ) => {
-    return {
-        user: state.auth.user,
-    }
-}
-
-export default connect(mapStateToProps)(GuardedRoute);
+export default GuardedRoute;

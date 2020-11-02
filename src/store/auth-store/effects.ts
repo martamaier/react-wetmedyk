@@ -7,6 +7,7 @@ import { CURRENT_ENV } from "../../environment";
 import { AxiosResponse } from "axios";
 import { AuthToken } from "../../models/AuthToken.model";
 import { of } from "rxjs";
+import { Login } from "../../models/Login.model";
 
 export const loginUser$ = (action$: ActionsObservable<AuthActionsTypes>) => action$.pipe(
     ofType(AuthActions.LogIn),
@@ -14,8 +15,12 @@ export const loginUser$ = (action$: ActionsObservable<AuthActionsTypes>) => acti
         return fromPromise(axiosInstance.post(`${CURRENT_ENV}/authenticate`, action.payload))
             .pipe(
                 map((res: AxiosResponse<AuthToken>) => {
-                    sessionStorage.setItem('user', JSON.stringify(res.data));
-                    return LogInSuccessAction(res.data);
+                    const userData = {
+                        ...res.data,
+                        userName: (action.payload as Login).userName,
+                    }
+                    sessionStorage.setItem('user', JSON.stringify(userData));
+                    return LogInSuccessAction(userData);
                 }),
                 catchError((err) => of(LogInErrorAction(err.message)))
             )

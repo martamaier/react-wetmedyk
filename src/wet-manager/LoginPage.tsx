@@ -1,4 +1,4 @@
-import React, {FormEvent} from "react";
+import React, { FormEvent } from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,12 +14,17 @@ import styles from './LoginPage.module.scss';
 import {Login} from "../models/Login.model";
 import {Redirect} from "react-router";
 import { LogInAction } from "../store/auth-store/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthState } from "../store/auth-store";
 import * as _ from 'lodash';
 
-function LoginPage(props: any) {
-        return (
+function LoginPage() {
+
+    const dispatch = useDispatch();
+    const authState = useSelector((state: { auth: AuthState }) => state.auth);
+    const logIn = (props: Login) => dispatch(LogInAction(props));
+
+    return (
             <Container maxWidth="xs">
                 <CssBaseline />
                 <div className={styles.paper}>
@@ -75,10 +80,7 @@ function LoginPage(props: any) {
                     </Typography>
                 </Box>
                 {
-                    !_.isEmpty(props.user) ? <Redirect to="/manager"/> : null
-                }
-                {
-                    props.user?.userName
+                    !_.isEmpty(authState.user) ? <Redirect to="/manager"/> : null
                 }
             </Container>
         );
@@ -91,21 +93,9 @@ function LoginPage(props: any) {
             password: String(formData.get('password')),
         }
 
-        props.logIn(login);
+        dispatch(logIn(login));
         sessionStorage.setItem('user', JSON.stringify(login));
     }
 }
 
-const mapStateToProps = (state: {auth: AuthState} ) => {
-    return {
-        user: state.auth.user,
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        logIn: (props: Login) => dispatch(LogInAction(props))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default LoginPage;

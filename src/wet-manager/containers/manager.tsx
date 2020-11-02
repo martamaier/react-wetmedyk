@@ -25,14 +25,16 @@ import styles from './manager.module.scss';
 import { AuthState } from "../../store/auth-store";
 import { AuthToken } from "../../models/AuthToken.model";
 import { LogInSuccessAction } from "../../store/auth-store/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Manager() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const userName: string = JSON.parse(sessionStorage.getItem('user') as string)?.userName;
     const history = useHistory();
+    const dispatch = useDispatch();
+    const logOutAction = (props: AuthToken) => dispatch(LogInSuccessAction(props));
+    const authState = useSelector((state: { auth: AuthState }) => state.auth);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -78,7 +80,7 @@ function Manager() {
                         </Typography>
                         <div className={styles.userWrapper}>
                             <Typography variant="h6" noWrap>
-                                {userName}
+                                {authState.user?.userName}
                             </Typography>
                             <PowerSettingsNew className={styles.logoutButton} onClick={logOut}/>
                         </div>
@@ -123,16 +125,4 @@ function Manager() {
     }
 }
 
-const mapStateToProps = (state: {auth: AuthState} ) => {
-    return {
-        user: state.auth.user,
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        logInSuccess: (props: AuthToken) => dispatch(LogInSuccessAction(props))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Manager);
+export default Manager;

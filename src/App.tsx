@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { connect } from "react-redux";
-import { AuthState } from "./store/auth-store";
+import { useDispatch } from "react-redux";
 import { LogInSuccessAction } from "./store/auth-store/actions";
 import * as _ from 'lodash';
 import { AuthToken } from "./models/AuthToken.model";
 
 function App(props: any) {
+
+    const dispatch = useDispatch();
+    const logInSuccess = (props: AuthToken) => dispatch(LogInSuccessAction(props));
     
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem('user') as string);
         if (!_.isEmpty(user)) {
-            props.logInSuccess(user);
+            logInSuccess(user);
         }
     }, [])
     return (
@@ -20,17 +22,6 @@ function App(props: any) {
         </div>
     );
 }
-const mapStateToProps = (state: {auth: AuthState} ) => {
-    return {
-        user: state.auth.user,
-    }
-}
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        logInSuccess: (props: AuthToken) => dispatch(LogInSuccessAction(props))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
 

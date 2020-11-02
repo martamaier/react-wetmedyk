@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import GuardedRoute from "./shared/GuardedRoute";
-import Manager from "./wet-manager/containers/manager";
-import LoginPage from "./wet-manager/LoginPage";
 import MainPage from "./wet-page/MainPage";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers, { rootEpic } from './store/index';
 import { createEpicMiddleware } from "redux-observable";
+import { LinearProgress } from "@material-ui/core";
+
+const Manager = React.lazy(() => {
+    return import("./wet-manager/containers/manager");
+});
+
+const Login = React.lazy(() => {
+    return import("./wet-manager/LoginPage");
+});
 
 const epicMiddleware = createEpicMiddleware();
 // @ts-ignore
@@ -35,11 +42,13 @@ ReactDOM.render(
     <Provider store={configureStore()}>
         <BrowserRouter>
             <App>
-                <Switch>
-                    <Route exact path="/" component={MainPage} />
-                    <GuardedRoute path="/manager" component={Manager} />
-                    <Route path="/login" component={LoginPage} />
-                </Switch>
+                <Suspense fallback={<LinearProgress/>}>
+                    <Switch>
+                        <Route exact path="/" component={MainPage} />
+                        <GuardedRoute path="/manager" component={Manager} />
+                        <Route path="/login" component={Login} />
+                    </Switch>
+                </Suspense>
             </App>
         </BrowserRouter>
     </Provider>
@@ -51,3 +60,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
