@@ -22,13 +22,18 @@ import UsersManager from "./users-manager";
 import SubscribersManager from "./subscribers-manager";
 import {PowerSettingsNew} from "@material-ui/icons";
 import styles from './manager.module.scss';
+import { AuthState } from "../../store/auth-store";
+import { LogOutAction } from "../../store/auth-store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Manager() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const userName: string = JSON.parse(sessionStorage.getItem('user') as string)?.userName;
     const history = useHistory();
+    const dispatch = useDispatch();
+    const logOutAction = () => dispatch(LogOutAction());
+    const authState = useSelector((state: { auth: AuthState }) => state.auth);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -74,7 +79,7 @@ function Manager() {
                         </Typography>
                         <div className={styles.userWrapper}>
                             <Typography variant="h6" noWrap>
-                                {userName}
+                                {authState.user?.userName}
                             </Typography>
                             <PowerSettingsNew className={styles.logoutButton} onClick={logOut}/>
                         </div>
@@ -114,7 +119,7 @@ function Manager() {
     );
 
     function logOut() {
-        sessionStorage.removeItem('user');
+        logOutAction();
         history.push('/login');
     }
 }

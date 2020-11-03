@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from "react";
+import React, { FormEvent } from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,15 +12,19 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styles from './LoginPage.module.scss';
 import {Login} from "../models/Login.model";
-import {AxiosResponse} from 'axios';
-import {CURRENT_ENV} from "../environment";
-import axiosInstance from "../services/interceptor";
-import {AuthToken} from "../models/AuthToken.model";
 import {Redirect} from "react-router";
+import { LogInAction } from "../store/auth-store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthState } from "../store/auth-store";
+import * as _ from 'lodash';
 
 function LoginPage() {
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
-        return (
+
+    const dispatch = useDispatch();
+    const authState = useSelector((state: { auth: AuthState }) => state.auth);
+    const logIn = (props: Login) => dispatch(LogInAction(props));
+
+    return (
             <Container maxWidth="xs">
                 <CssBaseline />
                 <div className={styles.paper}>
@@ -76,7 +80,7 @@ function LoginPage() {
                     </Typography>
                 </Box>
                 {
-                    loggedIn ? <Redirect to="/manager"/> : null
+                    !_.isEmpty(authState.user) ? <Redirect to="/manager"/> : null
                 }
             </Container>
         );
@@ -89,15 +93,8 @@ function LoginPage() {
             password: String(formData.get('password')),
         }
 
-        axiosInstance.post(`${CURRENT_ENV}/authenticate`, login)
-            .then((res: AxiosResponse<AuthToken>) => {
-                const userData: AuthToken = {
-                    ...res.data,
-                    userName: login.userName,
-                }
-                sessionStorage.setItem('user', JSON.stringify(userData));
-                setLoggedIn(true);
-            });
+        dispatch(logIn(login));
+        sessionStorage.setItem('user', JSON.stringify(login));
     }
 }
 
