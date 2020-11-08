@@ -1,5 +1,4 @@
 import React, {useEffect, useReducer, useState} from 'react';
-import {employeeReducer} from "../../store/employees-store/reducer";
 import {AxiosResponse} from "axios";
 import {CURRENT_ENV} from "../../environment";
 import {Employee} from "../../models/Employee.model";
@@ -8,6 +7,27 @@ import {LinearProgress} from "@material-ui/core";
 import EmployeeForm from "../components/EmployeeForm";
 import * as _ from 'lodash';
 import axiosInstance from "../../services/interceptor";
+
+
+function employeeReducer(
+    state: Employee[],
+    action: { type: string, payload: Employee },
+): Employee[] {
+    const newState = _.cloneDeep(state);
+    switch (action.type) {
+        case 'AddOne':
+            return [...newState, action.payload];
+        case 'Delete':
+            return newState
+                .filter((employee: Employee) => employee.id !== action.payload.id);
+        case 'Update':
+            const filteredArray = newState
+                .filter((employee: Employee) => employee.id !== action.payload.id)
+            return [...filteredArray, action.payload];
+        default:
+            return newState;
+    }
+}
 
 function EmployeesManager() {
     const [employees, setEmployees] = useReducer(employeeReducer, []);

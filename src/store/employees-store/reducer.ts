@@ -1,22 +1,39 @@
 import {Employee} from "../../models/Employee.model";
 import * as _ from "lodash";
+import {EmployeeState, INITIAL_STATE} from "./index";
+import {EmployeeActions, EmployeeActionsTypes} from "./actions";
 
-export function employeeReducer(
-    state: Employee[],
-    action: { type: string, payload: Employee },
-): Employee[] {
+export default function(
+    state: EmployeeState = INITIAL_STATE,
+    action: EmployeeActionsTypes,
+) {
+    console.log(action)
     const newState = _.cloneDeep(state);
     switch (action.type) {
-        case 'AddOne':
-            return [...newState, action.payload];
-        case 'Delete':
-            return newState
-                .filter((employee: Employee) => employee.id !== action.payload.id);
-        case 'Update':
-            const filteredArray = newState
-                .filter((employee: Employee) => employee.id !== action.payload.id)
-            return [...filteredArray, action.payload];
+        case EmployeeActions.LoadEmployees:
+            return {
+                ...newState,
+                isLoading: true,
+            }
+        case EmployeeActions.AddEmployees:
+            console.log(action.payload);
+         return {
+             ...newState,
+             employees: [
+                 ...newState.employees,
+                 ...(action.payload as Employee[]),
+             ],
+             isLoading: false,
+         }
+        case EmployeeActions.AddEmployee:
+            return {
+                ...newState,
+                employees: [
+                    ...newState.employees,
+                    action.payload,
+                ]
+            }
         default:
-            return newState;
+            return state;
     }
 }

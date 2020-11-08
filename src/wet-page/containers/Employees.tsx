@@ -9,10 +9,36 @@ import {AxiosResponse} from 'axios';
 import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
 import {CURRENT_ENV} from "../../environment";
-import {employeeReducer} from "../../store/employees-store/reducer";
 import axiosInstance from "../../services/interceptor";
+import * as _ from "lodash";
+import { useDispatch, useSelector} from "react-redux";
+import {EmployeeState} from "../../store/employees-store";
+import {LoadEmployees} from "../../store/employees-store/actions";
+
+
+export function employeeReducer(
+    state: Employee[],
+    action: { type: string, payload: Employee },
+): Employee[] {
+    const newState = _.cloneDeep(state);
+    switch (action.type) {
+        case 'AddOne':
+            return [...newState, action.payload];
+        case 'Delete':
+            return newState
+                .filter((employee: Employee) => employee.id !== action.payload.id);
+        case 'Update':
+            const filteredArray = newState
+                .filter((employee: Employee) => employee.id !== action.payload.id)
+            return [...filteredArray, action.payload];
+        default:
+            return newState;
+    }
+}
 
 function Employees() {
+    const dispatch = useDispatch();
+    const employeeState = useSelector((state: { employees: EmployeeState }) => state.employees);
     const [employees, setEmployees] = useReducer(employeeReducer, []);
     const heading = 'O nas';
     const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
@@ -24,7 +50,10 @@ function Employees() {
     const [offset, setOffset] = useState(0);
 
     useEffect(() => {
-        getEmployees();
+        // getEmployees();
+        if (!employeeState.employees.length) {
+            dispatch(LoadEmployees());
+        }
     }, [])
 
     useEffect(() => {

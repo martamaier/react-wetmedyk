@@ -16,22 +16,22 @@ export interface AuthActionsTypes {
 
 export function LogInAction(payload: Login): AuthActionsTypes {
     return {
-        type: AuthActions.LogIn,
         payload,
+        type: AuthActions.LogIn,
     }
 }
 
 export function LogInSuccessAction(payload: AuthToken): AuthActionsTypes {
     return {
-        type: AuthActions.LogInSuccess,
         payload,
+        type: AuthActions.LogInSuccess,
     }
 }
 
 export function LogInErrorAction(payload: string): AuthActionsTypes {
     return {
-        type: AuthActions.LogInError,
         payload,
+        type: AuthActions.LogInError,
     }
 }
 
