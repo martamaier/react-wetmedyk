@@ -6,72 +6,95 @@ header {
   padding: 1.5rem 0;
   background-color: $black;
   .headerWrapper {
-    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-grow: 1;
+    //flex-grow: 1;
     //.menu {
     //  color: $white;
     //  cursor: pointer;
     //  font-size: 4rem;
     //  z-index: 1000;
     //}
+    .navigationItems {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: flex-end;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      .navigationItem {
+        font-size: 2rem;
+        cursor: pointer;
+        color: $white;
+        font-weight: lighter;
+        transition: all .4s;
+          &:not(:last-child) {
+            margin-right: 2rem;
+          }
+        &:hover {
+          color: $primary-green;
+        }
+      }
+    }
     .logo {
+      align-self: center;
+      justify-self: center;
       width: 25rem;
       height: auto;
     }
   }
 }
-.navigation {
-  &Icon {
-    position: relative;
-    margin-top: 3.5rem;
-    &,
-    &::before,
-    &::after {
-      width: 3rem;
-      height: 2px;
-      background-color: white;
-      display: inline-block;
-    }
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      transition: all .2s;
-
-    }
-    &::before {top: -.8rem;}
-    &::after {top: .8rem;}
-  }
-  &IconActive {
-    background-color: transparent;
-    &::before {
-      top: 0;
-      transform: rotate(135deg);
-    }
-
-    &::after {
-      top: 0;
-      transform: rotate(-135deg);
-    }
-  }
-  //&:hover &-icon::before {
-  //  top: 0;
-  //  transform: rotate(135deg);
-  //}
-  //
-  //&:hover &-icon::after {
-  //  top: 0;
-  //  transform: rotate(-135deg);
-  //}
-  //&:hover &-icon {
-  //  background-color: transparent;
-  //}
-}
+//.navigation {
+//  &Icon {
+//    position: relative;
+//    margin-top: 3.5rem;
+//    &,
+//    &::before,
+//    &::after {
+//      width: 3rem;
+//      height: 2px;
+//      background-color: white;
+//      display: inline-block;
+//    }
+//
+//    &::before,
+//    &::after {
+//      content: "";
+//      position: absolute;
+//      left: 0;
+//      transition: all .2s;
+//
+//    }
+//    &::before {top: -.8rem;}
+//    &::after {top: .8rem;}
+//  }
+//  &IconActive {
+//    background-color: transparent;
+//    &::before {
+//      top: 0;
+//      transform: rotate(135deg);
+//    }
+//
+//    &::after {
+//      top: 0;
+//      transform: rotate(-135deg);
+//    }
+//  }
+//  //&:hover &-icon::before {
+//  //  top: 0;
+//  //  transform: rotate(135deg);
+//  //}
+//  //
+//  //&:hover &-icon::after {
+//  //  top: 0;
+//  //  transform: rotate(-135deg);
+//  //}
+//  //&:hover &-icon {
+//  //  background-color: transparent;
+//  //}
+//}
 
 
 

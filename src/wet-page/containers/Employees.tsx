@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import {Employee} from "../../models/Employee.model";
 import EmployeeCard from "../components/Employee";
 import ControlArrows from "../../shared/ControlArrows";
@@ -22,6 +22,10 @@ function Employees() {
     const selectedEmployee = employees
         .find((employee: Employee) => employee.id === selectedId);
     const [offset, setOffset] = useState(0);
+    const toggleModal = (id: number = 0) => {
+        setDisplayModal(!displayModal);
+        setSelected(id);
+    }
 
     useEffect(() => {
         getEmployees();
@@ -33,7 +37,7 @@ function Employees() {
     }, [offset])
 
     return (
-        <section className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
+        <section id={'employees'} className={[styles.aboutUs, 'sectionPadding'].join(' ')}>
             <Row className={styles.row}>
                 <Col lg={6} md={12} sm={12} className={styles.title}>
                     <div className={styles.aboutUsWrapper}>
@@ -80,11 +84,6 @@ function Employees() {
                 });
 
             });
-    }
-
-    function toggleModal(id: number = 0) {
-        setDisplayModal(!displayModal);
-        setSelected(id);
     }
 }
 

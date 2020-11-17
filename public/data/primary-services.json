@@ -1,88 +1,97 @@
-[{
-  "id": 0,
-  "title": "Chirurgia",
-  "image": "images/pole.png",
-  "description": "Oferujemy:",
-  "details": [
-    "badania klasyfikujące pajentów do znieczulenia i zabiegu",
-    "intensywną opiekę pooperacyjną",
-    "tlenoterapię",
-    "zabiegi chirurgiczne jamy brzusznej",
-    "cesarskie cięcie w znieczulenie inhalacyjnym",
-    "chirurgię onkologiczną",
-    "chirurgię kosmetyczną i korekcyjną",
-    "szycie ran, leczenie trudno gojacych się ran",
-    "zabiegi ortopedyczne m.in.operacyjne odtworzenie więzadła krzyżowego, resekcja glowy kości udowej"
-  ]
-},
+[
+  {
+    "id": 0,
+    "title": "Profilaktyka",
+    "image": "images/spay.png",
+    "description": "",
+    "details": [
+      "szczepienia ochronne",
+      "szczepienia szczeniąt/ kociąt",
+      "szczepienia królików",
+      "odrobaczanie",
+      "ochrona przeciwkleszczowa",
+      "ochrona przeciwpchelna",
+      "dietetyka"
+    ],
+    "available": [
+      "pepowo",
+      "banino"
+    ]
+  },
   {
     "id": 1,
-    "title": "Sterylizacja",
-    "image": "images/spay.png",
-    "description": "Zabieg polegający na usunięciu macicy wraz z jajnikami,w wyniku którego zmniejsza się ryzyko wystąpienia nowotworów gruczołu mlekowego, zanika ryzyko wystąpienia nowotworów narządów rodnych, ropomacicza (zapalenia macicy), niechcianej ciąży czy ciąży urojonej. Kotki i suki sterylizujemy w wieku powyżej 7 miesiąca życia.U suk wykonujemy cięcie w linii pośrodkowej a u kotek cięcie w linii bocznej lub pośrodkowej.",
-    "details": []
+    "title": "Diagnostyka / Badania laboratoryjne",
+    "image": "images/bandage.png",
+    "description": "",
+    "details": [
+      "USG",
+      "Echokardiografia serca (ECHO SERCA)",
+      "RTG cyfrowe",
+      "badania krwi",
+      "badania moczu",
+      "badania kału",
+      "badanie włosa/zeskrobiny skórne",
+      "wymazy/badania cytologiczne"
+    ],
+    "available": [
+      "banino"
+    ]
   },
   {
     "id": 2,
-    "title": "Kastracja",
-    "image": "images/neuter.png",
-    "description": "Zabieg polegający na usunięciu jąder.Zaletą kastracji jest zapobieganie lub zmniejszenie ryzyka wystąienia chorób takich jak: nowotwory jąder, choroby prostaty, przepukliny okołoodbytowe. Zwierzęta kastrowane są mniej agresywne, nie wykazują tendencji do włóczęgostwa oraz zachowań pseudokopulacyjnych. Psy i koty kastrujemy w wieku powyżej 7 miesiąca życia.",
-    "details": []
+    "title": "Leczenie",
+    "image": "images/phonendoscope.png",
+    "description": "",
+    "details": [
+      "chorób wewnętrznych układu moczowego, pokarmowego, krążenia itd.4",
+      "zaburzeń endokrynologicznych np. zaburzeń funkcjonowania tarczycy, kory nadnerczy itd.",
+      "chorób dermatologicznych",
+      "chorób okulistycznych",
+      "chorób układu płciowego i zaburzeń rozrodu",
+      "chorób psaożytniczych"
+    ],
+    "available": [
+      "pepowo",
+      "banino"
+    ]
   },
   {
     "id": 3,
-    "title": "Dermatologia",
-    "image": "images/bandage.png",
-    "description": "Badania diagnostyczne wykonujemy we własnym laboratorium lub przy współpracy laboratorium weterynaryjnego.",
+    "title": "Chirurgia",
+    "image": "images/dog-cardio.png",
+    "description": "",
     "details": [
-      "diagnozowanie i leczenie chorób uszu",
-      "diagnozowanie i leczenie bakteryjnych, grzybiczych i pasożytniczych chorób skóry",
-      "diagnozowanie i leczenie zaburzeń hormonalnych oraz chorób autommunologicznych",
-      "diagnozowanie i leczenie alergii",
-      "zeskrobiny skórne",
-      "badania włosa (trichogram)",
-      "baddania cytologiczne",
-      "badania otoskopowe kanału słuchowego",
-      "biopsje cienkoigłowe",
-      "badania histopatologiczne wycinków skóry",
-      "pobieranie materiału na badanie hodowlane bakteriologiczne, mikologiczne, antybiogramy"
+      "badania kwalifikujące pacjenta do znieczulenia i zabiegu",
+      "znieczulenie ( narkoza) wziewna",
+      "zabiegi rutynowe np. sterylizacje/kastracje psów/kotów/gryzoni/zajęczaków",
+      "chirurgia miękka",
+      "chirurgia onkologiczna",
+      "biopsje",
+      "chirurgia korekcyjna i kosmetyczna",
+      "cesarskie cięcia"
+    ],
+    "available": [
+      "banino"
     ]
   },
   {
     "id": 4,
-    "title": "Gryzonie",
-    "image": "images/hamster.png",
-    "description": "Oferujemy:",
+    "title": "Stomatologia",
+    "image": "images/eye.png",
+    "description": "",
     "details": [
-      "diagnostykę i leczenie chorób gryzoni",
-      "zabiegi sterylizacji i kastracji",
-      "szczepienia profilaktyczne",
-      "korektę zębów",
-      "zabiegi chirurgiczne",
-      "porady okulistyczne",
-      "diagnostykę i terapię chorób oczu",
-      "leczenie trudno gojących się wrzodów rogówki"
-
+      "leczenie chorób przyzębia",
+      "usówanie kamienia nazębnego",
+      "ekstrakcje zębowe",
+      "ekstrakcje przetrwałych zębów mlecznych",
+      "korekta uzębienia gryzoni i zajęczaków"
+    ],
+    "available": [
+      "banino"
     ]
   },
   {
     "id": 5,
-    "title": "Okulistyka",
-    "image": "images/eye.png",
-    "description": "Oferujemy:",
-    "details": [
-      "diagnostykę i leczenie chorób gryzoni",
-      "zabiegi sterylizacji i kastracji",
-      "szczepienia profilaktyczne",
-      "korektę zębów",
-      "zabiegi chirurgiczne",
-      "porady okulistyczne",
-      "diagnostykę i terapię chorób oczu",
-      "leczenie trudno gojących się wrzodów rogówki"
-    ]
-  },
-  {
-    "id": 6,
     "title": "Onkologia",
     "image": "images/phonendoscope.png",
     "description": "Zdiagnozowanie nowotworu u zwierzęcia jest sytuacją stresującą dla właściciela, tak samo jak myśl o rozpoczęciu chemioterapii. Zapoznanie się i zrozumienie na czym polega proces chemioterapii oraz czego można się spodziewać podczas leczenia, ułatwi podjęcie decyzji. Celem chemioterapii u zwierząt jest przedłużenie i polepszenie jakości życia chorego zwierzęcia.",
@@ -90,67 +99,75 @@
       "diagnozowanie chorób nowotworowych",
       "leczenie chirurgiczne zmian nowotworowych",
       "szczepienia profilaktyczne"
+    ],
+    "available": [
+      "banino"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Czipy / Paszporty",
+    "image": "images/medical-report.png",
+    "description": "",
+    "details": [
+      "wyrabianie paszportów dla zwierząt",
+      "aktualizacja paszportów dla zwierząt",
+      "implantacja mikroczipów oraz rejestracja w bazie danych",
+      "badanie kliniczne przed podróżą oraz wpis do paszportu",
+      "odrobaczenie przed podróżą oraz wpis do paszportu"
+    ],
+    "available": [
+      "pepowo",
+      "banino"
     ]
   },
   {
     "id": 7,
-    "title": "Paszporty dla zwierząt",
-    "image": "images/medical-report.png",
-    "description": "Oferujemy:",
+    "title": "Szpital dla zwierząt",
+    "image": "images/hospital.png",
+    "description": "",
     "details": [
-      "diagnozowanie chorób nowotworowych",
-      "leczenie chirurgiczne zmian nowotworowych",
-      "szczepienia profilaktyczne",
-      "implantację mikroczipów",
-      "odczytywanie numerów mikroczipów przy pomocy czytnika",
-      "szczepienie przeciwko wściekliźnie",
-      "wyrabianie paszportów dla zwierząt",
-      "aktualizowanie paszportów dla zwierząt",
-      "podawanie preparatów odrobaczających",
-      "badanie kliniczne zwierzęcia przed podróżą",
-      "zaświadczenia o stanie zdrowia zwierzęcia"
+      "hospitalizacja przedzabiegowa",
+      "rekonwalescencja pozabiegowa",
+      "nawadnianie dożylne ( kroplówki)",
+      "leczenie stacjonarne/obserwacje"
+    ],
+    "available": [
+      "banino"
     ]
   },
   {
     "id": 8,
-    "title": "Stomatologia",
-    "image": "images/dog_dentist.png",
-    "description": "Oferujemy:",
+    "title": "Sklepik",
+    "image": "images/dog-cardio.png",
+    "description": "",
     "details": [
-      "porady z zakresu stomatologii psów, kotów oraz gryzoni",
-      "ultradźwiekowe usuwanie kamienia nazębnego wraz z polerowaniem koron",
-      "ekstrakcje przetrwałych zebów mlecznych",
-      "ekstrakcje zębów stałych",
-      "leczenie chorób dziąseł i przyzębia",
-      "korekty zębów u gryzoni"
+      "karmy bytowe",
+      "karmy lecznicze",
+      "smakołyki",
+      "suplementy diety",
+      "zabawki",
+      "akcesoria dla zwierząt"
+    ],
+    "available": [
+      "pepowo",
+      "banino"
     ]
   },
   {
     "id": 9,
-    "title": "Szpital dla zwierząt",
-    "image": "images/hospital.png",
-    "description": "NIE WYDAJEMY KROPLÓWEK DO PODAWANIA ZWIERZĘCIU W DOMU. DLACZEGO? Bez ścisłej kontroli ilości podawanych płynów można doprowadzić do poważnych komplikacji a nawet śmierci zwierzęcia.",
-    "details": [
-      "zwierzęta po zabiegach – każde zwierzę po znieczuleniu jest obserwowane przez nas w szpitalu i wysyłane do domu dopiero po pełnym wybudzeniu (zazwyczaj w kilka godzin po zabiegu). Pozwala to na uniknięcie ewentualnych komplikacji w czasie rekonwalescencji i naszą szybką reakcję jeśli zajdzie taka potrzeba.",
-      "zwierzęta chore, pozostające na obserwacji – pod naszym okiem zwierzęta przechodzą w szpitalu okres leczenia i rekonwalescencji. To tutaj w zależności od potrzeby wykonywane są dożylne wlewy kroplówkowe – najbardziej efektywny sposób nawadniania zwierzęcia, normowania pracy nerek czy pęcherza moczowego, pozajelitowego dostarczania elektrolitów. Kroplówka podawana jest zazwyczaj przez 24h – 48h, a ilość podawanego płynu jest ściśle przez nas monitorowana.",
-      "izolatka – zwierzęta wymagające odosobnienia przebywają w izolatce, gdzie przechodzą okres leczenia i rekonwalescencji pod naszą ścisłą kontrolą"
-    ]
-  },
-  {
-    "id": 10,
-    "title": "USG/Echo Serca",
-    "image": "images/dog-cardio.png",
+    "title": "Strzyżenie i pielęgnacja",
+    "image": "images/first-aid-pet.png",
     "description": "",
     "details": [
-      "USG – wykonujemy badania diagnostyczne jamy brzusznej oraz USG ciąży. Badania USG wykonywane są od poniedziałku do piątku w godzinach porannych. KONIECZNA JEST WCZEŚNIEJSZA REJESTRACJA. Zalecana jest 12h głodówka. W większości przypadków nie ma potrzeby znieczulania zwierzęcia. Czasem niezbędne jest wygolenie sierści w okolicy brzusznej.",
-      "ECHO/USG SERCA ( ECHOKARDIOGRAFIA SERCA) – badanie specjalistyczne wykonywane przez współpracującego z nami specjalistę dr nauk weterynaryjnych Michała Bartnickiego. Niezbędna wcześniejsza rejestracja."
+      "strzyżenie psów i kotów w znieczuleniu",
+      "czesanie",
+      "kąpiele pielęgnacyjne i lecznicze",
+      "obcinanie pazurków",
+      "czyszczenie uszu"
+    ],
+    "available": [
+      "banino"
     ]
-  },
-  {
-    "id": 11,
-    "title": "Wizyty Domowe",
-    "image": "images/first-aid-pet.png",
-    "description": "Jeśli zajdzie potrzeba wykonujemy podstawowe usługi lekarsko- weterynaryjne w domu właściciela. Jeżeli choroba, bądź zabiegi u Waszego zwierzęcia, będą wymagały dłuższego leczenia lub szeregu badań diagnostycznych, konieczna będzie wizyta w Przychodni Weterynaryjnej (nie zapewniamy transportu zwierzęcia). Koszt wizyty oraz dojazdu ustalamy indywidualnie. Wizyty domowe wykonywane są od poniedziałku do piątku w godz. 12.00 – 16.00 po wcześniejszym umówieniu telefonicznym lub osobistym. Nie wykonujemy wizyt domowych w godzinach nocnych oraz w soboty.",
-    "details": []
   }
 ]

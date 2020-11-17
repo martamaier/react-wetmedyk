@@ -29,6 +29,18 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
     const classes = useStyles();
     const dataTable: DataTableModel<T> = mapArrayToDataTable(props.data);
     const [selected, setSelected] = useState<number | null>(null);
+    const handleSelection = (selectedId: number) => {
+        setSelected(selected !== selectedId ? selectedId : null);
+    }
+
+    const handleSelectionAction = (action: 'edit' | 'delete') => {
+        const [idRow, ...rest] = dataTable.rows[selected as number];
+        if (action === 'edit') {
+            props.onEdit(idRow.value)
+        } else {
+            props.onDelete(idRow.value)
+        }
+    }
 
     return (
         <>
@@ -94,19 +106,6 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
             </div>
         </>
     )
-
-    function handleSelection(selectedId: number) {
-        setSelected(selected !== selectedId ? selectedId : null);
-    }
-
-    function handleSelectionAction(action: 'edit' | 'delete') {
-        const [idRow, ...rest] = dataTable.rows[selected as number];
-        if (action === 'edit') {
-            props.onEdit(idRow.value)
-        } else {
-            props.onDelete(idRow.value)
-        }
-    }
 }
 
 export default DataTable;
