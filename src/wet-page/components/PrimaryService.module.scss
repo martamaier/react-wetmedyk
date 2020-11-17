@@ -24,11 +24,6 @@
     width: auto;
   }
 
-  .icon {
-    width: auto;
-    height: 3rem;
-  }
-
   & > p, ul {
     display: none;
   }
@@ -37,6 +32,7 @@
     font-weight: bold;
     color: $primary-green;
     text-transform: uppercase;
+    text-align: center;
   }
   &:hover {
     box-shadow: 0 6px 18px 0 rgba($black, .5);

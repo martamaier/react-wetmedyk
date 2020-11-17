@@ -20,37 +20,34 @@ import { ReactComponent as PetHouse } from './../images/pet-house.svg';
 // @ts-ignore
 import { ReactComponent as Bathing } from './../images/bathing.svg';
 import { ReactComponent as Paw } from './../images/paw.svg';
+import classes from './ServicesIcon.module.scss';
+
 
 function ServicesIcon (props: { id: number }) {
-    const classes = {
-        icon: {
-            height: '8rem',
-        }
-    }
     switch (props.id) {
         case 0:
-            return <Veterinary style={classes.icon} />;
+            return <Veterinary className={classes.icon} />;
         case 1:
-            return <Stethoscope style={classes.icon} />;
+            return <Stethoscope className={classes.icon} />;
         case 2:
-            return <Health style={classes.icon} />;
+            return <Health className={classes.icon} />;
         case 3:
-            return <HeartBeat style={classes.icon} />;
+            return <HeartBeat className={classes.icon} />;
         case 4:
-            return <Tooth style={classes.icon} />;
+            return <Tooth className={classes.icon} />;
         case 5:
-            return <Vaccine style={classes.icon} />;
+            return <Vaccine className={classes.icon} />;
         case 6:
-            return <MedicalReport style={classes.icon} />;
+            return <MedicalReport className={classes.icon} />;
         case 7:
-            return <Hospital style={classes.icon} />;
+            return <Hospital className={classes.icon} />;
         case 8:
-            return <PetHouse style={classes.icon} />;
+            return <PetHouse className={classes.icon} />;
         case 9:
-            return <Bathing style={classes.icon} />;
+            return <Bathing className={classes.icon} />;
 
         default:
-            return <Paw style={classes.icon} />;
+            return <Paw className={classes.icon} />;
     }
 }
 

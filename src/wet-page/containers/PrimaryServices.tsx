@@ -48,6 +48,12 @@ function PrimaryServices() {
         setSelectedLocation(event.target.value as string);
     };
 
+    const toggleModal = (id: number | null = null) => {
+        const selectedCard = primaryServices.find((card: PrimaryServiceCard) => card.id === id);
+        setDisplayModal(!displayModal);
+        setSelectedCard(selectedCard ? selectedCard : null);
+    }
+
     useEffect(() => {
         getPrimaryServices();
     }, []);
@@ -103,12 +109,6 @@ function PrimaryServices() {
         axios.get('/data/primary-services.json').then((res: AxiosResponse<PrimaryServiceCard[]>) => {
             setPrimaryServices(res.data);
         });
-    }
-
-    function toggleModal(id: number | null = null) {
-        const selectedCard = primaryServices.find((card: PrimaryServiceCard) => card.id === id);
-        setDisplayModal(!displayModal);
-        setSelectedCard(selectedCard ? selectedCard : null);
     }
 }
 

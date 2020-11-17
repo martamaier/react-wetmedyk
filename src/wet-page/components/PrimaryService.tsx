@@ -3,13 +3,11 @@ import {PrimaryServiceCard} from "../../models/PrimaryServiceCard.model";
 import styles from './PrimaryService.module.scss';
 import chevronWrapperStyles from './../../shared/ControlArrows.module.scss';
 import CustomChevronRight from "../../shared/CustomChevronRight";
-import {CURRENT_ENV} from "../../environment";
 import ServicesIcon from "../../shared/ServicesIcon";
 
 function PrimaryService(props: PrimaryServiceCard & { handleClick: any }) {
     return (
         <article className={styles.primaryService}>
-            {/*<img src={`${CURRENT_ENV}/${props.image}`} alt={props.title} />*/}
             <ServicesIcon id={props.id} />
             <h3>{props.title}</h3>
             {
