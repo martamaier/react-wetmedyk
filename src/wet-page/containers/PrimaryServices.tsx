@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         formControl: {
             margin: theme.spacing(1),
             minWidth: 140,
-        },
+            marginLeft: '3.5rem',
+            marginBottom: '5rem',
+},
         selectEmpty: {
             marginTop: theme.spacing(2),
         },
@@ -67,6 +69,7 @@ function PrimaryServices() {
 
     return (
         <section id="services" className={[styles.primaryServices, 'sectionPadding'].join(' ')}>
+            <h2>Usługi</h2>
             <Container>
                 <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel className={classes.label} id="demo-simple-select-outlined-label">Lecznice</InputLabel>
@@ -81,7 +84,6 @@ function PrimaryServices() {
                         <MenuItem className={classes.select} value="pepowo">Pepowo</MenuItem>
                     </Select>
                 </FormControl>
-                <h2>Usługi</h2>
             </Container>
             <Container>
                 <div className={styles.primaryServicesWrapper}>
