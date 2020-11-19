@@ -1,52 +1,26 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Employee} from "../../models/Employee.model";
 import EmployeeCard from "../components/Employee";
 import ControlArrows from "../../shared/ControlArrows";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
 import {Col, Row} from "react-bootstrap";
-import {AxiosResponse} from 'axios';
 import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
-import {CURRENT_ENV} from "../../environment";
-import axiosInstance from "../../services/interceptor";
-import * as _ from "lodash";
 import { useDispatch, useSelector} from "react-redux";
-import {EmployeeState} from "../../store/employees-store";
 import {LoadEmployees} from "../../store/employees-store/actions";
-
-
-export function employeeReducer(
-    state: Employee[],
-    action: { type: string, payload: Employee },
-): Employee[] {
-    const newState = _.cloneDeep(state);
-    switch (action.type) {
-        case 'AddOne':
-            return [...newState, action.payload];
-        case 'Delete':
-            return newState
-                .filter((employee: Employee) => employee.id !== action.payload.id);
-        case 'Update':
-            const filteredArray = newState
-                .filter((employee: Employee) => employee.id !== action.payload.id)
-            return [...filteredArray, action.payload];
-        default:
-            return newState;
-    }
-}
+import { RootState } from "../../store";
 
 function Employees() {
     const dispatch = useDispatch();
-    const employeeState = useSelector((state: { employees: EmployeeState }) => state.employees);
-    const [employees, setEmployees] = useReducer(employeeReducer, []);
+    const employees = useSelector((state: RootState) => state.employees.employees);
+    const isLoading = useSelector((state: RootState) => state.employees.isLoading);
     const heading = 'O nas';
     const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
     const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';
     const [displayModal, setDisplayModal] = useState<boolean>(false);
     const [selectedId, setSelected] = useState<number>(0);
-    const selectedEmployee = employees
-        .find((employee: Employee) => employee.id === selectedId);
+    const selectedEmployee = employees.find((employee: Employee) => employee.id === selectedId);
     const [offset, setOffset] = useState(0);
     const toggleModal = (id: number = 0) => {
         setDisplayModal(!displayModal);
@@ -54,11 +28,10 @@ function Employees() {
     }
 
     useEffect(() => {
-        // getEmployees();
-        if (!employeeState.employees.length) {
+        if (!employees.length && !isLoading) {
             dispatch(LoadEmployees());
         }
-    }, [])
+    }, [dispatch, employees, isLoading])
 
     useEffect(() => {
         const cardsContainer = document.querySelector('.employee-scroll');
@@ -104,16 +77,6 @@ function Employees() {
                            data={mapEmployeeToModalItem(selectedEmployee as Employee)}/> : null
             }
         </section>);
-
-    function getEmployees() {
-        axiosInstance.get(`${CURRENT_ENV}/employees`)
-            .then((res: AxiosResponse<Employee[]>) => {
-                res.data.forEach((employee: Employee) => {
-                    setEmployees({type: 'AddOne', payload: employee});
-                });
-
-            });
-    }
 }
 
 export default Employees;
