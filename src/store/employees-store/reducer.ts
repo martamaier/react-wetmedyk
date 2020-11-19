@@ -7,7 +7,6 @@ export default function(
     state: EmployeeState = INITIAL_STATE,
     action: EmployeeActionsTypes,
 ) {
-    console.log(action)
     const newState = _.cloneDeep(state);
     switch (action.type) {
         case EmployeeActions.LoadEmployees:
@@ -16,7 +15,6 @@ export default function(
                 isLoading: true,
             }
         case EmployeeActions.AddEmployees:
-            console.log(action.payload);
          return {
              ...newState,
              employees: [
