@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React from "react";
 import Locations from "./containers/Locations";
 import Services from "./containers/Services";
 import Employees from "./containers/Employees";

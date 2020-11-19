@@ -14,9 +14,7 @@ export const loadEmployees$ = (action$: ActionsObservable<EmployeeActionsTypes>)
         switchMap((action) => {
             return fromPromise(axiosInstance.get(`${CURRENT_ENV}/employees`))
                 .pipe(
-                    map((res: AxiosResponse<Employee[]>) => {
-                        return AddEmployees(res.data);
-                    }),
+                    map((res: AxiosResponse<Employee[]>) => AddEmployees(res.data)),
                 );
         }),
     );
