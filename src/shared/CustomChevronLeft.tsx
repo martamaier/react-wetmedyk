@@ -3,16 +3,21 @@ import {Fab} from "@material-ui/core";
 import styles from "./ControlArrows.module.scss";
 import {MdChevronLeft} from "react-icons/md";
 
-function CustomChevronLeft(props: { disabled: boolean, handleClick: any }) {
+interface Props {
+    disabled: boolean;
+    handleClick: any;
+}
+
+function CustomChevronLeft({ disabled, handleClick }: Props) {
     return (
         <Fab
             className={[styles.noOutline, styles.topMargin].join(' ')}
             color="primary"
             aria-label="left"
-            disabled={props.disabled}>
+            disabled={disabled}>
             <MdChevronLeft
                 size={'40px'}
-                onClick={props.handleClick}/>
+                onClick={handleClick}/>
         </Fab>
     )
 }
