@@ -9,12 +9,12 @@ import Modal from '../../shared/Modal';
 import {mapEmployeeToModalItem} from "../../models/ModalData.model";
 import { useDispatch, useSelector} from "react-redux";
 import {LoadEmployees} from "../../store/employees-store/actions";
-import { RootState } from "../../store";
+import { getEmployees, getIsLoading } from "../../store/employees-store/selectors";
 
 function Employees() {
     const dispatch = useDispatch();
-    const employees = useSelector((state: RootState) => state.employees.employees);
-    const isLoading = useSelector((state: RootState) => state.employees.isLoading);
+    const employees = useSelector(getEmployees);
+    const isLoading = useSelector(getIsLoading);
     const heading = 'O nas';
     const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
     const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';

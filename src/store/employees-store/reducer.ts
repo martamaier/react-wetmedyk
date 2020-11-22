@@ -1,7 +1,7 @@
-import {Employee} from "../../models/Employee.model";
+import { Employee } from "../../models/Employee.model";
 import * as _ from "lodash";
-import {EmployeeState, INITIAL_STATE} from "./index";
-import {EmployeeActions, EmployeeActionsTypes} from "./actions";
+import { EmployeeState, INITIAL_STATE } from "./index";
+import { EmployeeActions, EmployeeActionsTypes } from "./actions";
 
 export default function(
     state: EmployeeState = INITIAL_STATE,
@@ -30,6 +30,11 @@ export default function(
                     ...newState.employees,
                     action.payload,
                 ]
+            }
+        case EmployeeActions.SelectEmployee:
+            return {
+                ...newState,
+                selected: action.payload,
             }
         default:
             return state;

@@ -7,7 +7,9 @@ export enum EmployeeActions {
     AddEmployees = '[Employees] Add Employees',
     UpdateEmployee = '[Employees] Update Employee',
     DeleteEmployee = '[Employees] Delete Employee',
+    DeleteEmployeeSuccess = '[Employees] Delete Employee Success',
     DeleteEmployees = '[Employees] Delete Employees',
+    SelectEmployee = '[Employees] Set Selected Employee',
 }
 
 export interface EmployeeActionsTypes {
@@ -34,5 +36,32 @@ export function AddEmployees(payload: Employee[]): EmployeeActionsTypes {
 export function AddEmployeesSuccess(): EmployeeActionsTypes {
     return {
         type: EmployeeActions.AddEmployeesSuccess,
+    }
+}
+
+export function DeleteEmployee(payload: number): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.DeleteEmployee,
+    } as {
+        payload: number,
+        type: EmployeeActions,
+    }
+}
+
+export function DeleteEmployeeSuccess(payload: number): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.DeleteEmployeeSuccess,
+    } as {
+        payload: number,
+        type: EmployeeActions,
+    }
+}
+
+export function SelectEmployee(payload: number): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.SelectEmployee,
     }
 }

@@ -1,41 +1,36 @@
-import React, {useEffect, useReducer, useState} from 'react';
-import {AxiosResponse} from "axios";
-import {CURRENT_ENV} from "../../environment";
+import React, {useEffect, useState} from 'react';
 import {Employee} from "../../models/Employee.model";
 import DataTable from "../../shared/table";
 import {LinearProgress} from "@material-ui/core";
 import EmployeeForm from "../components/EmployeeForm";
 import * as _ from 'lodash';
-import axiosInstance from "../../services/interceptor";
-
-
-function employeeReducer(
-    state: Employee[],
-    action: { type: string, payload: Employee },
-): Employee[] {
-    const newState = _.cloneDeep(state);
-    switch (action.type) {
-        case 'AddOne':
-            return [...newState, action.payload];
-        case 'Delete':
-            return newState
-                .filter((employee: Employee) => employee.id !== action.payload.id);
-        case 'Update':
-            const filteredArray = newState
-                .filter((employee: Employee) => employee.id !== action.payload.id)
-            return [...filteredArray, action.payload];
-        default:
-            return newState;
-    }
-}
+import { useDispatch, useSelector } from "react-redux";
+import { getEmployees, getIsLoading, getSelectedEmployeeId } from "../../store/employees-store/selectors";
+import { DeleteEmployee, LoadEmployees, SelectEmployee } from "../../store/employees-store/actions";
 
 function EmployeesManager() {
-    const [employees, setEmployees] = useReducer(employeeReducer, []);
+    const dispatch = useDispatch();
+    const employees = useSelector(getEmployees);
+    const isLoading = useSelector(getIsLoading);
+    const selectedId = useSelector(getSelectedEmployeeId);
+
     const [selectedEmployee, setSelectedEmployee] = useState<Employee | undefined>(undefined);
+    const addEmployee = () => {
+        console.log('should add employee');
+        setSelectedEmployee({} as Employee);
+    }
+    const deleteEmployee = (id: number) => dispatch(DeleteEmployee(id));
+    const editEmployee = (id: number) => {
+        const employee: Employee = employees.find((emp: Employee) => emp.id === id) as Employee;
+        setSelectedEmployee({ ...employee });
+        dispatch(SelectEmployee(id));
+    }
 
     useEffect(() => {
-        getEmployees();
-    }, []);
+        if (!employees.length && !isLoading) {
+            dispatch(LoadEmployees())
+        }
+    }, [dispatch, employees, isLoading]);
 
     return (
         <>
@@ -46,37 +41,12 @@ function EmployeesManager() {
                 onDelete={deleteEmployee}
                 onEdit={editEmployee}/> : <LinearProgress/>}
             {
-                !_.isUndefined(selectedEmployee) ? <EmployeeForm employee={selectedEmployee} onCreate={setEmployees} /> : null
+                !_.isUndefined(selectedEmployee) ? <EmployeeForm employee={selectedEmployee} onCreate={console.log} /> : null
 
             }
         </>
 
     );
-
-    function getEmployees() {
-        axiosInstance.get(`${CURRENT_ENV}/employees`)
-            .then((res: AxiosResponse<Employee[]>) => {
-                res.data.forEach((employee: Employee) => {
-                    setEmployees({type: 'AddOne', payload: employee});
-                });
-
-            });
-    }
-    function addEmployee() {
-        console.log('should add employee');
-        setSelectedEmployee({} as Employee);
-    }
-
-    function deleteEmployee(id: number) {
-        axiosInstance.delete(`${CURRENT_ENV}/employees/${id}`).then((res: AxiosResponse) => {
-            setEmployees({ type: 'Delete', payload: employees.find((emp: Employee) => emp.id === id) as Employee })
-        })
-    }
-
-    function editEmployee(id: number) {
-        const employee: Employee = employees.find((emp: Employee) => emp.id === id) as Employee;
-        setSelectedEmployee({ ...employee });
-    }
 }
 
 export default EmployeesManager;

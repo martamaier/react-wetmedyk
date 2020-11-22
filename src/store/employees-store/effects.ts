@@ -1,5 +1,5 @@
 import {ActionsObservable, ofType} from "redux-observable";
-import {AddEmployees, EmployeeActions, EmployeeActionsTypes} from "./actions";
+import { AddEmployees, DeleteEmployeeSuccess, EmployeeActions, EmployeeActionsTypes } from "./actions";
 import {map, switchMap, take} from "rxjs/operators";
 import axiosInstance from "../../services/interceptor";
 import {CURRENT_ENV} from "../../environment";
@@ -16,5 +16,16 @@ export const loadEmployees$ = (action$: ActionsObservable<EmployeeActionsTypes>)
                 .pipe(
                     map((res: AxiosResponse<Employee[]>) => AddEmployees(res.data)),
                 );
+        }),
+    );
+
+export const deleteEmployee$ = (action$: ActionsObservable<EmployeeActionsTypes>) => action$
+    .pipe(
+        ofType(EmployeeActions.DeleteEmployee),
+        switchMap((action) => {
+            return fromPromise(axiosInstance.delete(`${CURRENT_ENV}/employees/${action.payload}`))
+                .pipe(
+                    map((res: AxiosResponse<Employee>) => DeleteEmployeeSuccess(res.data.id))
+                )
         }),
     );
