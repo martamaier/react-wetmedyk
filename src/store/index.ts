@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import auth from './auth-store/reducer';
-import employees from './employees-store/reducer';
+import employee from './employees-store/reducer';
 import { combineEpics } from "redux-observable";
 import { loginUser$, logoutUser$ } from "./auth-store/effects";
 import { deleteEmployee$, loadEmployees$ } from "./employees-store/effects";
@@ -15,7 +15,7 @@ import { loadPosts$ } from "./posts-store/effects";
 
 export default combineReducers({
     auth,
-    employees,
+    employee,
     location,
     post,
 });
@@ -30,7 +30,7 @@ export const rootEpic = combineEpics(
     );
 
 export interface RootState {
-    employees: EmployeeState;
+    employee: EmployeeState;
     auth: AuthState;
     location: LocationState;
     post: PostState;
