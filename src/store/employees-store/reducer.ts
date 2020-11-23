@@ -36,6 +36,11 @@ export default function(
                 ...newState,
                 selected: action.payload,
             }
+        case EmployeeActions.DeleteEmployee:
+            return {
+                ...newState,
+                employees: newState.employees.filter(employee => employee.id !== action.payload)
+            }
         default:
             return state;
     }

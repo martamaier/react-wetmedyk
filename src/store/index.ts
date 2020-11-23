@@ -6,10 +6,14 @@ import { loginUser$, logoutUser$ } from "./auth-store/effects";
 import { deleteEmployee$, loadEmployees$ } from "./employees-store/effects";
 import { EmployeeState } from "./employees-store";
 import { AuthState } from "./auth-store";
+import { LocationState } from "./locations-store";
+import location from './locations-store/reducer';
+import { loadLocations$ } from "./locations-store/effects";
 
 export default combineReducers({
     auth,
     employees,
+    location,
 });
 
 export const rootEpic = combineEpics(
@@ -17,9 +21,11 @@ export const rootEpic = combineEpics(
     logoutUser$,
     loadEmployees$,
     deleteEmployee$,
+    loadLocations$,
     );
 
 export interface RootState {
     employees: EmployeeState;
     auth: AuthState;
+    location: LocationState;
 }

@@ -1,20 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import logo from "../../images/logo.png";
 import styles from './Footer.module.scss';
 import {Container, Row, Col} from "react-bootstrap";
 import {Location} from "../../models/Location.model";
 import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
-import {AxiosResponse} from 'axios';
-import {CURRENT_ENV} from "../../environment";
-import axiosInstance from "../../services/interceptor";
+import { useDispatch, useSelector } from "react-redux";
+import { LoadLocations } from "../../store/locations-store/actions";
+import { getIsLoading, getLocations } from "../../store/locations-store/selectors";
 
 function Footer() {
     const copyrights = '@ 2020 Wetmedyk. All rights reserved.';
-    const [locations, setLocations] = useState<Location[]>([]);
+    const locations = useSelector(getLocations);
+    const isLoading = useSelector(getIsLoading);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getLocations();
-    }, [])
+        if (!locations.length && !isLoading) {
+            dispatch(LoadLocations());
+        }
+    }, [dispatch, locations, isLoading])
 
     return (
         <footer>
@@ -53,13 +57,6 @@ function Footer() {
                 <span className={styles.copyrights}>{copyrights}</span>
             </Container>
         </footer>);
-
-    function getLocations() {
-        axiosInstance.get(`${CURRENT_ENV}/locations`).then((res:AxiosResponse<Location[]>) => {
-            setLocations(res.data);
-        })
-    }
-
 }
 
 export default Footer;

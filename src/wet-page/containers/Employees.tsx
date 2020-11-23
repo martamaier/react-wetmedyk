@@ -15,9 +15,11 @@ function Employees() {
     const dispatch = useDispatch();
     const employees = useSelector(getEmployees);
     const isLoading = useSelector(getIsLoading);
-    const heading = 'O nas';
-    const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
-    const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';
+    const { heading, footer, description } = {
+        heading: 'O nas',
+        description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
+        footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
+    }
     const [displayModal, setDisplayModal] = useState<boolean>(false);
     const [selectedId, setSelected] = useState<number>(0);
     const selectedEmployee = employees.find((employee: Employee) => employee.id === selectedId);

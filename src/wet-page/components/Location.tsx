@@ -11,7 +11,6 @@ const image = [
 
 const location = (props: Location) => {
     const displayImage = props.id === 1 ? image[props.id] : image[0];
-    const [hour1, hour2] = props.openHours.split('<br/>');
     const imageStyling = {
         backgroundImage: `linear-gradient(to right bottom, ${styles.primaryGreen}, ${styles.primaryGreen}), url(${displayImage})`,
         backgroundSize: 'cover',
@@ -26,21 +25,12 @@ const location = (props: Location) => {
                     <Col md={6} className={styles.siteBodyData}>
                         <h3>Adres</h3>
                         <p>{props.street}<br/>{props.zipCode} {props.city}</p>
-                        {/*<h3>Godziny otwarcia</h3>*/}
-                        {/*<p>{hour1}<br/>{hour2}</p>*/}
                         <h3>Kontakt</h3>
                         <p>{props.phone}</p>
                         <Button text={'Wiecej'} type={'button'} />
                     </Col>
-                    {/*<Col md={6} className={styles.siteBodyMap}>*/}
-                    {/*    <iframe*/}
-                    {/*        title="map"*/}
-                    {/*        src={props.mapUrl}*/}
-                    {/*        allowFullScreen={true}/>*/}
-                    {/*</Col>*/}
                 </Row>
             </Container>
-            {/*<div className={styles.siteFooter} />*/}
         </div>
     );
 }

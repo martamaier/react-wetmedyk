@@ -1,22 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Carousel} from 'react-bootstrap';
 import {Location} from "../../models/Location.model";
 import LocationCard from '../components/Location';
-import {AxiosResponse} from 'axios';
-import {CURRENT_ENV} from "../../environment";
-import axiosInstance from "../../services/interceptor";
+import { useDispatch, useSelector } from "react-redux";
+import { LoadLocations } from "../../store/locations-store/actions";
+import { getIsLoading, getLocations } from "../../store/locations-store/selectors";
 
 function Locations() {
-    const [locations, setLocations] = useState<Location[]>([]);
+    const locations = useSelector(getLocations);
+    const isLoading = useSelector(getIsLoading);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getLocations();
-    }, []);
+        if (!locations.length && !isLoading) {
+            dispatch(LoadLocations());
+        }
+    }, [dispatch, locations, isLoading]);
 
     return (
         <Carousel>
             {
-                locations.map((location: Location) => (
+                locations.length && locations.map((location: Location) => (
                     <Carousel.Item key={location.id}>
                         <LocationCard key={location.id} {...location} />
                     </Carousel.Item>
@@ -24,13 +28,6 @@ function Locations() {
             }
         </Carousel>
     );
-
-    function getLocations() {
-        axiosInstance.get(`${CURRENT_ENV}/locations`)
-            .then((res: AxiosResponse<Location[]>) => {
-                setLocations(res.data);
-            });
-    }
 }
 
 export default Locations;
