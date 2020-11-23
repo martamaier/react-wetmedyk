@@ -1,27 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {AxiosResponse} from 'axios';
-import {CURRENT_ENV} from "../../environment";
-import {Post} from "../../models/Post.model";
+import React, {useEffect} from 'react';
 import DataTable from "../../shared/table";
 import {LinearProgress} from "@material-ui/core";
-import axiosInstance from "../../services/interceptor";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsLoading, getPosts } from "../../store/posts-store/selectors";
+import { LoadPosts } from "../../store/posts-store/actions";
 
 function PostsManager() {
-    const [posts, setPosts] = useState<Post[]>([])
+    const posts = useSelector(getPosts);
+    const isLoading = useSelector(getIsLoading);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getPosts()
-    }, [])
+        if (!posts.length && !isLoading) {
+            dispatch(LoadPosts());
+        }
+    }, [dispatch, posts, isLoading])
 
     return (
         posts.length ? <DataTable data={posts} onAdd={console.log} onDelete={console.log} onEdit={console.log} /> : <LinearProgress/>
     )
-
-    function getPosts() {
-        axiosInstance.get(`${CURRENT_ENV}/posts`).then((res: AxiosResponse<Post[]>) => {
-            setPosts(res.data)
-        })
-    }
 }
 
 export default PostsManager;

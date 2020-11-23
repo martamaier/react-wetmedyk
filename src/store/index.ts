@@ -9,11 +9,15 @@ import { AuthState } from "./auth-store";
 import { LocationState } from "./locations-store";
 import location from './locations-store/reducer';
 import { loadLocations$ } from "./locations-store/effects";
+import post from './posts-store/reducer';
+import { PostState } from "./posts-store";
+import { loadPosts$ } from "./posts-store/effects";
 
 export default combineReducers({
     auth,
     employees,
     location,
+    post,
 });
 
 export const rootEpic = combineEpics(
@@ -22,10 +26,12 @@ export const rootEpic = combineEpics(
     loadEmployees$,
     deleteEmployee$,
     loadLocations$,
+    loadPosts$,
     );
 
 export interface RootState {
     employees: EmployeeState;
     auth: AuthState;
     location: LocationState;
+    post: PostState;
 }

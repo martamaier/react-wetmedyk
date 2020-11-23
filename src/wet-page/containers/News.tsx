@@ -4,18 +4,22 @@ import ControlArrows from "../../shared/ControlArrows";
 import {Col, Row} from "react-bootstrap";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
-import {AxiosResponse} from 'axios';
 import {Post} from "../../models/Post.model";
 import Modal from "../../shared/Modal";
 import {mapPostToModalItem} from "../../models/ModalData.model";
-import {CURRENT_ENV} from "../../environment";
-import axiosInstance from "../../services/interceptor";
+import { useDispatch, useSelector } from "react-redux";
+import { LoadPosts } from "../../store/posts-store/actions";
+import { getIsLoading, getPosts } from "../../store/posts-store/selectors";
 
 function News() {
-    const [news, setNews] = useState<Post[]>([]);
-    const heading = 'Aktualności';
-    const description = 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!';
-    const footer = 'Zespół Centrum Weterynaryjnego WET-MEDYK';
+    const news = useSelector(getPosts);
+    const isLoading = useSelector(getIsLoading);
+    const dispatch = useDispatch();
+    const { heading, description, footer } = {
+        heading: 'Aktualności',
+        description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
+        footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
+    }
     const [displayModal, setDisplayModal] = useState<boolean>(false);
     const [selectedId, setSelectedId] = useState<number>(0);
     const selectedPost = news
@@ -23,8 +27,10 @@ function News() {
     const [offset, setOffset] = useState(0);
 
     useEffect(() => {
-        getNews();
-    }, [])
+        if (!news.length && !isLoading) {
+            dispatch(LoadPosts());
+        }
+    }, [dispatch, news, isLoading])
 
     useEffect(() => {
         const newsContainer = document.querySelector('.news-scroll');
@@ -71,13 +77,6 @@ function News() {
     function toggleModal(id: number = 0) {
         setDisplayModal(!displayModal);
         setSelectedId(id);
-    }
-
-    function getNews() {
-        axiosInstance.get(`${CURRENT_ENV}/posts`)
-            .then((res: AxiosResponse<Post[]>) => {
-                setNews(res.data);
-            });
     }
 }
 
