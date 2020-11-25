@@ -3,8 +3,6 @@ import styles from './PrimaryServices.module.scss';
 import {Container} from "react-bootstrap";
 import {PrimaryServiceCard} from "../../models/PrimaryServiceCard.model";
 import PrimaryService from '../components/PrimaryService';
-import axios from "axios";
-import {AxiosResponse} from "axios";
 import Modal from './../../shared/Modal';
 import {mapPrimaryServiceToModalItem} from "../../models/ModalData.model";
 import PrimaryServiceModalComponent from "../components/PrimaryServiceModalComponent";
