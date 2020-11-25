@@ -3,9 +3,6 @@ import styles from './PrimaryServices.module.scss';
 import {Container} from "react-bootstrap";
 import {PrimaryServiceCard} from "../../models/PrimaryServiceCard.model";
 import PrimaryService from '../components/PrimaryService';
-import Modal from './../../shared/Modal';
-import {mapPrimaryServiceToModalItem} from "../../models/ModalData.model";
-import PrimaryServiceModalComponent from "../components/PrimaryServiceModalComponent";
 import { createStyles, Select, Theme } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -15,6 +12,8 @@ import * as _ from 'lodash';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LoadServices } from "../../store/services-store/actions";
+import { OpenModal } from "../../store/modal-store/actions";
+import { ModalState } from "../../store/modal-store";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -43,8 +42,6 @@ function PrimaryServices() {
     const dispatch = useDispatch();
     const primaryServices = useSelector((state: RootState) => state.service.services);
     const isLoading = useSelector((state: RootState) => state.service.isLoading);
-    const [displayModal, setDisplayModal] = useState<boolean>(false);
-    const [selectedCard, setSelectedCard] = useState<PrimaryServiceCard | null>(null);
     const [selectedLocation, setSelectedLocation] = useState<string>('all');
     const classes = useStyles();
     const [displayServices, setDisplayServices] = useState<PrimaryServiceCard[]>([]);
@@ -53,10 +50,13 @@ function PrimaryServices() {
         setSelectedLocation(event.target.value as string);
     };
 
-    const toggleModal = (id: number | null = null) => {
-        const selectedCard = primaryServices.find((card: PrimaryServiceCard) => card.id === id);
-        setDisplayModal(!displayModal);
-        setSelectedCard(selectedCard ? selectedCard : null);
+    const openModal = (id: number | null = null) => {
+        const modalData: ModalState<PrimaryServiceCard> = {
+            data: primaryServices.find(service => service.id === id) as PrimaryServiceCard,
+            shouldDisplay: true,
+            contentType: "service",
+        };
+        dispatch(OpenModal(modalData));
     }
 
     useEffect(() => {
@@ -97,19 +97,10 @@ function PrimaryServices() {
                             <PrimaryService
                                 key={service.id}
                                 {...service}
-                                handleClick={() => toggleModal(service.id)} />))
+                                handleClick={() => openModal(service.id)} />))
                     }
                 </div>
             </Container>
-            {
-                selectedCard ?
-                    <Modal
-                        toggleModal={toggleModal}
-                        displayModal={displayModal}
-                        data={mapPrimaryServiceToModalItem(selectedCard)} >
-                        <PrimaryServiceModalComponent {...selectedCard} />
-                    </Modal> : null
-            }
         </section>)
 }
 

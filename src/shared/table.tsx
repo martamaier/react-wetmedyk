@@ -34,6 +34,7 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
     }
 
     const handleSelectionAction = (action: 'edit' | 'delete') => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [idRow, ...rest] = dataTable.rows[selected as number];
         if (action === 'edit') {
             props.onEdit(idRow.value)

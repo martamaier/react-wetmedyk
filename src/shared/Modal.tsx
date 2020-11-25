@@ -1,30 +1,34 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
-import {ModalData} from "../models/ModalData.model";
 import styles from './Modal.module.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { CloseModal } from "../store/modal-store/actions";
+import PrimaryServiceModalComponent from "../wet-page/components/PrimaryServiceModalComponent";
 
-const appModal = (props: ModalData) => {
-    const img = props.data?.image ?
-        props.data.image :
+function AppModal() {
+    const dispatch = useDispatch();
+    const { data, shouldDisplay, contentType } = useSelector((state: RootState) => state.modal);
+    const img = data?.image ? data.image :
         "http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-4.jpg";
     return (
         <Modal
             size="lg"
             centered
-            onHide={() => props.toggleModal()}
-            show={props.displayModal}>
+            onHide={() => dispatch(CloseModal())}
+            show={shouldDisplay}>
             <Modal.Body>
                 {
-                    props.children ? props.children : (
+                    contentType === 'service' ? <PrimaryServiceModalComponent {...data} /> : (
                         <div className={styles.modal}>
                             <div className={styles.modalContent}>
                                 <div className={styles.modalContentImg}>
                                     <img src={img} alt=""/>
                                 </div>
                                 <div className={styles.modalContentInfo}>
-                                    <h3>{props.data?.heading}</h3>
-                                    <h4>{props.data?.subHeading}</h4>
-                                    <p>{props.data?.description}</p>
+                                    <h3>{data.heading}</h3>
+                                    <h4>{data.subHeading}</h4>
+                                    <p>{data.description}</p>
                                 </div>
 
                             </div>
@@ -35,4 +39,4 @@ const appModal = (props: ModalData) => {
         </Modal>)
 }
 
-export default appModal;
+export default AppModal;

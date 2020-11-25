@@ -5,11 +5,12 @@ import ControlArrows from "../../shared/ControlArrows";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
 import {Col, Row} from "react-bootstrap";
-import Modal from '../../shared/Modal';
-import {mapEmployeeToModalItem} from "../../models/ModalData.model";
+import { mapEmployeeToModalItem, ModalItem } from "../../models/ModalData.model";
 import { useDispatch, useSelector} from "react-redux";
 import {LoadEmployees} from "../../store/employees-store/actions";
 import { getEmployees, getIsLoading } from "../../store/employees-store/selectors";
+import { OpenModal } from "../../store/modal-store/actions";
+import { ModalState } from "../../store/modal-store";
 
 function Employees() {
     const dispatch = useDispatch();
@@ -20,13 +21,15 @@ function Employees() {
         description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
         footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
     }
-    const [displayModal, setDisplayModal] = useState<boolean>(false);
-    const [selectedId, setSelected] = useState<number>(0);
-    const selectedEmployee = employees.find((employee: Employee) => employee.id === selectedId);
     const [offset, setOffset] = useState(0);
-    const toggleModal = (id: number = 0) => {
-        setDisplayModal(!displayModal);
-        setSelected(id);
+    const openModal = (id: number = 0) => {
+        const modalData: ModalState<ModalItem> = {
+            data: mapEmployeeToModalItem(employees.find((employee: Employee) => employee.id === id) as Employee),
+            contentType: "employee",
+            shouldDisplay: true,
+
+        }
+        dispatch(OpenModal(modalData));
     }
 
     useEffect(() => {
@@ -58,7 +61,7 @@ function Employees() {
                             <EmployeeCard
                                 key={employee.id}
                                 employee={employee}
-                                toggleModal={toggleModal}/>
+                                toggleModal={openModal}/>
                         ))
                     }
                 </Col>
@@ -72,12 +75,6 @@ function Employees() {
                         onRightClick={() => setOffset(offset + 600)}/>
                 </Col>
             </Row>
-            {
-                selectedEmployee ?
-                    <Modal toggleModal={toggleModal}
-                           displayModal={displayModal}
-                           data={mapEmployeeToModalItem(selectedEmployee as Employee)}/> : null
-            }
         </section>);
 }
 

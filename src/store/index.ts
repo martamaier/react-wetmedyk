@@ -15,6 +15,8 @@ import { loadPosts$ } from "./posts-store/effects";
 import { ServiceState } from "./services-store";
 import service from './services-store/reducer';
 import { loadServices$ } from "./services-store/effects";
+import modal from './modal-store/reducer';
+import { ModalState } from "./modal-store";
 
 export default combineReducers({
     auth,
@@ -22,6 +24,7 @@ export default combineReducers({
     location,
     post,
     service,
+    modal,
 });
 
 export const rootEpic = combineEpics(
@@ -40,6 +43,7 @@ export interface RootState {
     location: LocationState;
     post: PostState;
     service: ServiceState;
+    modal: ModalState<any>;
 }
 
 export interface FeatureState {

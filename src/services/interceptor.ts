@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 const axiosInstance = axios.create({
     baseURL: CURRENT_ENV,
-    timeout: 10000,
+    // timeout: 10000,
     params: {}
 });
 

@@ -5,11 +5,12 @@ import {Col, Row} from "react-bootstrap";
 import styles from './Employees.module.scss';
 import '../../scss/_utilities.scss';
 import {Post} from "../../models/Post.model";
-import Modal from "../../shared/Modal";
-import {mapPostToModalItem} from "../../models/ModalData.model";
+import { mapPostToModalItem, ModalItem } from "../../models/ModalData.model";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadPosts } from "../../store/posts-store/actions";
 import { getIsLoading, getPosts } from "../../store/posts-store/selectors";
+import { ModalState } from "../../store/modal-store";
+import { OpenModal } from "../../store/modal-store/actions";
 
 function News() {
     const news = useSelector(getPosts);
@@ -20,11 +21,15 @@ function News() {
         description: 'Mamy nadzieję,że znajdziecie tu wszystko czego Wasz Pupil potrzebuje do zdrowego i radosnego życia. Do zobaczenia!',
         footer: 'Zespół Centrum Weterynaryjnego WET-MEDYK',
     }
-    const [displayModal, setDisplayModal] = useState<boolean>(false);
-    const [selectedId, setSelectedId] = useState<number>(0);
-    const selectedPost = news
-        .find((post: Post) => post.id === selectedId);
     const [offset, setOffset] = useState(0);
+    const openModal = (id: number) => {
+        const modalData: ModalState<ModalItem> = {
+            data: mapPostToModalItem(news.find((post: Post) => post.id === id) as Post),
+            contentType: "post",
+            shouldDisplay: true,
+        }
+        dispatch(OpenModal(modalData));
+    }
 
     useEffect(() => {
         if (!news.length && !isLoading) {
@@ -52,7 +57,7 @@ function News() {
                     </Col>
                     <Col md={6} sm={12} className={[styles.newsContainer, 'news-scroll'].join(' ')}>
                         {news.map((post: Post) => (
-                            <PostCard key={post.id} post={post} onClick={toggleModal} />
+                            <PostCard key={post.id} post={post} onClick={openModal} />
                         ))}
 
                     </Col>
@@ -66,18 +71,7 @@ function News() {
                             onRightClick={() => setOffset(offset + 470)}/>
                     </Col>
                 </Row>
-                {
-                    selectedPost ?  <Modal
-                        data={mapPostToModalItem(selectedPost)}
-                        toggleModal={toggleModal}
-                        displayModal={displayModal}/> : null
-                }
             </section>);
-
-    function toggleModal(id: number = 0) {
-        setDisplayModal(!displayModal);
-        setSelectedId(id);
-    }
 }
 
 export default News;
