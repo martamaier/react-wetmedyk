@@ -1,10 +1,8 @@
 import { Location } from "../../models/Location.model";
+import { FeatureState } from "../index";
 
-export interface LocationState {
+export interface LocationState extends FeatureState {
     locations: Location[];
-    isLoading: boolean;
-    errorMessage: string | null;
-    selected: number | null;
 }
 
 export const INITIAL_STATE: LocationState = {

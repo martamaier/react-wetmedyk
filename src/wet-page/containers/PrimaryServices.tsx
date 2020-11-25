@@ -14,6 +14,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import * as _ from 'lodash';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { LoadServices } from "../../store/services-store/actions";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,7 +42,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function PrimaryServices() {
-    const [primaryServices, setPrimaryServices] = useState<PrimaryServiceCard[]>([]);
+    const dispatch = useDispatch();
+    const primaryServices = useSelector((state: RootState) => state.service.services);
+    const isLoading = useSelector((state: RootState) => state.service.isLoading);
     const [displayModal, setDisplayModal] = useState<boolean>(false);
     const [selectedCard, setSelectedCard] = useState<PrimaryServiceCard | null>(null);
     const [selectedLocation, setSelectedLocation] = useState<string>('all');
@@ -57,8 +62,10 @@ function PrimaryServices() {
     }
 
     useEffect(() => {
-        getPrimaryServices();
-    }, []);
+        if (!primaryServices.length && !isLoading) {
+            dispatch(LoadServices());
+        }
+    }, [dispatch, isLoading, primaryServices]);
 
     useEffect(() => {
         const selectedServices = selectedLocation === 'all'
@@ -106,12 +113,6 @@ function PrimaryServices() {
                     </Modal> : null
             }
         </section>)
-
-    function getPrimaryServices() {
-        axios.get('/data/primary-services.json').then((res: AxiosResponse<PrimaryServiceCard[]>) => {
-            setPrimaryServices(res.data);
-        });
-    }
 }
 
 export default PrimaryServices;

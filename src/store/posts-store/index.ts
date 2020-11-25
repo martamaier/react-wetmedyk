@@ -1,10 +1,8 @@
 import { Post } from "../../models/Post.model";
+import { FeatureState } from "../index";
 
-export interface PostState {
+export interface PostState extends FeatureState {
     posts: Post[];
-    isLoading: boolean;
-    errorMessage: string | null;
-    selected: number | null;
 }
 
 export const INITIAL_STATE: PostState = {

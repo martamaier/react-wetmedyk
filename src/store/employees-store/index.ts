@@ -1,10 +1,8 @@
 import {Employee} from "../../models/Employee.model";
+import { FeatureState } from "../index";
 
-export interface EmployeeState {
+export interface EmployeeState extends FeatureState {
     employees: Employee[];
-    isLoading: boolean;
-    errorMessage: string | null;
-    selected: number | null;
 }
 
 export const INITIAL_STATE: EmployeeState = {

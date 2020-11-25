@@ -41,7 +41,6 @@ function Newsletter() {
                                     type={inputType}
                                     placeholder={placeholder}
                                     name={inputType} />
-                                {/*<input type="submit" value="Zapisz sie!"/>*/}
                                 <Button text="Zapisz sie!" type="submit" />
                             </InputGroup>
                         </div>

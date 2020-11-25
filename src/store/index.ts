@@ -12,12 +12,16 @@ import { loadLocations$ } from "./locations-store/effects";
 import post from './posts-store/reducer';
 import { PostState } from "./posts-store";
 import { loadPosts$ } from "./posts-store/effects";
+import { ServiceState } from "./services-store";
+import service from './services-store/reducer';
+import { loadServices$ } from "./services-store/effects";
 
 export default combineReducers({
     auth,
     employee,
     location,
     post,
+    service,
 });
 
 export const rootEpic = combineEpics(
@@ -27,6 +31,7 @@ export const rootEpic = combineEpics(
     deleteEmployee$,
     loadLocations$,
     loadPosts$,
+    loadServices$,
     );
 
 export interface RootState {
@@ -34,4 +39,11 @@ export interface RootState {
     auth: AuthState;
     location: LocationState;
     post: PostState;
+    service: ServiceState;
+}
+
+export interface FeatureState {
+    isLoading: boolean;
+    errorMessage: string | null;
+    selected: number | null;
 }
