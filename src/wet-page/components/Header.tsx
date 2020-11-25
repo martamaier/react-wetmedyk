@@ -2,6 +2,8 @@ import React from 'react';
 import logo from '../../images/logo.png';
 import styles from './Header.module.scss';
 import { Col, Container, Row } from "react-bootstrap";
+import { Route } from "../../models/Route.model";
+import { routes } from "../../static/Routes";
 
 function Header() {
     const scrollToElement = (element: string) => window.scrollTo(
@@ -13,24 +15,24 @@ function Header() {
     return (
         <header>
             <Container>
-                {/*<div/>*/}
                 <Row>
                     <Col lg={12} className={styles.headerWrapper}>
-                        <img className={styles.logo} src={logo} alt="wetmedyk-logo"/>
+                        <img className={styles.logo}
+                             src={logo}
+                             alt="wetmedyk-logo"/>
                         <ul className={styles.navigationItems}>
-                            <li className={styles.navigationItem}
-                                onClick={() => scrollToElement('services')}>usługi</li>
-                            <li className={styles.navigationItem}>lecznice</li>
-                            <li className={styles.navigationItem}
-                                onClick={() => scrollToElement('employees')}>o nas</li>
-                            <li className={styles.navigationItem}>kontakt</li>
+                            {
+                                routes.map((route: Route) => (
+                                    <li key={route.path}
+                                        className={styles.navigationItem}
+                                        onClick={() => scrollToElement(route.path)}>
+                                        { route.displayName }
+                                    </li>
+                                ))
+                            }
                         </ul>
                     </Col>
                 </Row>
-
-                {/*<div className={styles.navigation}>*/}
-                {/*    <span className={[styles.navigationIcon, styles.menu].join(' ')}>&nbsp;</span>*/}
-                {/*</div>*/}
             </Container>
         </header>
     )
