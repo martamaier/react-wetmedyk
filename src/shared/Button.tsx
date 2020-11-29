@@ -8,12 +8,14 @@ interface Props {
     classes?: string[];
 }
 
-const button = ({ text, type, classes }: Props) => {
+const button = ({ text, type, classes, onClick }: Props) => {
     const classNames = classes ?
         [styles.primaryButton, ...classes] :
         [styles.primaryButton];
     return (
         <button
+            // @ts-ignore
+            onClick={onClick}
             type={type}
             className={classNames.join(' ')}>{text}</button>
     )

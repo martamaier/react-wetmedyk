@@ -4,6 +4,7 @@ export enum LocationActions {
     LoadLocations = '[Locations] Load Locations',
     AddLocations = '[Locations] Add Locations',
     AddLocation = '[Locations] Add Location',
+    SelectLocation = '[Locations] Select Locations',
 }
 
 export interface LocationActionsTypes {
@@ -24,5 +25,12 @@ export function AddLocations(payload: Location[]): LocationActionsTypes {
     } as {
         payload: Location[],
         type: LocationActions,
+    }
+}
+
+export function SelectLocations(payload: number | null) {
+    return {
+        payload,
+        type: LocationActions.SelectLocation,
     }
 }

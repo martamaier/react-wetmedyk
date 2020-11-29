@@ -4,18 +4,11 @@
 header {
   @include container-position;
   padding: 1.5rem 0;
-  background-color: $black;
+  background-color: $secondary-red;
   .headerWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //flex-grow: 1;
-    //.menu {
-    //  color: $white;
-    //  cursor: pointer;
-    //  font-size: 4rem;
-    //  z-index: 1000;
-    //}
     .navigationItems {
       display: flex;
       flex-grow: 1;
@@ -34,7 +27,7 @@ header {
             margin-right: 2rem;
           }
         &:hover {
-          color: $primary-green;
+          color: $butterScotch;
         }
       }
     }
@@ -46,55 +39,7 @@ header {
     }
   }
 }
-//.navigation {
-//  &Icon {
-//    position: relative;
-//    margin-top: 3.5rem;
-//    &,
-//    &::before,
-//    &::after {
-//      width: 3rem;
-//      height: 2px;
-//      background-color: white;
-//      display: inline-block;
-//    }
-//
-//    &::before,
-//    &::after {
-//      content: "";
-//      position: absolute;
-//      left: 0;
-//      transition: all .2s;
-//
-//    }
-//    &::before {top: -.8rem;}
-//    &::after {top: .8rem;}
-//  }
-//  &IconActive {
-//    background-color: transparent;
-//    &::before {
-//      top: 0;
-//      transform: rotate(135deg);
-//    }
-//
-//    &::after {
-//      top: 0;
-//      transform: rotate(-135deg);
-//    }
-//  }
-//  //&:hover &-icon::before {
-//  //  top: 0;
-//  //  transform: rotate(135deg);
-//  //}
-//  //
-//  //&:hover &-icon::after {
-//  //  top: 0;
-//  //  transform: rotate(-135deg);
-//  //}
-//  //&:hover &-icon {
-//  //  background-color: transparent;
-//  //}
-//}
+
 
 
 

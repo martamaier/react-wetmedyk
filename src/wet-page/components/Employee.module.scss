@@ -2,7 +2,7 @@
 @import 'src/scss/mixins';
 
 .person {
-  background-image: radial-gradient(ellipse at top, $black, darken($black, 5%));
+  background-image: radial-gradient(ellipse at top, rgba($black, .6), lighten($black, 25%));
   color: $white;
   border-radius: .8rem;
   margin: 3rem;
@@ -38,7 +38,6 @@
     }
     button {
       margin-top: 2rem;
-      @include primary-button;
       width: 15rem;
       padding: .8rem 1rem;
       display: none;

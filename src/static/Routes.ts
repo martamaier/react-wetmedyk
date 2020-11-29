@@ -7,11 +7,6 @@ export const routes: Route[] = [
         active: false,
     },
     {
-        path: 'locations',
-        displayName: 'lecznice',
-        active: false,
-    },
-    {
         path: 'employees',
         displayName: 'o nas',
         active: false,

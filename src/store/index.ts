@@ -49,5 +49,5 @@ export interface RootState {
 export interface FeatureState {
     isLoading: boolean;
     errorMessage: string | null;
-    selected: number | null;
+    selected: number | null | string;
 }

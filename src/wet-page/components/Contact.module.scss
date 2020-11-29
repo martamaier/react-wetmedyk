@@ -1,0 +1,33 @@
+@import "./src/scss/variables";
+
+.map {
+  width: 100%;
+  height: 40rem;
+  border: none;
+}
+
+.heading {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 4rem;
+  color: $white;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+  font-size: 2rem;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.icon {
+  font-size: 6rem;
+}

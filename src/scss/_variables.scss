@@ -1,28 +1,29 @@
-//$primary-green: #5e741f;
-$primary-green: #4DAB77;
-//$primary-green: #6FBE9C;
-$secondary-green: #cfd564;
-$tertiary-green: #eef0a9;
-$primary-red: #d75b66;
-//$primary-red: #bd3e85;
-//$primary-red: #c63a2a;
-//$primary-red: #741F5E;
-//$primary-red: #AB4D81;
-//$primary-red: #c63a2a;
-$white: white;
-//$black: #1F7460;
-$black: #1F5E74;
-//$black: #4D52AB;
-//$black: #38424C;
-//$black: #171d23;
-//$gold: #ABA64D;
+// colors by Iwona
+$crepe: #F1D3BC;
+$butterScotch: #FDD475;
+$butter: #FFEB94;
+$redPepper: #C60000;
+$redDelicious: #A11F0C;
+$peerGreen: #739f3D;
+$grannySmith: #BBCF4A;
+$greenBeen: #68A225;
+$leafyGreen: #7CAA2D;
 
-//$primary-green: #00743f;
-//$primary-red: #f2a104;
+// ours
+//$primary-green: #4DAB77;
+//$secondary-green: #cfd564;
+//$tertiary-green: #eef0a9;
+//$primary-red: #d75b66;
+//$white: #fcfdfe;
+//$black: #192e5b;
+
+$primary-green: $leafyGreen;
+$secondary-green: $grannySmith;
+$tertiary-green: $butter;
+$primary-red: $redPepper;
+$secondary-red: $redDelicious;
 $white: #fcfdfe;
-$black: #192e5b;
-
-
+$black: #000000;
 
 $grey-background: #f1f1f1;
 

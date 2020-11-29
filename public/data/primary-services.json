@@ -13,10 +13,7 @@
       "ochrona przeciwpchelna",
       "dietetyka"
     ],
-    "available": [
-      "pepowo",
-      "banino"
-    ]
+    "available": [2, 1]
   },
   {
     "id": 1,
@@ -33,9 +30,7 @@
       "badanie włosa/zeskrobiny skórne",
       "wymazy/badania cytologiczne"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   },
   {
     "id": 2,
@@ -50,10 +45,7 @@
       "chorób układu płciowego i zaburzeń rozrodu",
       "chorób psaożytniczych"
     ],
-    "available": [
-      "pepowo",
-      "banino"
-    ]
+    "available": [2, 1]
   },
   {
     "id": 3,
@@ -70,9 +62,7 @@
       "chirurgia korekcyjna i kosmetyczna",
       "cesarskie cięcia"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   },
   {
     "id": 4,
@@ -86,9 +76,7 @@
       "ekstrakcje przetrwałych zębów mlecznych",
       "korekta uzębienia gryzoni i zajęczaków"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   },
   {
     "id": 5,
@@ -100,9 +88,7 @@
       "leczenie chirurgiczne zmian nowotworowych",
       "szczepienia profilaktyczne"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   },
   {
     "id": 6,
@@ -116,10 +102,7 @@
       "badanie kliniczne przed podróżą oraz wpis do paszportu",
       "odrobaczenie przed podróżą oraz wpis do paszportu"
     ],
-    "available": [
-      "pepowo",
-      "banino"
-    ]
+    "available": [2, 1]
   },
   {
     "id": 7,
@@ -132,9 +115,7 @@
       "nawadnianie dożylne ( kroplówki)",
       "leczenie stacjonarne/obserwacje"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   },
   {
     "id": 8,
@@ -149,10 +130,7 @@
       "zabawki",
       "akcesoria dla zwierząt"
     ],
-    "available": [
-      "pepowo",
-      "banino"
-    ]
+    "available": [2, 1]
   },
   {
     "id": 9,
@@ -166,8 +144,6 @@
       "obcinanie pazurków",
       "czyszczenie uszu"
     ],
-    "available": [
-      "banino"
-    ]
+    "available": [1]
   }
 ]
