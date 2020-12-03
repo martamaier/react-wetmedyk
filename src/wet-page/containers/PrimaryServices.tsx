@@ -10,6 +10,7 @@ import { OpenModal } from "../../store/modal-store/actions";
 import { ModalState } from "../../store/modal-store";
 import LocationsDropdown from "../../shared/widgets/Dropdown";
 import {getSelectedLocationId} from "../../store/locations-store/selectors";
+import * as _ from 'lodash';
 
 function PrimaryServices() {
     const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function PrimaryServices() {
     useEffect(() => {
         const selectedServices = selectedLocation === 'all'
             ? primaryServices :
-            primaryServices.filter(service => service.available.find((id) => id === selectedLocation));
+            primaryServices.filter(service => _.get(service, 'available', []).find((id) => id === selectedLocation));
         setDisplayServices(selectedServices);
     }, [selectedLocation, primaryServices])
 
