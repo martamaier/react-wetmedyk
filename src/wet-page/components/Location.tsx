@@ -4,13 +4,16 @@ import classes from './Location.module.scss';
 import {Col, Container, Row} from "react-bootstrap";
 import Button from './../../shared/Button';
 import logo2 from './../../images/logo2.png';
+import {useDispatch} from "react-redux";
+import {SelectLocations} from "../../store/locations-store/actions";
 
 const [cat, dog] = [
     'http://wetmedyk.pl/wp-content/uploads/2015/01/41.png',
     'http://wetmedyk.pl/wp-content/uploads/2015/01/WetMedyk-14.jpg',
 ];
 
-const location = (props: Location) => {
+function LocationItem (props: Location) {
+    const dispatch = useDispatch();
     const displayImage = props.id === 1 ? dog : cat;
     const imageStyling = {
         backgroundImage: `linear-gradient(to right bottom, ${classes.primaryGreen}, ${classes.primaryGreen}), url(${displayImage})`,
@@ -31,7 +34,7 @@ const location = (props: Location) => {
                                 <p>{props.street}<br/>{props.zipCode} {props.city}</p>
                                 <h3>Kontakt</h3>
                                 <p>{props.phone}</p>
-                                <Button text={'Wiecej'} type={'button'}/>
+                                <Button text={'Wiecej'} type={'button'} onClick={() => dispatch(SelectLocations(props.id))} />
                             </Col>
                         </Row>
                     </Container>
@@ -42,4 +45,4 @@ const location = (props: Location) => {
 }
 
 
-export default location;
+export default LocationItem;
