@@ -13,12 +13,8 @@ function EmployeesManager() {
     const employees = useSelector(getEmployees);
     const isLoading = useSelector(getIsLoading);
     const selectedId = useSelector(getSelectedEmployeeId);
-
     const [selectedEmployee, setSelectedEmployee] = useState<Employee | undefined>(undefined);
-    const addEmployee = () => {
-        console.log('should add employee');
-        setSelectedEmployee({} as Employee);
-    }
+    const addEmployee = () => setSelectedEmployee({} as Employee);
     const deleteEmployee = (id: number) => dispatch(DeleteEmployee(id));
     const editEmployee = (id: number) => {
         const employee: Employee = employees.find((emp: Employee) => emp.id === id) as Employee;
