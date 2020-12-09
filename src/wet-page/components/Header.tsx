@@ -4,16 +4,11 @@ import styles from './Header.module.scss';
 import { Col, Container, Row } from "react-bootstrap";
 import { Route } from "../../models/Route.model";
 import { routes } from "../../static/Routes";
+import {scrollToElement} from "../../utils/scroller";
 
 function Header() {
-    const scrollToElement = (element: string) => window.scrollTo(
-        {
-            top: (document.getElementById(element) as any).offsetTop,
-            behavior: 'smooth',
-        },
-    );
     return (
-        <header>
+        <header id="home">
             <Container>
                 <Row>
                     <Col lg={12} className={styles.headerWrapper}>

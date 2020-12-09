@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import PostCard from '../components/PostCard';
 import ControlArrows from "../../shared/ControlArrows";
 import {Col, Row} from "react-bootstrap";
-import styles from './Employees.module.scss';
+import styles from './News.module.scss';
 import '../../scss/_utilities.scss';
 import {Post} from "../../models/Post.model";
 import { mapPostToModalItem, ModalItem } from "../../models/ModalData.model";
@@ -44,7 +44,7 @@ function News() {
     }, [offset])
 
         return (
-            <section className={[styles.news, 'sectionPadding'].join(' ')}>
+            <section id={'news'} className={[styles.news, 'sectionPadding'].join(' ')}>
                 <Row>
                     <Col md={6} sm={12} className={['row', styles.title].join(' ')}>
                         <Col md={4} sm={12} />

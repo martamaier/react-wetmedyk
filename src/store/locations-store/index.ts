@@ -10,5 +10,5 @@ export const INITIAL_STATE: LocationState = {
     locations: [],
     isLoading: false,
     errorMessage: null,
-    selected: 'all',
+    selected: 1,
 }

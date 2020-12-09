@@ -1,51 +1,24 @@
-@import 'src/scss/variables';
-@import 'src/scss/mixins';
+@import "./src/scss/variables";
+@import "./src/scss/mixins";
 
-.aboutUs,
-.news, {
-  background-color: $grey-background;
-  &Wrapper {
+.employees {
+  .title {
     display: flex;
-    justify-content: flex-end;
-  }
-  &Content {
-    width: 33%;
-    text-align: left;
-    @media only screen and (max-width: 900px) {
-      width: 100%;
-      text-align: center;
-    }
+    justify-content: center;
     h2 {
       @include font-title;
-    }
-    span {
-      font-size: 1.5rem;
-      font-style: italic;
+      text-align: center;
+      margin-bottom: 5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
-  .title {
-    background-color: $grey-background;
-    z-index: 2;
-    padding-bottom: 4rem;
-  }
-  .cardsContainer {
-    display: flex;
-    overflow: hidden;
 
-    @media only screen and (max-width: 900px) {
-      flex-direction: column;
-    }
-  }
-  .newsContainer {
+  &Wrapper {
     display: flex;
-    padding-bottom: 2rem;
-    overflow: hidden;
-    @media only screen and (max-width: 900px) {
-      flex-direction: column;
-      align-items: center;
-    }
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
-.row {
-  margin: 0;
-}
+
+

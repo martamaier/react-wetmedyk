@@ -6,6 +6,7 @@ import Button from './../../shared/Button';
 import logo2 from './../../images/logo2.png';
 import {useDispatch} from "react-redux";
 import {SelectLocations} from "../../store/locations-store/actions";
+import {scrollToElement} from "../../utils/scroller";
 
 const [cat, dog] = [
     'http://wetmedyk.pl/wp-content/uploads/2015/01/41.png',
@@ -19,11 +20,15 @@ function LocationItem (props: Location) {
         backgroundImage: `linear-gradient(to right bottom, ${classes.primaryGreen}, ${classes.primaryGreen}), url(${displayImage})`,
         backgroundSize: 'cover',
     }
+    const handleMoreClick = () => {
+        dispatch(SelectLocations(props.id));
+        scrollToElement('contact');
+    }
     return (
         <div style={imageStyling}>
-            <Container>
+            <Container fluid>
                 <div className={classes.site}>
-                    <Container>
+                    <Container fluid>
                         <Row>
                             <Col sm={3} className={classes.justify}>
                                 <img className={classes.bigLogo} src={logo2} alt="wetmedyk big logo"/>
@@ -34,7 +39,7 @@ function LocationItem (props: Location) {
                                 <p>{props.street}<br/>{props.zipCode} {props.city}</p>
                                 <h3>Kontakt</h3>
                                 <p>{props.phone}</p>
-                                <Button text={'Wiecej'} type={'button'} onClick={() => dispatch(SelectLocations(props.id))} />
+                                <Button text={'Wiecej'} type={'button'} onClick={handleMoreClick} />
                             </Col>
                         </Row>
                     </Container>

@@ -20,7 +20,7 @@ function Locations() {
     return (
         <Carousel>
             {
-                locations.length && locations.map((location: Location) => (
+                locations.length && locations.reverse().map((location: Location) => (
                     <Carousel.Item key={location.id}>
                         <LocationCard key={location.id} {...location} />
                     </Carousel.Item>

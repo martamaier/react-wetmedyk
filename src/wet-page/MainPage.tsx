@@ -2,7 +2,7 @@ import React from "react";
 import Locations from "./containers/Locations";
 import Services from "./containers/Services";
 import Employees from "./containers/Employees";
-import Newsletter from "./containers/Newsletter";
+import Social from "./containers/Social";
 import News from "./containers/News";
 import Footer from "./containers/Footer";
 import Header from "./components/Header";
@@ -17,7 +17,7 @@ function MainPage() {
                 <PrimaryServices />
                 <Services />
                 <Employees />
-                <Newsletter />
+                <Social />
                 <News />
             </main>
             <Footer />

@@ -1,0 +1,36 @@
+@import "src/scss/variables";
+@import "src/scss/mixins";
+
+.social {
+  background-color: $secondary-red;
+  padding: 3rem 0;
+
+  &Icons {
+    a {
+      color: $white;
+    }
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $white;
+    @media only screen and (min-width: 790px) {
+      justify-content: center;
+    }
+
+    .icons {
+      cursor: pointer;
+      transition: .5s;
+      font-size: 7rem;
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-right: 2.5rem;
+      }
+
+      &:hover {
+        color: rgba(#fff6af, .4);
+      }
+    }
+  }
+}

@@ -1,14 +1,12 @@
 import React from "react";
 import {PrimaryServiceCard} from "../../models/PrimaryServiceCard.model";
-import {CURRENT_ENV} from "../../environment";
 import styles from './PrimaryServiceModalComponent.module.scss';
-import { ReactComponent as Paw } from './../../images/paw.svg';
+import {ReactComponent as Paw} from './../../images/paw.svg';
 
-function PrimaryServiceModalComponent({ title, image, description, details }: PrimaryServiceCard) {
+function PrimaryServiceModalComponent({title, description, details, id}: PrimaryServiceCard) {
     return (
         <div className={styles.primaryServiceContainer}>
             <div className={styles.containerHeading}>
-                <img src={`${CURRENT_ENV}/${image}`} alt={title}/>
                 <h2>{title}</h2>
             </div>
             <div className={styles.containerBody}>
@@ -22,7 +20,7 @@ function PrimaryServiceModalComponent({ title, image, description, details }: Pr
                                 {
                                     details.map((detail: string) => (
                                         <li key={detail}>
-                                            <Paw className={styles.icon} />
+                                            <Paw className={styles.icon}/>
                                             {detail}
                                         </li>
                                     ))

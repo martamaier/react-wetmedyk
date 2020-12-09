@@ -2,43 +2,22 @@
 @import 'src/scss/mixins';
 
 footer {
-  padding: 7rem 0 3rem 0;
-  background-color: $black;
+  padding: 3rem 0 3rem 0;
+  background-color: $primary-green;
   color: $white;
   .footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     &Wrapper{
-      padding-bottom: 7rem;
-      border-bottom: 2px solid;
-      @include primary-red-gradient;
-
-      a {
-        color: $white;
-      }
-
-      &Icons {
-        font-size: 5rem;
+      padding-bottom: 3rem;
+      border-bottom: 2px solid $black;
+      &Logo {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        margin-bottom: 5rem;
-        color: $white;
-        @media only screen and (min-width: 790px) {
-          justify-content: center;
-        }
-        .icons {
-          cursor: pointer;
-          transition: .5s;
-          &:not(:last-child) {
-            margin-right: 1.5rem;
-          }
-          &:hover {
-            color: $primary-red;
-          }
-        }
       }
+
       &Locations {
         display: flex;
         flex-direction: column;
@@ -65,8 +44,14 @@ footer {
     .copyrights {
       text-align: center;
       color: $white;
-      padding-top: 3rem;
+      padding-top: 2rem;
 
     }
+  }
+
+  .goBack {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
   }
 }

@@ -7,13 +7,18 @@ export const routes: Route[] = [
         active: false,
     },
     {
+        path: 'contact',
+        displayName: 'kontakt',
+        active: false,
+    },
+    {
         path: 'employees',
         displayName: 'o nas',
         active: false,
     },
     {
-        path: 'contact',
-        displayName: 'kontakt',
+        path: 'news',
+        displayName: 'aktualności',
         active: false,
     }
 ];
