@@ -1,44 +1,24 @@
 @import 'src/scss/variables';
 @import 'src/scss/mixins';
 
-.news, {
+.news {
   background-color: $grey-background;
-  &Wrapper {
-    display: flex;
-    justify-content: flex-end;
-  }
-  &Content {
-    width: 33%;
-    text-align: left;
-    @media only screen and (max-width: 900px) {
-      width: 100%;
-      text-align: center;
-    }
-    h2 {
-      @include font-title;
-    }
-    span {
-      font-size: 1.5rem;
-      font-style: italic;
-    }
-  }
-  .title {
-    background-color: $grey-background;
-    z-index: 2;
-    padding-bottom: 4rem;
-  }
-  .cardsContainer {
-    display: flex;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
 
-    @media only screen and (max-width: 900px) {
-      flex-direction: column;
-    }
+  h2 {
+    @include font-title;
+    color: $greenBeen;
+    margin-bottom: 5rem;
+    align-self: center;
   }
+
   .newsContainer {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     padding-bottom: 2rem;
-    overflow: hidden;
     @media only screen and (max-width: 900px) {
       flex-direction: column;
       align-items: center;

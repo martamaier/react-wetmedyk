@@ -31,11 +31,11 @@ function ServicesIcon (props: { id: number }) {
             return <Stethoscope className={classes.icon} />;
         case 2:
             return <Health className={classes.icon} />;
-        case 3:
+        case 5:
             return <HeartBeat className={classes.icon} />;
         case 4:
             return <Tooth className={classes.icon} />;
-        case 5:
+        case 3:
             return <Vaccine className={classes.icon} />;
         case 6:
             return <MedicalReport className={classes.icon} />;

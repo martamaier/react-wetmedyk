@@ -23,7 +23,7 @@ export default function (
             }
         case LocationActions.SelectLocation:
             return {
-                ...newState,
+                ...state,
                 selected: action.payload,
             }
         default:

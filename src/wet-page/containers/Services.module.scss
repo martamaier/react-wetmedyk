@@ -2,27 +2,41 @@
 @import 'src/scss/mixins';
 
 .services {
-  background-color: $primary-green;
-  //background-image: radial-gradient(ellipse at top, #171d23, black);
+  background-color: $creme;
   display: flex;
   flex-direction: column;
   align-items: center;
   h2 {
     @include font-title;
-    color: $white;
+    color: $greenBeen;
     text-align: center;
     margin-bottom: 5rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
   h3 {
+    color: $white;
     font-size: 2.5rem;
   }
   &Wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-bottom: 3rem;
     @media screen and (max-width: 890px) {
       flex-direction: column;
+    }
+
+    .service {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+
+      svg {
+        width: 5rem;
+        height: 5rem;
+        fill: $greenBeen;
+      }
     }
   }
 }

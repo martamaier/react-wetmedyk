@@ -28,7 +28,7 @@ export function AddLocations(payload: Location[]): LocationActionsTypes {
     }
 }
 
-export function SelectLocations(payload: number | null) {
+export function SelectLocation(payload: number | null) {
     return {
         payload,
         type: LocationActions.SelectLocation,

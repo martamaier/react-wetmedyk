@@ -3,7 +3,7 @@
 
 footer {
   padding: 3rem 0 3rem 0;
-  background-color: $primary-green;
+  background-color: $secondary-red;
   color: $white;
   .footer {
     display: flex;
@@ -11,7 +11,7 @@ footer {
     justify-content: center;
     &Wrapper{
       padding-bottom: 3rem;
-      border-bottom: 2px solid $black;
+      border-bottom: 2px solid $white;
       &Logo {
         display: flex;
         justify-content: center;

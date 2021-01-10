@@ -7,6 +7,7 @@ import News from "./containers/News";
 import Footer from "./containers/Footer";
 import Header from "./components/Header";
 import PrimaryServices from "./containers/PrimaryServices";
+import Divider from "../shared/Divider";
 
 function MainPage() {
     return (
@@ -14,10 +15,15 @@ function MainPage() {
             <Header />
             <main>
                 <Locations/>
+                <Divider />
                 <PrimaryServices />
+                <Divider />
                 <Services />
+                <Divider />
                 <Employees />
+                <Divider />
                 <Social />
+                <Divider />
                 <News />
             </main>
             <Footer />
