@@ -18,15 +18,6 @@ function Employees() {
     const {heading} = {
         heading: 'O nas',
     }
-    const openModal = (id: number = 0) => {
-        const modalData: ModalState<ModalItem> = {
-            data: mapEmployeeToModalItem(employees.find((employee: Employee) => employee.id === id) as Employee),
-            contentType: "employee",
-            shouldDisplay: true,
-
-        }
-        dispatch(OpenModal(modalData));
-    }
 
     useEffect(() => {
         if (!employees.length && !isLoading) {
@@ -35,18 +26,18 @@ function Employees() {
     }, [dispatch, employees, isLoading])
 
     return (
-        <section id={'employees'} className={['sectionPadding'].join(' ')}>
-            <Container className={classes.employees}>
+        <section id={'employees'} className={['sectionPadding', classes.employees].join(' ')}>
+            <Container className={classes.employeesContainer}>
                 <div className={classes.title}>
                     <h2>{heading}</h2>
                 </div>
-                <div className={classes.employeesWrapper}>
+                <div className={classes.employeesContainerWrapper}>
                     {
                         employees.map((employee: Employee) => (
                             <EmployeeCard
                                 key={employee.id}
                                 employee={employee}
-                                toggleModal={openModal}/>
+                                />
                         ))
                     }
                 </div>

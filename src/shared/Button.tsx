@@ -6,9 +6,10 @@ interface Props {
     type: 'button' | 'submit';
     onClick?: Function;
     classes?: string[];
+    children?: React.ReactChild;
 }
 
-const button = ({ text, type, classes, onClick }: Props) => {
+const button = ({ text, type, classes, onClick, children }: Props) => {
     const classNames = classes ?
         [styles.primaryButton, ...classes] :
         [styles.primaryButton];
@@ -17,7 +18,7 @@ const button = ({ text, type, classes, onClick }: Props) => {
             // @ts-ignore
             onClick={onClick}
             type={type}
-            className={classNames.join(' ')}>{text}</button>
+            className={classNames.join(' ')}>{ children ? children : null} {text}</button>
     )
 };
 

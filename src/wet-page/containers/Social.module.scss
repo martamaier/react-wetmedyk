@@ -10,12 +10,10 @@
       color: $white;
     }
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     color: $white;
-    @media only screen and (min-width: 790px) {
-      justify-content: center;
-    }
+
 
     .icons {
       cursor: pointer;
@@ -23,6 +21,7 @@
       font-size: 7rem;
       display: flex;
       align-items: center;
+
 
       &:not(:last-child) {
         margin-right: 2.5rem;

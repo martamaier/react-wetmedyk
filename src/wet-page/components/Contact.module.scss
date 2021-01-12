@@ -26,10 +26,12 @@
     flex-direction: column;
     align-items: center;
     color: $greenBeen;
-  }
-}
 
-.icon {
-  font-size: 6rem;
+    svg {
+      fill: $secondary-red;
+      font-size: 6rem;
+      margin-bottom: 1rem;
+    }
+  }
 }
 

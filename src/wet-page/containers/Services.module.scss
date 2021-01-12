@@ -15,7 +15,7 @@
     padding-right: 1rem;
   }
   h3 {
-    color: $white;
+    color: $greenBeen;
     font-size: 2.5rem;
   }
   &Wrapper {
@@ -24,18 +24,23 @@
     padding-bottom: 3rem;
     @media screen and (max-width: 890px) {
       flex-direction: column;
+      align-items: center;
     }
 
     .service {
       display: flex;
-      flex-direction: column;
       align-items: center;
       cursor: pointer;
+      width: 35rem;
+      @media screen and (max-width: 890px) {
+        margin-bottom: 3rem;
+      }
 
-      svg {
+        svg {
         width: 5rem;
         height: 5rem;
-        fill: $greenBeen;
+        fill: $white;
+        margin-right: 1rem;
       }
     }
   }

@@ -2,23 +2,32 @@
 @import "./src/scss/mixins";
 
 .employees {
-  .title {
-    display: flex;
-    justify-content: center;
-    h2 {
-      @include font-title;
-      color: $greenBeen;
-      text-align: center;
-      margin-bottom: 5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  }
+  background-color: $creme;
 
-  &Wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  &Container {
+    .title {
+      display: flex;
+      justify-content: center;
+
+      h2 {
+        @include font-title;
+        color: $greenBeen;
+        text-align: center;
+        margin-bottom: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    &Wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      @media screen and (max-width: 890px) {
+        flex-direction: column;
+      }
+    }
   }
 }
 

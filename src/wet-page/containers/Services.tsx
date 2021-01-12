@@ -8,6 +8,7 @@ import Contact from "../components/Contact";
 import {LocalHospital} from "@material-ui/icons";
 import { Location } from '../../models/Location.model';
 import {SelectLocation} from "../../store/locations-store/actions";
+import Button from './../../shared/Button';
 
 function Services() {
     const dispatch = useDispatch();
@@ -25,10 +26,14 @@ function Services() {
             <Container className={classes.servicesWrapper}>
                 {
                     locations.map(({ id, name }: Location) => (
-                        <div key={id} className={classes.service} onClick={() => handleSelection(id)}>
+                        <Button
+                            type="button"
+                            text={name}
+                            key={id}
+                            classes={[classes.service]}
+                            onClick={() => handleSelection(id)}>
                             <LocalHospital />
-                            <h3>{name}</h3>
-                        </div>
+                        </Button>
                     ))
                 }
             </Container>
