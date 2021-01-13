@@ -4,15 +4,4 @@
   & > .formItem {
     margin-top: 2rem;
   }
-  .buttonGroup {
-    display: flex;
-    justify-content: flex-end;
-    .submitButton {
-      align-self: flex-end;
-      margin-top: 2rem;
-      &:not(:last-child) {
-        margin-right: 1rem;
-      }
-    }
-  }
 }

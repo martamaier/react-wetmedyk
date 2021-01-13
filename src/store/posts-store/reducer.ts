@@ -21,6 +21,11 @@ export default function (
                 posts: [...newState.posts, ...action.payload as Post[]],
                 isLoading: false,
             }
+        case PostActions.SetSelectedPost:
+            return {
+                ...newState,
+                selected: action.payload,
+            }
         default:
             return state;
     }

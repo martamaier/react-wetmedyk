@@ -8,38 +8,39 @@ import TextWidget from "../../shared/widgets/TextWidget";
 import axiosInstance from "../../services/interceptor";
 import {CURRENT_ENV} from "../../environment";
 import {AxiosResponse} from "axios";
+import FormButtons from "./FormButtons";
 
-function EmployeeForm(props: { employee: Employee | null, onCreate: Function }) {
+function EmployeeForm({ employee, onCreate }: { employee: Employee | null, onCreate: Function }) {
     const initialFormValues: { [key: string]: Widget } = {
         firstName: {
             name: 'firstName',
-            value: props.employee?.firstName || '',
+            value: employee?.firstName || '',
             multiline: false,
         },
         lastName: {
             name: 'lastName',
-            value: props.employee?.lastName || '',
+            value: employee?.lastName || '',
             multiline: false,
         },
         description: {
             name: 'description',
-            value: props.employee?.description || '',
+            value: employee?.description || '',
             multiline: true,
         },
         photo: {
             name: 'photo',
-            value: props.employee?.photo || '',
+            value: employee?.photo || '',
             multiline: false,
         },
         title: {
             name: 'title',
-            value: props.employee?.title || '',
+            value: employee?.title || '',
             multiline: false,
         }
     };
 
     const [formValues, setFormValues] = useState<{ [key: string]: Widget }>(_.cloneDeep(initialFormValues));
-    const isCreateForm = !_.get(props.employee, 'firstName', false);
+    const isCreateForm = !_.get(employee, 'firstName', false);
 
     return (
         <Card>
@@ -49,27 +50,16 @@ function EmployeeForm(props: { employee: Employee | null, onCreate: Function }) 
                     {
                         Object.values(formValues)
                             .map((formElement: Widget) => (
-                                <TextWidget key={formElement.name} {...formElement} onChange={handleChange}/>
+                                <TextWidget
+                                    key={formElement.name}
+                                    {...formElement}
+                                    onChange={handleChange}/>
                             ))
                     }
-                    <div className={styles.buttonGroup}>
-                        <Button
-                            onClick={restoreFormValues}
-                            disabled={_.isEqual(initialFormValues, formValues)}
-                            className={styles.submitButton}
-                            variant="contained"
-                            color="secondary">
-                            {isCreateForm ? 'Reset' : 'Restore'}
-                        </Button>
-                        <Button
-                            disabled={_.isEqual(initialFormValues, formValues)}
-                            className={styles.submitButton}
-                            type="submit"
-                            variant="contained"
-                            color="primary">
-                            {isCreateForm ? 'Create' : 'Save Changes'}
-                        </Button>
-                    </div>
+                    <FormButtons
+                        isCreateForm={isCreateForm}
+                        onRestore={restoreFormValues}
+                        disabled={_.isEqual(initialFormValues, formValues)} />
                 </form>
             </CardContent>
         </Card>
@@ -90,10 +80,10 @@ function EmployeeForm(props: { employee: Employee | null, onCreate: Function }) 
 
         console.log(newEmployee);
 
-        axiosInstance.post(`${CURRENT_ENV}/employees`, newEmployee).then((res: AxiosResponse<Employee>) => {
-            console.log(res.data);
-            props.onCreate({ type: 'AddOne', payload: res.data });
-        });
+        // axiosInstance.post(`${CURRENT_ENV}/employees`, newEmployee).then((res: AxiosResponse<Employee>) => {
+        //     console.log(res.data);
+        //     onCreate({ type: 'AddOne', payload: res.data });
+        // });
     }
 
     function handleChange(event: ChangeEvent, name: string) {

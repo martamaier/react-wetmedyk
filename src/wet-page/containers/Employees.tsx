@@ -3,12 +3,9 @@ import {Employee} from "../../models/Employee.model";
 import EmployeeCard from "../components/Employee";
 import '../../scss/_utilities.scss';
 import {Container} from "react-bootstrap";
-import {mapEmployeeToModalItem, ModalItem} from "../../models/ModalData.model";
 import {useDispatch, useSelector} from "react-redux";
 import {LoadEmployees} from "../../store/employees-store/actions";
 import {getEmployees, getIsLoading} from "../../store/employees-store/selectors";
-import {OpenModal} from "../../store/modal-store/actions";
-import {ModalState} from "../../store/modal-store";
 import classes from './Employees.module.scss';
 
 function Employees() {
