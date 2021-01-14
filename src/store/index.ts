@@ -11,7 +11,7 @@ import location from './locations-store/reducer';
 import { loadLocations$ } from "./locations-store/effects";
 import post from './posts-store/reducer';
 import { PostState } from "./posts-store";
-import { loadPosts$ } from "./posts-store/effects";
+import {loadPosts$, updatePost$} from "./posts-store/effects";
 import { ServiceState } from "./services-store";
 import service from './services-store/reducer';
 import { loadServices$ } from "./services-store/effects";
@@ -34,6 +34,7 @@ export const rootEpic = combineEpics(
     deleteEmployee$,
     loadLocations$,
     loadPosts$,
+    updatePost$,
     loadServices$,
     );
 

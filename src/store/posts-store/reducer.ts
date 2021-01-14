@@ -26,6 +26,19 @@ export default function (
                 ...newState,
                 selected: action.payload,
             }
+        case PostActions.UpdatePost:
+            return {
+                ...newState,
+                isSaving: true,
+            }
+        case PostActions.UpdatePostSuccess:
+            const newPost = action.payload as Post;
+            const posts = _.sortBy([...newState.posts.filter((post: Post) => post.id !== newPost.id), newPost], 'id');
+            return {
+                ...newState,
+                posts,
+                isSaving: false,
+            }
         default:
             return state;
     }

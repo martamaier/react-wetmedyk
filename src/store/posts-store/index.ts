@@ -3,6 +3,7 @@ import { FeatureState } from "../index";
 
 export interface PostState extends FeatureState {
     posts: Post[];
+    isSaving: boolean;
 }
 
 export const INITIAL_STATE: PostState = {
@@ -10,4 +11,5 @@ export const INITIAL_STATE: PostState = {
     isLoading: false,
     errorMessage: null,
     selected: null,
+    isSaving: false,
 }

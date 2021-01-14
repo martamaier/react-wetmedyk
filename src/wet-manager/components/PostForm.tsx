@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {Card, CardContent} from "@material-ui/core";
 import TextWidget from "../../shared/widgets/TextWidget";
 import {Post} from "../../models/Post.model";
@@ -6,23 +6,24 @@ import {Widget} from "../../models/Widget.model";
 import classes from './EmployeeForm.module.scss';
 import FormButtons from "./FormButtons";
 import * as _ from "lodash";
+import {getCurrentDate, getCurrentUTCDate} from "../utils/DateFormats";
 
-function PostForm({ post }: { post: Post }) {
+function PostForm({ post, userName, onSubmit }: { post: Post, userName: string, onSubmit: any }) {
     const { title, status, content } = post;
     const initialFormValues = {
         title: {
             name: 'title',
-            value: post?.title || '',
+            value: title || '',
             multiline: false,
         },
         status: {
             name: 'status',
-            value: post?.status || 'open',
+            value: status || 'open',
             multiline: false,
         },
         content: {
             name: 'content',
-            value: post?.content || '',
+            value: content || '',
             multiline: true,
         },
     };
@@ -39,12 +40,29 @@ function PostForm({ post }: { post: Post }) {
         });
     }
 
-    const restoreFormValues = () => console.log();
+    const restoreFormValues = () => {
+        setFormValues(initialFormValues);
+    }
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const newPost: Partial<Post> = {
+            ...post,
+            title: formValues.title.value,
+            status: formValues.status.value,
+            content: formValues.content.value,
+            author: userName,
+            modifiedGmt: getCurrentUTCDate(),
+            modified: getCurrentDate(),
+            name: _.kebabCase(formValues.title.value),
+        }
+        onSubmit(newPost)
+    }
 
    return (
        <Card>
            <CardContent>
-               <form className={classes.form}>
+               <form className={classes.form} onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
                    {
                        Object.values(formValues).map(({ name, value, multiline }: Widget) => (
                            <TextWidget
@@ -62,7 +80,6 @@ function PostForm({ post }: { post: Post }) {
                </form>
            </CardContent>
        </Card>
-
    );
 }
 

@@ -3,18 +3,25 @@ import DataTable from "../../shared/table";
 import {LinearProgress} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import {getIsLoading, getPosts, getSelectedPost} from "../../store/posts-store/selectors";
-import {LoadPosts, SetSelectedPost} from "../../store/posts-store/actions";
+import {LoadPosts, SetSelectedPost, UpdatePost} from "../../store/posts-store/actions";
 import PostForm from "../components/PostForm";
+import {getUserName} from "../../store/auth-store/selectors";
+import {Post} from "../../models/Post.model";
 
 function PostsManager() {
     const posts = useSelector(getPosts);
     const isLoading = useSelector(getIsLoading);
     const selectedPost = useSelector(getSelectedPost);
+    const userName = useSelector(getUserName);
     const dispatch = useDispatch();
 
     const handleAddPost = () => {}
     const handleEditPost = (id: number) => {
         dispatch(SetSelectedPost(id));
+    }
+
+    const handleUpdatePost = (post: Post) => {
+        dispatch(UpdatePost(post));
     }
 
     useEffect(() => {
@@ -33,7 +40,10 @@ function PostsManager() {
                     onEdit={handleEditPost} /> : <LinearProgress/>
             }
             {
-                selectedPost && <PostForm post={selectedPost} />
+                selectedPost && <PostForm
+                    onSubmit={handleUpdatePost}
+                    userName={userName}
+                    post={selectedPost} />
             }
         </>
 
