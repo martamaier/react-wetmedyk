@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {Card, CardContent} from "@material-ui/core";
 import TextWidget from "../../shared/widgets/TextWidget";
 import {Post} from "../../models/Post.model";
@@ -7,35 +7,49 @@ import classes from './EmployeeForm.module.scss';
 import FormButtons from "./FormButtons";
 import * as _ from "lodash";
 import {getCurrentDate, getCurrentUTCDate} from "../utils/DateFormats";
+import Dropdown, {STYLING_TYPES} from "../../shared/widgets/Dropdown";
+import {POST_STATUS_TYPES} from "../models/PostStatusTypes";
+import {mapPostStatusesToDropdownItem} from "../../utils/dropdown-items-map";
 
-function PostForm({ post, userName, onSubmit }: { post: Post, userName: string, onSubmit: any }) {
-    const { title, status, content } = post;
+function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: string, onSubmit: any }) {
+    const { title, status, content } = post || { title: '', status: 'open', content: '' };
     const initialFormValues = {
         title: {
             name: 'title',
-            value: title || '',
+            value: title,
             multiline: false,
         },
         status: {
             name: 'status',
-            value: status || 'open',
+            value: status,
             multiline: false,
+            select: true,
         },
         content: {
             name: 'content',
-            value: content || '',
+            value: content,
             multiline: true,
         },
     };
 
     const isCreateForm = !_.get(post, 'title', false);
     const [formValues, setFormValues] = useState<{ [key: string]: Widget }>({ ...initialFormValues });
-    const handleChange = (event: ChangeEvent, name: string) => {
+    const handleChange = (event: FormEvent<HTMLFormElement>, name: string) => {
+        console.log(name);
         setFormValues({
             ...formValues,
             [name]: {
                 ...formValues[name],
-                value: (event.target as any).value,
+                value: event.currentTarget.value,
+            }
+        });
+    }
+    const handleDropdownChange = (event: React.ChangeEvent<{ value: unknown }>, name: string) => {
+        setFormValues({
+            ...formValues,
+            [name]: {
+                ...formValues[name],
+                value: event.target.value as any,
             }
         });
     }
@@ -44,33 +58,53 @@ function PostForm({ post, userName, onSubmit }: { post: Post, userName: string, 
         setFormValues(initialFormValues);
     }
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const newPost: Partial<Post> = {
-            ...post,
+    const buildPost = (post: Post | null): Partial<Post> => {
+        const date = getCurrentDate();
+        const dateGmt = getCurrentUTCDate();
+        const postStarter: Partial<Post> = {
+            date,
+            dateGmt,
+            type: 'post',
+            guid: '',
+        };
+        const changedValues: Partial<Post> = {
             title: formValues.title.value,
             status: formValues.status.value,
             content: formValues.content.value,
             author: userName,
-            modifiedGmt: getCurrentUTCDate(),
-            modified: getCurrentDate(),
+            modifiedGmt: dateGmt,
+            modified: date,
             name: _.kebabCase(formValues.title.value),
-        }
-        onSubmit(newPost)
+        };
+        return _.merge({}, post ? post : postStarter, changedValues);
+    }
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const newPost: Partial<Post> = buildPost(post);
+        onSubmit(newPost);
     }
 
    return (
        <Card>
+           {console.log(formValues)}
            <CardContent>
                <form className={classes.form} onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
                    {
-                       Object.values(formValues).map(({ name, value, multiline }: Widget) => (
-                           <TextWidget
-                               key={name}
-                               name={name}
-                               value={value}
-                               multiline={multiline}
-                               onChange={handleChange} />
+                       Object.values(formValues).map(({ name, value, multiline, select }: Widget) => (
+                           select ? <Dropdown
+                                   key={name}
+                                   items={Object.entries(POST_STATUS_TYPES).map((type: string[]) => mapPostStatusesToDropdownItem(type))}
+                                   onChange={(event: React.ChangeEvent<{ value: unknown }>) => handleDropdownChange(event, name)}
+                                   value={value}
+                                   label={name}
+                                   styling={STYLING_TYPES.Default} /> :
+                               <TextWidget
+                                   key={name}
+                                   name={name}
+                                   value={value}
+                                   multiline={multiline}
+                                   onChange={handleChange} />
                        ))
                    }
                    <FormButtons

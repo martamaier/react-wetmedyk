@@ -1,40 +1,54 @@
 import React from 'react';
 import FormControl from "@material-ui/core/FormControl";
-import {Select} from "@material-ui/core";
+import {InputLabel, Select} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import {useDispatch, useSelector} from "react-redux";
-import {getLocations, getSelectedLocationId} from "../../store/locations-store/selectors";
-import {Location} from "../../models/Location.model";
-import {SelectLocation} from "../../store/locations-store/actions";
 import {useStyles} from "./DropdownStyles";
 import {stringToStartCase} from "../../utils/content-handlers";
+import * as _ from 'lodash';
+import styles from "../../wet-manager/components/EmployeeForm.module.scss";
 
-function LocationsDropdown() {
+export enum STYLING_TYPES {
+    Default = 'default',
+    Custom = 'custom',
+}
+
+export interface DropdownItem {
+    value: number | string;
+    name: string;
+}
+
+export interface DropdownProps {
+    items: DropdownItem[];
+    onChange: any;
+    value: string | number;
+    styling: STYLING_TYPES;
+    label?: string;
+}
+
+function Dropdown({ items, onChange, value, styling, label }: DropdownProps) {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const selectedLocation = useSelector(getSelectedLocationId);
-    const locations = useSelector(getLocations);
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        dispatch(SelectLocation(event.target.value as any));
-    };
+    const customStyling = styling === STYLING_TYPES.Custom;
 
     return (
         <>
             {
-                locations.length ?
-                <FormControl variant="outlined" className={classes.root}>
-                    <Select className={classes.select}
+                items.length ?
+                <FormControl variant="outlined" className={customStyling ? classes.root : styles.formItem}>
+                    {
+                        label && <InputLabel id="demo-simple-select-disabled-label">{_.startCase(label)}</InputLabel>
+                    }
+                    <Select className={customStyling ? classes.select : ''}
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
-                            value={selectedLocation}
-                            classes={{ iconOutlined: classes.iconOutlined }}
-                            onChange={handleChange}>
+                            value={value}
+                            classes={customStyling ? { iconOutlined: classes.iconOutlined } : {}}
+                            onChange={onChange}>
                         {
-                            locations.map(({ id, name }: Location) => (
+                            items.map(({ value, name }: DropdownItem) => (
                                 <MenuItem
-                                    className={classes.size}
-                                    key={id}
-                                    value={id}>{stringToStartCase(name)}</MenuItem>
+                                    className={customStyling ? classes.size : ''}
+                                    key={value}
+                                    value={value}>{stringToStartCase(name)}</MenuItem>
                             ))
                         }
                     </Select>
@@ -44,4 +58,4 @@ function LocationsDropdown() {
     );
 }
 
-export default LocationsDropdown;
+export default Dropdown;
