@@ -26,13 +26,11 @@ function PostsManager() {
         setFormMode(FormModes.Edit);
     }
     const handleDeletePost = (id: number) => {
-        console.log(id);
         dispatch(DeletePost(id));
     }
 
     const handleUpdatePost = (post: Post) => {
         dispatch(formMode === FormModes.Add ? AddPost(post) : UpdatePost(post));
-        console.log(post, formMode);
     }
 
     useEffect(() => {

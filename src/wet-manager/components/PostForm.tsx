@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import {Card, CardContent} from "@material-ui/core";
 import TextWidget from "../../shared/widgets/TextWidget";
 import {Post} from "../../models/Post.model";
@@ -12,50 +12,51 @@ import {POST_STATUS_TYPES} from "../models/PostStatusTypes";
 import {mapPostStatusesToDropdownItem} from "../../utils/dropdown-items-map";
 
 function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: string, onSubmit: any }) {
-    const { title, status, content } = post || { title: '', status: 'open', content: '' };
-    const initialFormValues = {
-        title: {
-            name: 'title',
-            value: title,
-            multiline: false,
-        },
-        status: {
-            name: 'status',
-            value: status,
-            multiline: false,
-            select: true,
-        },
-        content: {
-            name: 'content',
-            value: content,
-            multiline: true,
-        },
-    };
+    const getInitialFormState = (post: Post | null): { [key: string]: Widget } => {
+        const { title, status, content } = post || { title: '', status: 'open', content: '' };
 
-    const isCreateForm = !_.get(post, 'title', false);
-    const [formValues, setFormValues] = useState<{ [key: string]: Widget }>({ ...initialFormValues });
-    const handleChange = (event: FormEvent<HTMLFormElement>, name: string) => {
-        console.log(name);
-        setFormValues({
-            ...formValues,
-            [name]: {
-                ...formValues[name],
-                value: event.currentTarget.value,
-            }
-        });
+        return {
+            title: {
+                name: 'title',
+                value: title,
+                multiline: false,
+            },
+            status: {
+                name: 'status',
+                value: status,
+                multiline: false,
+                select: true,
+            },
+            content: {
+                name: 'content',
+                value: content,
+                multiline: true,
+            },
+        };
     }
+    const isCreateForm = !_.get(post, 'title', false);
+    const [formValues, setFormValues] = useState<{ [key: string]: Widget }>(getInitialFormState(post));
+
+    const handleChange = (event: FormEvent<HTMLFormElement>, name: string) => {
+        updateForm(name, event.currentTarget.value);
+    }
+
     const handleDropdownChange = (event: React.ChangeEvent<{ value: unknown }>, name: string) => {
+        updateForm(name, String(event.target.value));
+    }
+
+    const updateForm = (name: string, value: string) => {
         setFormValues({
             ...formValues,
             [name]: {
                 ...formValues[name],
-                value: event.target.value as any,
+                value,
             }
-        });
+        })
     }
 
     const restoreFormValues = () => {
-        setFormValues(initialFormValues);
+        setFormValues(getInitialFormState(post));
     }
 
     const buildPost = (post: Post | null): Partial<Post> => {
@@ -85,9 +86,12 @@ function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: s
         onSubmit(newPost);
     }
 
+    useEffect(() => {
+        setFormValues(getInitialFormState(post));
+    }, [post])
+
    return (
        <Card>
-           {console.log(formValues)}
            <CardContent>
                <form className={classes.form} onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
                    {
@@ -108,7 +112,7 @@ function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: s
                        ))
                    }
                    <FormButtons
-                       disabled={_.isEqual(initialFormValues, formValues)}
+                       disabled={_.isEqual(getInitialFormState(post), formValues)}
                        onRestore={restoreFormValues}
                        isCreateForm={isCreateForm} />
                </form>
