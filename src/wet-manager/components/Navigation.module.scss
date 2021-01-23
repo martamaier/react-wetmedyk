@@ -1,0 +1,7 @@
+@import "./src/scss/variables";
+
+.selected {
+  & > div {
+    background-color: $manager-pink;
+  }
+}

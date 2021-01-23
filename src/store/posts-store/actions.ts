@@ -14,7 +14,7 @@ export enum PostActions {
 
 export interface PostActionsTypes {
     type: PostActions;
-    payload?: Post | Partial<Post> | Post[] | number;
+    payload?: Post | Partial<Post> | Post[] | number | null;
 }
 
 export function LoadPosts(): PostActionsTypes {
@@ -33,7 +33,7 @@ export function AddPosts(payload: Post[]): PostActionsTypes {
     }
 }
 
-export function SetSelectedPost(payload: number): PostActionsTypes {
+export function SetSelectedPost(payload: number | null): PostActionsTypes {
     return {
         payload,
         type: PostActions.SetSelectedPost,

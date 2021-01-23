@@ -1,13 +1,10 @@
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {Employee} from "../../models/Employee.model";
-import {Button, Card, CardContent, Typography} from "@material-ui/core";
+import {Card, CardContent, Typography} from "@material-ui/core";
 import * as _ from 'lodash';
 import styles from './EmployeeForm.module.scss';
 import {Widget} from "../../models/Widget.model";
 import TextWidget from "../../shared/widgets/TextWidget";
-import axiosInstance from "../../services/interceptor";
-import {CURRENT_ENV} from "../../environment";
-import {AxiosResponse} from "axios";
 import FormButtons from "./FormButtons";
 
 function EmployeeForm({ employee, onCreate }: { employee: Employee | null, onCreate: Function }) {
@@ -79,11 +76,6 @@ function EmployeeForm({ employee, onCreate }: { employee: Employee | null, onCre
         };
 
         console.log(newEmployee);
-
-        // axiosInstance.post(`${CURRENT_ENV}/employees`, newEmployee).then((res: AxiosResponse<Employee>) => {
-        //     console.log(res.data);
-        //     onCreate({ type: 'AddOne', payload: res.data });
-        // });
     }
 
     function handleChange(event: ChangeEvent, name: string) {

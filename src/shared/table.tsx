@@ -6,11 +6,13 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import * as _ from "lodash";
 import TableBody from "@material-ui/core/TableBody";
-import {Avatar, Button, Checkbox, Table} from "@material-ui/core";
+import {Button, Checkbox, Table} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Edit, PersonAdd} from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {DataTableModel, DataTableRow, DataTypes, mapArrayToDataTable} from "../models/DataTable.model";
+import {FormModes} from "../wet-manager/models/FormModes";
+import {DataTableInterface, DataTypes} from "../models/DataTable.model";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -25,21 +27,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onDelete: Function }) {
+
+
+function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes }: DataTableInterface<T>) {
     const classes = useStyles();
-    const dataTable: DataTableModel<T> = mapArrayToDataTable(props.data);
     const [selected, setSelected] = useState<number | null>(null);
     const handleSelection = (selectedId: number) => {
         setSelected(selected !== selectedId ? selectedId : null);
     }
 
-    const handleSelectionAction = (action: 'edit' | 'delete') => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [idRow, ...rest] = dataTable.rows[selected as number];
-        if (action === 'edit') {
-            props.onEdit(idRow.value)
-        } else {
-            props.onDelete(idRow.value)
+    const handleSelectionAction = (action: FormModes) => {
+        switch (action) {
+            case FormModes.Add:
+                onAdd();
+                break;
+            case FormModes.Edit:
+                onEdit(data[selected as number]);
+                break;
+            case FormModes.Delete:
+            default:
+                onDelete(data[selected as number]);
+
         }
     }
 
@@ -51,35 +59,40 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
                         <TableRow>
                             <TableCell/>
                             {
-                                dataTable.headings.map((key: string) => (
+                                columns.map((key: string) => (
                                     <TableCell key={key}>{_.startCase(key)}</TableCell>
                                 ))
                             }
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {dataTable.rows.map((row: DataTableRow<T>[], index: number) => (
-                            <TableRow
-                                key={JSON.stringify(row)}
-                                selected={selected === index}
-                                onClick={() => handleSelection(index)}>
-                                <TableCell padding="checkbox">
-                                    <Checkbox checked={selected === index}/>
-                                </TableCell>
-                                {row.map((column: DataTableRow<T>) => (
-                                    <TableCell align="left" key={`${column.value}${Math.random().toPrecision(5)}`}>
-                                        {column.type === DataTypes.image ?
-                                            <Avatar alt="avatar" src={column.value.toString()}/> : column.value}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))}
+                        {
+                            data.map((row: T, index: number) => (
+                                <TableRow
+                                    key={JSON.stringify(row)}
+                                    selected={selected === index}
+                                    onClick={() => handleSelection(index)}>
+                                            <TableCell padding="checkbox">
+                                                <Checkbox checked={selected === index}/>
+                                            </TableCell>
+                                    {
+                                        columns.map((columnName: string, i: number) => (
+                                            <TableCell align="left" key={`${JSON.stringify((row as any)[columnName])}${Math.random().toFixed(5)}`}>
+                                                {columnTypes[i] === DataTypes.image ?
+                                                    <Avatar alt="avatar" src={(row as any)[columnName]}/>
+                                                    : (row as any)[columnName]}
+                                            </TableCell>
+                                        ))
+                                    }
+                                </TableRow>
+                            ))
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
             <div className={classes.buttonGroup}>
                 <Button
-                    onClick={() => props.onAdd()}
+                    onClick={() => handleSelectionAction(FormModes.Add)}
                     variant="contained"
                     color="primary"
                     className={classes.button}
@@ -87,7 +100,7 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
                     Add
                 </Button>
                 <Button
-                    onClick={()=> handleSelectionAction('edit')}
+                    onClick={()=> handleSelectionAction(FormModes.Edit)}
                     disabled={selected === null}
                     variant="contained"
                     color="default"
@@ -96,7 +109,7 @@ function DataTable<T>(props: { data: T[], onAdd: Function, onEdit: Function, onD
                     Edit
                 </Button>
                 <Button
-                    onClick={()=> handleSelectionAction('delete')}
+                    onClick={()=> handleSelectionAction(FormModes.Delete)}
                     disabled={selected === null}
                     variant="contained"
                     color="secondary"

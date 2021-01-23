@@ -8,6 +8,7 @@ import PostForm from "../components/PostForm";
 import {getUserName} from "../../store/auth-store/selectors";
 import {Post} from "../../models/Post.model";
 import {FormModes} from "../models/FormModes";
+import {DataTypes} from "../../models/DataTable.model";
 
 function PostsManager() {
     const posts = useSelector(getPosts);
@@ -18,14 +19,18 @@ function PostsManager() {
 
     const [formMode, setFormMode] = useState<FormModes | null>(null);
 
+    const columns: string[] = ['title', 'content', 'status', 'date'];
+    const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.text, DataTypes.text, DataTypes.text];
+
     const handleAddPost = () => {
         setFormMode(FormModes.Add);
+        dispatch(SetSelectedPost(null));
     }
-    const handleEditPost = (id: number) => {
+    const handleEditPost = ({ id }: Post) => {
         dispatch(SetSelectedPost(id));
         setFormMode(FormModes.Edit);
     }
-    const handleDeletePost = (id: number) => {
+    const handleDeletePost = ({ id }: Post) => {
         dispatch(DeletePost(id));
     }
 
@@ -43,6 +48,8 @@ function PostsManager() {
         <>
             {
                 !isLoading ? <DataTable
+                    columnTypes={columnTypes}
+                    columns={columns}
                     data={posts}
                     onAdd={handleAddPost}
                     onDelete={handleDeletePost}
