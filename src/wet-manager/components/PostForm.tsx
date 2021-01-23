@@ -11,7 +11,13 @@ import Dropdown, {STYLING_TYPES} from "../../shared/widgets/Dropdown";
 import {POST_STATUS_TYPES} from "../models/PostStatusTypes";
 import {mapPostStatusesToDropdownItem} from "../../utils/dropdown-items-map";
 
-function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: string, onSubmit: any }) {
+interface PostFormInterface {
+    post: Post | null;
+    userName: string;
+    onSubmit: any;
+}
+
+function PostForm({ post, userName, onSubmit }: PostFormInterface) {
     const getInitialFormState = (post: Post | null): { [key: string]: Widget } => {
         const { title, status, content } = post || { title: '', status: 'open', content: '' };
 
@@ -34,22 +40,22 @@ function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: s
             },
         };
     }
-    const isCreateForm = !_.get(post, 'title', false);
     const [formValues, setFormValues] = useState<{ [key: string]: Widget }>(getInitialFormState(post));
+    const isCreateForm = !_.get(post, 'title', false);
 
     const handleChange = (event: FormEvent<HTMLFormElement>, name: string) => {
-        updateForm(name, event.currentTarget.value);
+        updateForm(name, event.currentTarget.value, formValues);
     }
 
     const handleDropdownChange = (event: React.ChangeEvent<{ value: unknown }>, name: string) => {
-        updateForm(name, String(event.target.value));
+        updateForm(name, String(event.target.value), formValues);
     }
 
-    const updateForm = (name: string, value: string) => {
+    const updateForm = (name: string, value: string, form: { [key: string]: Widget }) => {
         setFormValues({
-            ...formValues,
+            ...form,
             [name]: {
-                ...formValues[name],
+                ...form[name],
                 value,
             }
         })
@@ -88,7 +94,7 @@ function PostForm({ post, userName, onSubmit }: { post: Post | null, userName: s
 
     useEffect(() => {
         setFormValues(getInitialFormState(post));
-    }, [post])
+    }, [post]);
 
    return (
        <Card>

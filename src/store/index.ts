@@ -3,7 +3,7 @@ import auth from './auth-store/reducer';
 import employee from './employees-store/reducer';
 import { combineEpics } from "redux-observable";
 import { loginUser$, logoutUser$ } from "./auth-store/effects";
-import { deleteEmployee$, loadEmployees$ } from "./employees-store/effects";
+import {addEmployee$, deleteEmployee$, loadEmployees$, updateEmployee$} from "./employees-store/effects";
 import { EmployeeState } from "./employees-store";
 import { AuthState } from "./auth-store";
 import { LocationState } from "./locations-store";
@@ -38,6 +38,8 @@ export const rootEpic = combineEpics(
     loadServices$,
     addPost$,
     deletePost$,
+    addEmployee$,
+    updateEmployee$,
     );
 
 export interface RootState {

@@ -3,9 +3,11 @@ import {Employee} from "../../models/Employee.model";
 export enum EmployeeActions {
     LoadEmployees = '[Employees] Load Employees',
     AddEmployee = '[Employees] Add Employee',
+    AddEmployeeSuccess = '[Employees] Add Employee Success',
     AddEmployeesSuccess = '[Employees] Add Employees Success',
     AddEmployees = '[Employees] Add Employees',
     UpdateEmployee = '[Employees] Update Employee',
+    UpdateEmployeeSuccess = '[Employees] Update Employee Success',
     DeleteEmployee = '[Employees] Delete Employee',
     DeleteEmployeeSuccess = '[Employees] Delete Employee Success',
     DeleteEmployees = '[Employees] Delete Employees',
@@ -14,7 +16,7 @@ export enum EmployeeActions {
 
 export interface EmployeeActionsTypes {
     type: EmployeeActions;
-    payload?: Employee | number | Employee[];
+    payload?: Employee | number | Employee[] | null;
 }
 
 export function LoadEmployees(): EmployeeActionsTypes {
@@ -59,9 +61,37 @@ export function DeleteEmployeeSuccess(payload: number): EmployeeActionsTypes {
     }
 }
 
-export function SelectEmployee(payload: number): EmployeeActionsTypes {
+export function SelectEmployee(payload: number | null): EmployeeActionsTypes {
     return {
         payload,
         type: EmployeeActions.SelectEmployee,
+    }
+}
+
+export function AddEmployee(payload: Employee): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.AddEmployee,
+    }
+}
+
+export function UpdateEmployee(payload: Employee): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.UpdateEmployee,
+    }
+}
+
+export function AddEmployeeSuccess(payload: Employee): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.AddEmployeeSuccess,
+    }
+}
+
+export function UpdateEmployeeSuccess(payload: Employee): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.UpdateEmployeeSuccess,
     }
 }

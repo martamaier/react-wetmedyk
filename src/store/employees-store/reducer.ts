@@ -23,13 +23,20 @@ export default function(
              ],
              isLoading: false,
          }
+        case EmployeeActions.UpdateEmployee:
         case EmployeeActions.AddEmployee:
             return {
                 ...newState,
-                employees: [
-                    ...newState.employees,
-                    action.payload,
-                ]
+                isSaving: true,
+            }
+        case EmployeeActions.AddEmployeeSuccess:
+        case EmployeeActions.UpdateEmployeeSuccess:
+            const newEmployee = action.payload as Employee;
+            const employees = _.sortBy([...newState.employees.filter((employee: Employee) => employee.id !== newEmployee.id), newEmployee], 'id');
+            return {
+                ...newState,
+                employees,
+                isSaving: false,
             }
         case EmployeeActions.SelectEmployee:
             return {

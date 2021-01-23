@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {Employee} from "../../models/Employee.model";
 import {Card, CardContent, Typography} from "@material-ui/core";
 import * as _ from 'lodash';
@@ -7,37 +7,93 @@ import {Widget} from "../../models/Widget.model";
 import TextWidget from "../../shared/widgets/TextWidget";
 import FormButtons from "./FormButtons";
 
-function EmployeeForm({ employee, onCreate }: { employee: Employee | null, onCreate: Function }) {
-    const initialFormValues: { [key: string]: Widget } = {
-        firstName: {
-            name: 'firstName',
-            value: employee?.firstName || '',
-            multiline: false,
-        },
-        lastName: {
-            name: 'lastName',
-            value: employee?.lastName || '',
-            multiline: false,
-        },
-        description: {
-            name: 'description',
-            value: employee?.description || '',
-            multiline: true,
-        },
-        photo: {
-            name: 'photo',
-            value: employee?.photo || '',
-            multiline: false,
-        },
-        title: {
-            name: 'title',
-            value: employee?.title || '',
-            multiline: false,
+interface EmployeeFormInterface {
+    employee: Employee | null;
+    onSubmit: Function;
+}
+
+function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
+    const getInitialFormState = (employee: Employee | null): { [key: string]: Widget } => {
+        const addModeStartValues = {
+            firstName: '',
+            lastName: '',
+            description: '',
+            photo: '',
+            title: '',
+        };
+        const { firstName, lastName, description, photo, title } = employee || addModeStartValues;
+
+        return {
+            firstName: {
+                name: 'firstName',
+                value: firstName,
+                multiline: false,
+            },
+            lastName: {
+                name: 'lastName',
+                value: lastName,
+                multiline: false,
+            },
+            description: {
+                name: 'description',
+                value: description,
+                multiline: true,
+            },
+            photo: {
+                name: 'photo',
+                value: photo,
+                multiline: false,
+            },
+            title: {
+                name: 'title',
+                value: title,
+                multiline: false,
+            }
+        };
+    }
+
+    const [formValues, setFormValues] = useState<{ [key: string]: Widget }>(getInitialFormState(employee));
+    const isCreateForm = !_.get(employee, 'firstName', false);
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const newEmployee = buildEmployee(employee);
+        onSubmit(newEmployee);
+    }
+
+    const buildEmployee = (employee: Employee | null): Partial<Employee> => {
+        const changedValues: Partial<Employee> =  {
+            firstName: formValues.firstName.value,
+            lastName: formValues.lastName.value,
+            description: formValues.description.value,
+            photo: formValues.photo.value,
+            title: formValues.title.value,
         }
+
+        return _.merge({}, employee ? employee : {}, changedValues);
     };
 
-    const [formValues, setFormValues] = useState<{ [key: string]: Widget }>(_.cloneDeep(initialFormValues));
-    const isCreateForm = !_.get(employee, 'firstName', false);
+    const handleChange = (event: FormEvent<HTMLFormElement>, name: string) => {
+        updateForm(name, String(event.currentTarget.value), formValues);
+    }
+
+    const updateForm = (name: string, value: string, form: { [key: string]: Widget }) => {
+        setFormValues({
+            ...form,
+            [name]: {
+                ...form[name],
+                value,
+            }
+        })
+    }
+
+    const restoreFormValues = () => {
+        setFormValues(getInitialFormState(employee));
+    }
+
+    useEffect(() => {
+        setFormValues(getInitialFormState(employee));
+    }, [employee]);
 
     return (
         <Card>
@@ -56,41 +112,11 @@ function EmployeeForm({ employee, onCreate }: { employee: Employee | null, onCre
                     <FormButtons
                         isCreateForm={isCreateForm}
                         onRestore={restoreFormValues}
-                        disabled={_.isEqual(initialFormValues, formValues)} />
+                        disabled={_.isEqual(getInitialFormState(employee), formValues)} />
                 </form>
             </CardContent>
         </Card>
     )
-
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        console.log(event);
-        console.log((event.target as any).elements.firstName.value);
-
-        const newEmployee = {
-            firstName: (event.target as any).elements.firstName.value,
-            lastName: (event.target as any).elements.lastName.value,
-            description: (event.target as any).elements.description.value,
-            photo: (event.target as any).elements.photo.value,
-            title: (event.target as any).elements.title.value,
-        };
-
-        console.log(newEmployee);
-    }
-
-    function handleChange(event: ChangeEvent, name: string) {
-        setFormValues({
-            ...formValues,
-            [name]: {
-                ...formValues[name],
-                value: (event.target as any).value,
-            }
-        });
-    }
-
-    function restoreFormValues() {
-        setFormValues(_.cloneDeep(initialFormValues));
-    }
 }
 
 export default EmployeeForm;
