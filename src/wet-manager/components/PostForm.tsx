@@ -3,7 +3,7 @@ import {Card, CardContent} from "@material-ui/core";
 import TextWidget from "../../shared/widgets/TextWidget";
 import {Post} from "../../models/Post.model";
 import {Widget} from "../../models/Widget.model";
-import classes from './EmployeeForm.module.scss';
+import classes from './Form.module.scss';
 import FormButtons from "./FormButtons";
 import * as _ from "lodash";
 import {getCurrentDate, getCurrentUTCDate} from "../utils/DateFormats";

@@ -1,8 +1,8 @@
-import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import {Employee} from "../../models/Employee.model";
 import {Card, CardContent, Typography} from "@material-ui/core";
 import * as _ from 'lodash';
-import styles from './EmployeeForm.module.scss';
+import styles from './Form.module.scss';
 import {Widget} from "../../models/Widget.model";
 import TextWidget from "../../shared/widgets/TextWidget";
 import FormButtons from "./FormButtons";
@@ -84,7 +84,7 @@ function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
                 ...form[name],
                 value,
             }
-        })
+        });
     }
 
     const restoreFormValues = () => {

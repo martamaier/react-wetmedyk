@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {useStyles} from "./DropdownStyles";
 import {stringToStartCase} from "../../utils/content-handlers";
 import * as _ from 'lodash';
-import styles from "../../wet-manager/components/EmployeeForm.module.scss";
+import styles from "../../wet-manager/components/Form.module.scss";
 
 export enum STYLING_TYPES {
     Default = 'default',

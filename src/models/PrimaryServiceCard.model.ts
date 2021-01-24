@@ -4,5 +4,5 @@ export interface PrimaryServiceCard {
     image: string;
     description: string;
     details: string[];
-    available: string[];
+    available: number[];
 }

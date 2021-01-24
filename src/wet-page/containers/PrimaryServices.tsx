@@ -10,7 +10,6 @@ import {OpenModal} from "../../store/modal-store/actions";
 import {ModalState} from "../../store/modal-store";
 import Dropdown, {STYLING_TYPES} from "../../shared/widgets/Dropdown";
 import {getLocations, getSelectedLocationId} from "../../store/locations-store/selectors";
-import * as _ from 'lodash';
 import {SelectLocation} from "../../store/locations-store/actions";
 import {mapLocationToDropdownItem} from "../../utils/dropdown-items-map";
 
@@ -42,9 +41,10 @@ function PrimaryServices() {
     }, [dispatch, isLoading, primaryServices]);
 
     useEffect(() => {
-        const selectedServices = selectedLocation === 'all'
+        const selectedServices = selectedLocation === null
             ? primaryServices :
-            primaryServices.filter(service => _.get(service, 'available', []).find((id) => id === selectedLocation));
+            primaryServices
+                .filter((card: PrimaryServiceCard) => card.available.find((id: number) => id === selectedLocation));
         setDisplayServices(selectedServices);
     }, [selectedLocation, primaryServices])
 
@@ -54,7 +54,7 @@ function PrimaryServices() {
             <Container>
                 <Dropdown
                     styling={STYLING_TYPES.Custom}
-                    value={selectedLocation}
+                    value={selectedLocation ? selectedLocation : 1}
                     items={locations.map(location => mapLocationToDropdownItem(location))}
                     onChange={handleChange} />
             </Container>

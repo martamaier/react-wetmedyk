@@ -8,7 +8,7 @@ import { EmployeeState } from "./employees-store";
 import { AuthState } from "./auth-store";
 import { LocationState } from "./locations-store";
 import location from './locations-store/reducer';
-import { loadLocations$ } from "./locations-store/effects";
+import {addLocation$, deleteLocation$, loadLocations$, updateLocation$} from "./locations-store/effects";
 import post from './posts-store/reducer';
 import { PostState } from "./posts-store";
 import {addPost$, deletePost$, loadPosts$, updatePost$} from "./posts-store/effects";
@@ -33,6 +33,9 @@ export const rootEpic = combineEpics(
     loadEmployees$,
     deleteEmployee$,
     loadLocations$,
+    deleteLocation$,
+    updateLocation$,
+    addLocation$,
     loadPosts$,
     updatePost$,
     loadServices$,
@@ -53,6 +56,7 @@ export interface RootState {
 
 export interface FeatureState {
     isLoading: boolean;
+    isSaving: boolean;
     errorMessage: string | null;
     selected: number | null | string;
 }
