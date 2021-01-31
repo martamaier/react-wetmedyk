@@ -11,5 +11,6 @@ export enum DataTypes {
     image = 'image',
     text = 'text',
     number = 'number',
+    date = 'date',
 }
 

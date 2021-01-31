@@ -1,5 +1,4 @@
 import React from 'react';
-import {CURRENT_ENV} from "../../environment";
 import {Card, CardActionArea, CardActions, CardContent, CardMedia} from "@material-ui/core";
 import classes from './ImageCard.module.scss';
 import Typography from "@material-ui/core/Typography";

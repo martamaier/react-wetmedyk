@@ -38,9 +38,8 @@ function FilesManager () {
 
     return (
         <>
-            {formValue}
             <p>Files Manager</p>
-            <form onSubmit={handleUploadImage}>
+            <form className={classes.form} onSubmit={handleUploadImage}>
                 <FileWidget value={formValue} name="photo" multiline={false} onChange={handleChange} />
                 <Button type="submit"
                         disabled={!!images.find((image: string) => formValue.includes(image)) || !formValue.length}

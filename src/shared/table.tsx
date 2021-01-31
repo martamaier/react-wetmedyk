@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import TableHead from "@material-ui/core/TableHead";
@@ -51,6 +51,18 @@ function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes }: D
         }
     }
 
+    const getProperCell = (columnType: DataTypes, row: any, columnName: string): ReactNode => {
+        switch (columnType) {
+            case DataTypes.image:
+                return <Avatar alt="avatar" src={(row as any)[columnName]}/>
+            case DataTypes.date:
+                return <span>{new Date(Number.parseFloat(row[columnName])).toString()}</span>;
+            case DataTypes.text:
+            default:
+                return (row as any)[columnName];
+        }
+    }
+
     return (
         <>
             <TableContainer component={Paper}>
@@ -78,9 +90,7 @@ function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes }: D
                                     {
                                         columns.map((columnName: string, i: number) => (
                                             <TableCell align="left" key={`${JSON.stringify((row as any)[columnName])}${Math.random().toFixed(5)}`}>
-                                                {columnTypes[i] === DataTypes.image ?
-                                                    <Avatar alt="avatar" src={(row as any)[columnName]}/>
-                                                    : (row as any)[columnName]}
+                                                {getProperCell(columnTypes[i], row, columnName)}
                                             </TableCell>
                                         ))
                                     }
