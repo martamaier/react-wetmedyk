@@ -16,7 +16,10 @@ import { ServiceState } from "./services-store";
 import service from './services-store/reducer';
 import { loadServices$ } from "./services-store/effects";
 import modal from './modal-store/reducer';
+import file from './files-store/reducer';
 import { ModalState } from "./modal-store";
+import {FileState} from "./files-store";
+import {addFile$, deleteFile$, loadFiles$} from "./files-store/effects";
 
 export default combineReducers({
     auth,
@@ -25,6 +28,7 @@ export default combineReducers({
     post,
     service,
     modal,
+    file,
 });
 
 export const rootEpic = combineEpics(
@@ -43,6 +47,9 @@ export const rootEpic = combineEpics(
     deletePost$,
     addEmployee$,
     updateEmployee$,
+    loadFiles$,
+    deleteFile$,
+    addFile$,
     );
 
 export interface RootState {
@@ -52,6 +59,7 @@ export interface RootState {
     post: PostState;
     service: ServiceState;
     modal: ModalState<any>;
+    file: FileState;
 }
 
 export interface FeatureState {

@@ -12,7 +12,7 @@ interface EmployeeFormInterface {
     onSubmit: Function;
 }
 
-function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
+function EmployeeForm({employee, onSubmit}: EmployeeFormInterface) {
     const getInitialFormState = (employee: Employee | null): { [key: string]: Widget } => {
         const addModeStartValues = {
             firstName: '',
@@ -21,7 +21,7 @@ function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
             photo: '',
             title: '',
         };
-        const { firstName, lastName, description, photo, title } = employee || addModeStartValues;
+        const {firstName, lastName, description, photo, title} = employee || addModeStartValues;
 
         return {
             firstName: {
@@ -57,12 +57,14 @@ function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        // const formData = new FormData(event.target as HTMLFormElement);
+        // const file = formData.get('photo');
         const newEmployee = buildEmployee(employee);
         onSubmit(newEmployee);
     }
 
     const buildEmployee = (employee: Employee | null): Partial<Employee> => {
-        const changedValues: Partial<Employee> =  {
+        const changedValues: Partial<Employee> = {
             firstName: formValues.firstName.value,
             lastName: formValues.lastName.value,
             description: formValues.description.value,
@@ -112,7 +114,7 @@ function EmployeeForm({ employee, onSubmit }: EmployeeFormInterface) {
                     <FormButtons
                         isCreateForm={isCreateForm}
                         onRestore={restoreFormValues}
-                        disabled={_.isEqual(getInitialFormState(employee), formValues)} />
+                        disabled={_.isEqual(getInitialFormState(employee), formValues)}/>
                 </form>
             </CardContent>
         </Card>

@@ -48,6 +48,7 @@ function LocationsManager() {
 
     return (
         <>
+            <p>Locations Manager</p>
             {!isLoading ?
                 <DataTable
                     columnTypes={[]}

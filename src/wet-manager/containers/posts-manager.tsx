@@ -46,6 +46,7 @@ function PostsManager() {
 
     return (
         <>
+            <p>Posts Manager</p>
             {
                 !isLoading ? <DataTable
                     columnTypes={columnTypes}

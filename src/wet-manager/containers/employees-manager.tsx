@@ -46,6 +46,7 @@ function EmployeesManager() {
 
     return (
         <>
+            <p>Employees Manager</p>
             {!isLoading ?
             <DataTable
                 columnTypes={columnTypes}

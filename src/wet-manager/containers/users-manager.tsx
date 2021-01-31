@@ -2,7 +2,7 @@ import React from 'react';
 
 function UsersManager() {
     return (
-        <div>Users Manager</div>
+        <p>Users Manager</p>
     )
 }
 
