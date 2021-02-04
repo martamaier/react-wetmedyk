@@ -17,6 +17,8 @@ $leafyGreen: #7CAA2D;
 //$white: #fcfdfe;
 //$black: #192e5b;
 
+$green: #5e751d;
+$light-green: #a6bf46;
 $primary-green: $leafyGreen;
 $secondary-green: $grannySmith;
 $tertiary-green: $butter;
@@ -25,10 +27,15 @@ $secondary-red: $redDelicious;
 $white: #fcfdfe;
 $black: #000000;
 
+$manager-pink: #e91e63;
+
+
 $grey-background: #f1f1f1;
+$creme: rgba(#fff6af, .4);
 
 $font: 'Open Sans', sans-serif;
 
 $max-width: 130rem;
 
 $carousel-transition: transform 2s ease, opacity .5s ease-out;
+$box-shadow: 0 4px 6px 0 rgba($black, .3);

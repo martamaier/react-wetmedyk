@@ -1,26 +1,32 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles, Theme} from "@material-ui/core";
+import variables from './Dropdown.module.scss';
+
 
 export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 140,
-            marginLeft: '3.5rem',
-            marginBottom: '5rem',
-            outline: 'none',
-        },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
-        },
-        label: {
+        root: {
+            backgroundColor: variables.secondaryRed,
             fontSize: '2rem',
+            outline: 'none',
+            marginBottom: '3rem',
+            marginLeft: '2rem',
+        },
+        formControl: {
+            outline: 'none',
         },
         select: {
             fontSize: '2rem',
+            color: variables.white,
+            outline: 'none',
         },
-        noBorder: {
-            border: 'none',
+        iconOutlined: {
+            width: '3rem',
+            height: '3rem',
+            fill: variables.white,
+        },
+        size: {
+            fontSize: '2rem',
         }
     }),
 );

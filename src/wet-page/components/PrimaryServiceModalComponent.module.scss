@@ -7,17 +7,19 @@
 
   .containerHeading {
     display: flex;
+    justify-content: flex-start;
+
     h2 {
-      text-align: center;
+      //text-align: center;
       font-size: 3.5rem;
       font-weight: bold;
       text-transform: uppercase;
       color: $primary-green;
     }
 
-    img {
+    .svg {
+      width: 4rem;
       height: 4rem;
-      margin-right: .5rem;
     }
   }
 

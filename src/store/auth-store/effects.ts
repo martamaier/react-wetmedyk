@@ -20,6 +20,7 @@ export const loginUser$ = (action$: ActionsObservable<AuthActionsTypes>) => acti
                         userName: (action.payload as Login).userName,
                     }
                     sessionStorage.setItem('user', JSON.stringify(userData));
+
                     return LogInSuccessAction(userData);
                 }),
                 catchError((err) => of(LogInErrorAction(err.message)))

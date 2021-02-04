@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  align-items: center;
+  & > *:last-child {
+    margin-left: 1rem;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

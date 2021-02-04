@@ -2,11 +2,12 @@ import React from "react";
 import Locations from "./containers/Locations";
 import Services from "./containers/Services";
 import Employees from "./containers/Employees";
-import Newsletter from "./containers/Newsletter";
+import Social from "./containers/Social";
 import News from "./containers/News";
 import Footer from "./containers/Footer";
 import Header from "./components/Header";
 import PrimaryServices from "./containers/PrimaryServices";
+import Divider from "../shared/Divider";
 
 function MainPage() {
     return (
@@ -14,10 +15,15 @@ function MainPage() {
             <Header />
             <main>
                 <Locations/>
+                <Divider />
                 <PrimaryServices />
+                <Divider />
                 <Services />
+                <Divider />
                 <Employees />
-                <Newsletter />
+                <Divider />
+                <Social />
+                <Divider />
                 <News />
             </main>
             <Footer />

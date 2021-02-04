@@ -10,4 +10,5 @@ export const INITIAL_STATE: ServiceState = {
     isLoading: false,
     errorMessage: null,
     selected: null,
+    isSaving: false,
 }

@@ -4,4 +4,4 @@ const ENVIRONMENT = {
     heroku: 'https://wetmedyk-api.herokuapp.com',
 }
 
-export const CURRENT_ENV = ENVIRONMENT.heroku;
+export const CURRENT_ENV = ENVIRONMENT.localhost;

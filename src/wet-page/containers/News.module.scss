@@ -1,0 +1,30 @@
+@import 'src/scss/variables';
+@import 'src/scss/mixins';
+
+.news {
+  background-color: $creme;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+
+  h2 {
+    @include font-title;
+    color: $greenBeen;
+    margin-bottom: 5rem;
+    align-self: center;
+  }
+
+  .newsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-bottom: 2rem;
+    @media only screen and (max-width: 900px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+.row {
+  margin: 0;
+}

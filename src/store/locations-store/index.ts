@@ -3,12 +3,13 @@ import { FeatureState } from "../index";
 
 export interface LocationState extends FeatureState {
     locations: Location[];
-    selected: string | number
+    selected: number | null;
 }
 
 export const INITIAL_STATE: LocationState = {
     locations: [],
     isLoading: false,
     errorMessage: null,
-    selected: 'all',
+    selected: null,
+    isSaving: false,
 }

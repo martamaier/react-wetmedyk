@@ -3,7 +3,7 @@ import { FeatureState } from "../index";
 
 export interface EmployeeState extends FeatureState {
     employees: Employee[];
-    selected: number | null,
+    selected: number | null;
 }
 
 export const INITIAL_STATE: EmployeeState = {
@@ -11,5 +11,6 @@ export const INITIAL_STATE: EmployeeState = {
     isLoading: false,
     errorMessage: null,
     selected: null,
+    isSaving: false,
 };
 

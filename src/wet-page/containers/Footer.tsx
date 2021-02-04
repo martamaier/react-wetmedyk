@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "../../images/logo.png";
 import styles from './Footer.module.scss';
-import {Container, Row, Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {Location} from "../../models/Location.model";
-import {FaFacebookSquare, FaTwitterSquare, FaEnvelopeSquare} from 'react-icons/fa';
-import { useSelector } from "react-redux";
-import { getLocations } from "../../store/locations-store/selectors";
+import {useSelector} from "react-redux";
+import {getLocations} from "../../store/locations-store/selectors";
+import CustomExpandLess from "../../shared/CustomExpandLess";
+import {scrollToElement} from "../../utils/scroller";
 
 function Footer() {
     const copyrights = '@ 2020 Wetmedyk. All rights reserved.';
@@ -16,37 +17,28 @@ function Footer() {
             <Container className={styles.footer}>
                 <div className={styles.footerWrapper}>
                     <Row>
-                        <Col md={6} className={styles.footerWrapperIcons}>
-                            <a className={styles.icons} target="_blank"
-                               href="https://pl-pl.facebook.com/pages/category/Veterinarian/WetMedyk-390130391162994/"
-                               rel="noopener noreferrer">
-                                <FaFacebookSquare/>
-                            </a>
-                            <a className={styles.icons} href="https://twitter.com/wetmedyk?lang=en"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <FaTwitterSquare/>
-                            </a>
-                            <a className={styles.icons} href="mailto:kontakt@wetmedyk.pl">
-                                <FaEnvelopeSquare/>
-                            </a>
-                        </Col>
-                        <Col md={6} className={styles.footerWrapperLocations}>
+                        <Col md={4} className={styles.footerWrapperLogo}>
                             <img src={logo} alt=""/>
-                            {
-                                locations.map((location: Location) => (
-                                    <div key={location.id} className={styles.location}>
+                        </Col>
+                        {
+                            locations.map((location: Location) => (
+                                <Col key={location.id} md={4} className={styles.footerWrapperLocations}>
+                                    <div className={styles.location}>
                                         <h3>{location.name}</h3>
                                         <span>{location.street}, {location.zipCode} {location.city}</span>
                                         <span>{location.phone}</span>
                                     </div>
-                                ))
-                            }
-                        </Col>
+                                </Col>
+
+                            ))
+                        }
                     </Row>
                 </div>
                 <span className={styles.copyrights}>{copyrights}</span>
             </Container>
+            <div className={styles.goBack}>
+                <CustomExpandLess disabled={false} handleClick={() => scrollToElement('home')} />
+            </div>
         </footer>);
 }
 

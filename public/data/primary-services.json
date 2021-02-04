@@ -2,7 +2,6 @@
   {
     "id": 0,
     "title": "Profilaktyka",
-    "image": "images/spay.png",
     "description": "",
     "details": [
       "szczepienia ochronne",
@@ -18,7 +17,6 @@
   {
     "id": 1,
     "title": "Diagnostyka / Badania laboratoryjne",
-    "image": "images/bandage.png",
     "description": "",
     "details": [
       "USG",
@@ -35,7 +33,6 @@
   {
     "id": 2,
     "title": "Leczenie",
-    "image": "images/phonendoscope.png",
     "description": "",
     "details": [
       "chorób wewnętrznych układu moczowego, pokarmowego, krążenia itd.4",
@@ -50,7 +47,6 @@
   {
     "id": 3,
     "title": "Chirurgia",
-    "image": "images/dog-cardio.png",
     "description": "",
     "details": [
       "badania kwalifikujące pacjenta do znieczulenia i zabiegu",
@@ -67,7 +63,6 @@
   {
     "id": 4,
     "title": "Stomatologia",
-    "image": "images/eye.png",
     "description": "",
     "details": [
       "leczenie chorób przyzębia",
@@ -80,8 +75,7 @@
   },
   {
     "id": 5,
-    "title": "Onkologia",
-    "image": "images/phonendoscope.png",
+    "title": "Kardiologia",
     "description": "Zdiagnozowanie nowotworu u zwierzęcia jest sytuacją stresującą dla właściciela, tak samo jak myśl o rozpoczęciu chemioterapii. Zapoznanie się i zrozumienie na czym polega proces chemioterapii oraz czego można się spodziewać podczas leczenia, ułatwi podjęcie decyzji. Celem chemioterapii u zwierząt jest przedłużenie i polepszenie jakości życia chorego zwierzęcia.",
     "details": [
       "diagnozowanie chorób nowotworowych",
@@ -93,7 +87,6 @@
   {
     "id": 6,
     "title": "Czipy / Paszporty",
-    "image": "images/medical-report.png",
     "description": "",
     "details": [
       "wyrabianie paszportów dla zwierząt",
@@ -107,7 +100,6 @@
   {
     "id": 7,
     "title": "Szpital dla zwierząt",
-    "image": "images/hospital.png",
     "description": "",
     "details": [
       "hospitalizacja przedzabiegowa",
@@ -120,7 +112,6 @@
   {
     "id": 8,
     "title": "Sklepik",
-    "image": "images/dog-cardio.png",
     "description": "",
     "details": [
       "karmy bytowe",
@@ -135,7 +126,6 @@
   {
     "id": 9,
     "title": "Strzyżenie i pielęgnacja",
-    "image": "images/first-aid-pet.png",
     "description": "",
     "details": [
       "strzyżenie psów i kotów w znieczuleniu",

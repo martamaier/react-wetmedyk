@@ -10,4 +10,5 @@ export const INITIAL_STATE: PostState = {
     isLoading: false,
     errorMessage: null,
     selected: null,
+    isSaving: false,
 }

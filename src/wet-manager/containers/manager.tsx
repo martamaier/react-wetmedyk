@@ -25,6 +25,7 @@ import styles from './manager.module.scss';
 import { AuthState } from "../../store/auth-store";
 import { LogOutAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import FilesManager from "./files-manager";
 
 function Manager() {
     const classes = useStyles();
@@ -113,6 +114,7 @@ function Manager() {
                     <Route path="/manager/posts" component={PostsManager}/>
                     <Route path="/manager/users" component={UsersManager}/>
                     <Route path="/manager/subscribers" component={SubscribersManager}/>
+                    <Route path="/manager/files" component={FilesManager}/>
                 </main>
             </div>
         </BrowserRouter>

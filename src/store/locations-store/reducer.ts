@@ -23,8 +23,38 @@ export default function (
             }
         case LocationActions.SelectLocation:
             return {
-                ...newState,
+                ...state,
                 selected: action.payload,
+            }
+        case LocationActions.DeleteLocation:
+            return {
+                ...newState,
+                isSaving: true,
+            }
+        case LocationActions.DeleteLocationSuccess:
+            return {
+                ...newState,
+                isSaving: false,
+                locations: newState.locations.filter((location: Location) => location.id !== action.payload),
+            }
+        case LocationActions.AddLocation:
+        case LocationActions.UpdateLocation:
+            return {
+                ...newState,
+                isSaving: true,
+            }
+        case LocationActions.AddLocationSuccess:
+            return  {
+                ...newState,
+                isSaving: false,
+                locations: [...newState.locations, action.payload],
+            }
+        case LocationActions.UpdateLocationSuccess:
+            const newLocation = (action.payload as Location);
+            return {
+                ...newState,
+                isSaving: false,
+                locations: _.sortBy([...newState.locations.filter((location: Location) => location.id !== newLocation.id), newLocation], 'id'),
             }
         default:
             return newState;

@@ -2,66 +2,62 @@ import React from 'react';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {LocalPostOffice, LocationOn, PersonPin, PostAdd, SupervisorAccount} from "@material-ui/icons";
+import {AttachFile, LocationOn, PersonPin, PostAdd, SupervisorAccount} from "@material-ui/icons";
 import ListItemText from "@material-ui/core/ListItemText";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {ManagerRoutes} from "../models/ManagerRoutes.model";
+import classes from './Navigation.module.scss';
+
+const routes: ManagerRoutes[] = [
+    {
+        path: '/manager/employees',
+        icon: <SupervisorAccount/>,
+        displayName: 'Employees',
+    },
+    {
+        path: '/manager/locations',
+        icon: <LocationOn/>,
+        displayName: 'Locations',
+    },
+    {
+        path: '/manager/posts',
+        icon: <PostAdd/>,
+        displayName: 'News',
+    },
+    {
+        path: '/manager/users',
+        icon: <PersonPin/>,
+        displayName: 'Users',
+    },
+    {
+        path: '/manager/files',
+        icon: <AttachFile />,
+        displayName: 'Files',
+    }
+];
 
 function Navigation() {
+
     return (
         <List>
-            <Link to="/manager/employees">
-                <ListItem button>
-                    <ListItemIcon>
-                        <SupervisorAccount/>
-                    </ListItemIcon>
-                    <ListItemText>
-                        Employees
-                    </ListItemText>
-                </ListItem>
-            </Link>
-            <Link to="/manager/locations">
-                <ListItem button>
-                    <ListItemIcon>
-                        <LocationOn/>
-                    </ListItemIcon>
-                    <ListItemText>
-                        Locations
-                    </ListItemText>
-                </ListItem>
-            </Link>
-            <Link to="/manager/posts">
-                <ListItem button>
-                    <ListItemIcon>
-                        <PostAdd/>
-                    </ListItemIcon>
-                    <ListItemText>
-                        News
-                    </ListItemText>
-                </ListItem>
-            </Link>
-
-            <Link to="/manager/users">
-                <ListItem button>
-                    <ListItemIcon>
-                        <PersonPin/>
-                    </ListItemIcon>
-                    <ListItemText>
-                        Users
-                    </ListItemText>
-                </ListItem>
-            </Link>
-            <Link to="/manager/subscribers">
-                <ListItem button>
-                    <ListItemIcon>
-                        <LocalPostOffice/>
-                    </ListItemIcon>
-                    <ListItemText>
-                        Subscribers
-                    </ListItemText>
-                </ListItem>
-            </Link>
+            {
+                routes.map((route: ManagerRoutes) => (
+                    <NavLink
+                        key={route.path}
+                        to={route.path}
+                        activeClassName={classes.selected}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                {route.icon}
+                            </ListItemIcon>
+                            <ListItemText>
+                                {route.displayName}
+                            </ListItemText>
+                        </ListItem>
+                    </NavLink>
+                ))
+            }
         </List>
-
     )
 }
 

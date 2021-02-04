@@ -8,9 +8,6 @@ import {stringToStartCase} from "../../utils/content-handlers";
 function Contact(
     {name, city, mapUrl, openHours, phone, street, zipCode}: Location,
 ) {
-    const style = {
-        fontSize: '60px',
-    }
     const cards = [
         {
             type: 'location',
@@ -41,8 +38,8 @@ function Contact(
                                 <div>
                                     {
                                         type === 'location' ?
-                                            <LocationOn style={style}/> :
-                                            (type === 'contact' ? <PhonelinkRing style={style}/> : <QueryBuilder style={style}/>)
+                                            <LocationOn /> :
+                                            (type === 'contact' ? <PhonelinkRing /> : <QueryBuilder />)
                                     }
                                     {
                                         content.map((text) => (
