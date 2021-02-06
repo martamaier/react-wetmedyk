@@ -12,7 +12,7 @@ import { createEpicMiddleware } from "redux-observable";
 import { LinearProgress } from "@material-ui/core";
 
 const Manager = React.lazy(() => import("./wet-manager/layout/manager.component"));
-const Login = React.lazy(() => import("./wet-manager/layout/login-page.component"));
+const Login = React.lazy(() => import("./wet-manager/login-page.component"));
 const epicMiddleware = createEpicMiddleware();
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
