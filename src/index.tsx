@@ -4,7 +4,7 @@ import './index.scss';
 import App from './app.component';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import GuardedRoute from "./shared/guarded-route.component";
-import MainPage from "./wet-page/main-page.component";
+import MainPage from "./wet-page/layout/main-page.component";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers, { rootEpic } from './store/index';
