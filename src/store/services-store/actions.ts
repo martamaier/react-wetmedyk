@@ -1,4 +1,4 @@
-import { PrimaryServiceCard } from "../../models/PrimaryServiceCard.model";
+import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
 
 export enum ServiceActions {
     LoadServices = '[Services] Load Services',

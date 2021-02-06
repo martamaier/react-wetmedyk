@@ -1,6 +1,6 @@
 import { AuthState, INITIAL_STATE } from "./index";
 import { AuthActions, AuthActionsTypes } from "./actions";
-import { AuthToken } from "../../models/AuthToken.model";
+import { AuthToken } from "../../models/auth-token.interface";
 
 export default function (state: AuthState = INITIAL_STATE, action: AuthActionsTypes) {
 

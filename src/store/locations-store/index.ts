@@ -1,4 +1,4 @@
-import { Location } from "../../models/Location.model";
+import { Location } from "../../models/location.interface";
 import { FeatureState } from "../index";
 
 export interface LocationState extends FeatureState {

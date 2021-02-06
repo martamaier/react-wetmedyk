@@ -1,7 +1,7 @@
 import {INITIAL_STATE, LocationState} from "./index";
 import {LocationActions, LocationActionsTypes} from "./actions";
 import * as _ from "lodash";
-import {Location} from "../../models/Location.model";
+import {Location} from "../../models/location.interface";
 
 export default function (
     state: LocationState = INITIAL_STATE,

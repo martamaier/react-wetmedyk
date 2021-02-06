@@ -1,5 +1,5 @@
-import { AuthToken } from "../../models/AuthToken.model";
-import { Login } from "../../models/Login.model";
+import { AuthToken } from "../../models/auth-token.interface";
+import { Login } from "../../models/login.interface";
 
 export enum AuthActions {
     LogIn = '[Auth] LogIn',

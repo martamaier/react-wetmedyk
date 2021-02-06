@@ -1,4 +1,4 @@
-import { Location } from "../../models/Location.model";
+import { Location } from "../../models/location.interface";
 
 export enum LocationActions {
     LoadLocations = '[Locations] Load Locations',

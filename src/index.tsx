@@ -1,18 +1,18 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App from './app.component';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import GuardedRoute from "./shared/GuardedRoute";
-import MainPage from "./wet-page/MainPage";
+import GuardedRoute from "./shared/guarded-route.component";
+import MainPage from "./wet-page/main-page.component";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers, { rootEpic } from './store/index';
 import { createEpicMiddleware } from "redux-observable";
 import { LinearProgress } from "@material-ui/core";
 
-const Manager = React.lazy(() => import("./wet-manager/containers/manager"));
-const Login = React.lazy(() => import("./wet-manager/LoginPage"));
+const Manager = React.lazy(() => import("./wet-manager/containers/manager.component"));
+const Login = React.lazy(() => import("./wet-manager/login-page.component"));
 const epicMiddleware = createEpicMiddleware();
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

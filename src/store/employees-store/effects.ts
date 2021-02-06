@@ -11,7 +11,7 @@ import axiosInstance from "../../services/interceptor";
 import {CURRENT_ENV} from "../../environment";
 import {fromPromise} from "rxjs/internal-compatibility";
 import {AxiosResponse} from "axios";
-import {Employee} from "../../models/Employee.model";
+import {Employee} from "../../models/employee.interface";
 
 const baseUrl = `${CURRENT_ENV}/employees`;
 

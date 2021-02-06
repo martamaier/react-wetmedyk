@@ -1,4 +1,4 @@
-import { Post } from "../../models/Post.model";
+import { Post } from "../../models/post.interface";
 
 export enum PostActions {
     LoadPosts = '[Posts] Load Posts',

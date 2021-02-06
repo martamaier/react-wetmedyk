@@ -1,6 +1,6 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {CURRENT_ENV} from "../environment";
-import {AuthToken} from "../models/AuthToken.model";
+import {AuthToken} from "../models/auth-token.interface";
 import * as _ from 'lodash';
 
 const axiosInstance = axios.create({

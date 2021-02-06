@@ -1,4 +1,4 @@
-import { AuthToken } from "../../models/AuthToken.model";
+import { AuthToken } from "../../models/auth-token.interface";
 
 export interface AuthState {
     user: AuthToken | Partial<AuthToken>;

@@ -1,4 +1,4 @@
-import {Employee} from "../../models/Employee.model";
+import {Employee} from "../../models/employee.interface";
 
 export enum EmployeeActions {
     LoadEmployees = '[Employees] Load Employees',

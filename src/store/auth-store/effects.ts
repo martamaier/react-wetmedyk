@@ -5,9 +5,9 @@ import { fromPromise } from "rxjs/internal-compatibility";
 import axiosInstance from "../../services/interceptor";
 import { CURRENT_ENV } from "../../environment";
 import { AxiosResponse } from "axios";
-import { AuthToken } from "../../models/AuthToken.model";
+import { AuthToken } from "../../models/auth-token.interface";
 import { of } from "rxjs";
-import { Login } from "../../models/Login.model";
+import { Login } from "../../models/login.interface";
 
 export const loginUser$ = (action$: ActionsObservable<AuthActionsTypes>) => action$.pipe(
     ofType(AuthActions.LogIn),

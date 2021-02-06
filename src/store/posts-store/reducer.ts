@@ -1,7 +1,7 @@
 import {INITIAL_STATE, PostState} from "./index";
 import {PostActions, PostActionsTypes} from "./actions";
 import * as _ from 'lodash';
-import {Post} from "../../models/Post.model";
+import {Post} from "../../models/post.interface";
 
 export default function (
     state: PostState = INITIAL_STATE,

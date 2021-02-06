@@ -1,4 +1,4 @@
-import { Employee } from "../../models/Employee.model";
+import { Employee } from "../../models/employee.interface";
 import * as _ from "lodash";
 import { EmployeeState, INITIAL_STATE } from "./index";
 import { EmployeeActions, EmployeeActionsTypes } from "./actions";

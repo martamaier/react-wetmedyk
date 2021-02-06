@@ -1,4 +1,4 @@
-import { Post } from "../../models/Post.model";
+import { Post } from "../../models/post.interface";
 import { FeatureState } from "../index";
 
 export interface PostState extends FeatureState {

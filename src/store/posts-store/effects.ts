@@ -5,7 +5,7 @@ import { fromPromise } from "rxjs/internal-compatibility";
 import axiosInstance from "../../services/interceptor";
 import { CURRENT_ENV } from "../../environment";
 import { AxiosResponse } from "axios";
-import { Post } from "../../models/Post.model";
+import { Post } from "../../models/post.interface";
 
 const baseUrl = `${CURRENT_ENV}/posts`;
 

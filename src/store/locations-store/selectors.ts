@@ -1,5 +1,5 @@
 import { RootState } from "../index";
-import { Location } from "../../models/Location.model";
+import { Location } from "../../models/location.interface";
 import {createSelector} from "reselect";
 
 export const getLocations = (state: RootState): Location[] => state.location.locations;

@@ -4,7 +4,7 @@ import { switchMap, take, map } from "rxjs/operators";
 import { fromPromise } from "rxjs/internal-compatibility";
 import { AxiosResponse } from "axios";
 import axios from 'axios';
-import { PrimaryServiceCard } from "../../models/PrimaryServiceCard.model";
+import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
 
 export const loadServices$ = (action$: ActionsObservable<ServiceActionsTypes>) => action$
     .pipe(

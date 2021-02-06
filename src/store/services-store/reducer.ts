@@ -1,7 +1,7 @@
 import { INITIAL_STATE, ServiceState } from "./index";
 import { ServiceActions, ServiceActionsTypes } from "./actions";
 import * as _ from 'lodash';
-import { PrimaryServiceCard } from "../../models/PrimaryServiceCard.model";
+import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
 
 export default function(
     state: ServiceState = INITIAL_STATE,

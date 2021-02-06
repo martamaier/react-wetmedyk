@@ -1,4 +1,4 @@
-import {Employee} from "../../models/Employee.model";
+import {Employee} from "../../models/employee.interface";
 import { FeatureState } from "../index";
 
 export interface EmployeeState extends FeatureState {

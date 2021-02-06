@@ -11,7 +11,7 @@ import { fromPromise } from "rxjs/internal-compatibility";
 import axiosInstance from "../../services/interceptor";
 import { CURRENT_ENV } from "../../environment";
 import { AxiosResponse } from "axios";
-import { Location } from "../../models/Location.model";
+import { Location } from "../../models/location.interface";
 
 const baseUrl = `${CURRENT_ENV}/locations`;
 

@@ -1,4 +1,4 @@
-import { PrimaryServiceCard } from "../../models/PrimaryServiceCard.model";
+import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
 import { FeatureState } from "../index";
 
 export interface ServiceState extends FeatureState {
