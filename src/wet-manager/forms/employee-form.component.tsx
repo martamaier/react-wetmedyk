@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import styles from './form.module.scss';
 import {Widget} from "../../models/widget.interface";
 import TextWidget from "../../shared/widgets/text-widget.component";
-import FormButtons from "./form-buttons.component";
+import FormButtons from "../shared/form-buttons.component";
 
 interface EmployeeFormInterface {
     employee: Employee | null;

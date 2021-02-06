@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import styles from "../../wet-manager/components/form.module.scss";
+import styles from "../../wet-manager/forms/form.module.scss";
 import * as _ from "lodash";
 import {TextField} from "@material-ui/core";
 import {Widget} from "../../models/widget.interface";

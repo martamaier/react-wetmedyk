@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import {Card, CardContent, Typography} from "@material-ui/core";
 import styles from "./form.module.scss";
 import TextWidget from "../../shared/widgets/text-widget.component";
-import FormButtons from "./form-buttons.component";
+import FormButtons from "../shared/form-buttons.component";
 
 interface LocationFormInterface {
     location: Location | null;

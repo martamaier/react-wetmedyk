@@ -12,7 +12,7 @@ import {
 } from "../../store/locations-store/actions";
 import {Location} from "../../models/location.interface";
 import {FormModes} from "../models/form-modes.types";
-import LocationForm from "../components/location-form.component";
+import LocationForm from "../forms/location-form.component";
 
 function LocationsManager() {
     const dispatch = useDispatch();

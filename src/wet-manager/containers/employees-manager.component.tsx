@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Employee} from "../../models/employee.interface";
 import DataTable from "../../shared/table.component";
 import {LinearProgress} from "@material-ui/core";
-import EmployeeForm from "../components/employee-form.component";
+import EmployeeForm from "../forms/employee-form.component";
 import {useDispatch, useSelector} from "react-redux";
 import {getEmployees, getIsLoading, getSelectedEmployee} from "../../store/employees-store/selectors";
 import {

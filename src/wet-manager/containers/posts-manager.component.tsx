@@ -4,7 +4,7 @@ import {LinearProgress} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsLoading, getPosts, getSelectedPost} from "../../store/posts-store/selectors";
 import {AddPost, DeletePost, LoadPosts, SetSelectedPost, UpdatePost} from "../../store/posts-store/actions";
-import PostForm from "../components/post-form.component";
+import PostForm from "../forms/post-form.component";
 import {getUserName} from "../../store/auth-store/selectors";
 import {Post} from "../../models/post.interface";
 import {FormModes} from "../models/form-modes.types";

@@ -12,20 +12,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {useStyles} from "./manager.styles";
-import Navigation from "../components/navigation.component";
+import Navigation from "./navigation.component";
 import {Route, useHistory} from "react-router";
-import EmployeesManager from "./employees-manager.component";
+import EmployeesManager from "../containers/employees-manager.component";
 import {BrowserRouter} from "react-router-dom";
-import LocationsManager from "./locations-manager.component";
-import PostsManager from "./posts-manager.component";
-import UsersManager from "./users-manager.component";
-import SubscribersManager from "./subscribers-manager.component";
+import LocationsManager from "../containers/locations-manager.component";
+import PostsManager from "../containers/posts-manager.component";
+import UsersManager from "../containers/users-manager.component";
+import SubscribersManager from "../containers/subscribers-manager.component";
 import {PowerSettingsNew} from "@material-ui/icons";
 import styles from './manager.module.scss';
 import { AuthState } from "../../store/auth-store";
 import { LogOutAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import FilesManager from "./files-manager.component";
+import FilesManager from "../containers/files-manager.component";
 
 function Manager() {
     const classes = useStyles();

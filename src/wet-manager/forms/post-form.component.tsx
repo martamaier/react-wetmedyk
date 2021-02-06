@@ -4,7 +4,7 @@ import TextWidget from "../../shared/widgets/text-widget.component";
 import {Post} from "../../models/post.interface";
 import {Widget} from "../../models/widget.interface";
 import classes from './form.module.scss';
-import FormButtons from "./form-buttons.component";
+import FormButtons from "../shared/form-buttons.component";
 import * as _ from "lodash";
 import {getCurrentDate, getCurrentUTCDate} from "../utils/date-formats";
 import Dropdown, {STYLING_TYPES} from "../../shared/widgets/dropdown.component";

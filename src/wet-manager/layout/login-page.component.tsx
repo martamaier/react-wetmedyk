@@ -11,11 +11,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styles from './login-page.module.scss';
-import {Login} from "../models/login.interface";
+import {Login} from "../../models/login.interface";
 import {Redirect} from "react-router";
-import { LogInAction } from "../store/auth-store/actions";
+import { LogInAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthState } from "../store/auth-store";
+import { AuthState } from "../../store/auth-store";
 import * as _ from 'lodash';
 
 function LoginPage() {

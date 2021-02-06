@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {TextField} from "@material-ui/core";
-import styles from "../../wet-manager/components/form.module.scss";
+import styles from "../../wet-manager/forms/form.module.scss";
 import {Widget} from "../../models/widget.interface";
 
 function FileWidget(
