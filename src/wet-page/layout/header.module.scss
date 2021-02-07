@@ -41,8 +41,8 @@
       &Item {
         color: $white;
         cursor: pointer;
-        font-weight: lighter;
         transition: all .4s;
+        font-weight: normal;
         &:not(:last-child) {
           margin-right: 2rem;
         }
