@@ -20,6 +20,9 @@ import file from './files-store/reducer';
 import { ModalState } from "./modal-store";
 import {FileState} from "./files-store";
 import {addFile$, deleteFile$, loadFiles$} from "./files-store/effects";
+import user from './users-store/reducer';
+import {addUser$, loadUsers$} from "./users-store/effects";
+import {UsersState} from "./users-store";
 
 export default combineReducers({
     auth,
@@ -29,6 +32,7 @@ export default combineReducers({
     service,
     modal,
     file,
+    user,
 });
 
 export const rootEpic = combineEpics(
@@ -50,6 +54,8 @@ export const rootEpic = combineEpics(
     loadFiles$,
     deleteFile$,
     addFile$,
+    loadUsers$,
+    addUser$,
     );
 
 export interface RootState {
@@ -60,6 +66,7 @@ export interface RootState {
     service: ServiceState;
     modal: ModalState<any>;
     file: FileState;
+    user: UsersState;
 }
 
 export interface FeatureState {

@@ -12,7 +12,7 @@ const baseUrl = `${CURRENT_ENV}/posts`;
 export const loadPosts$ = (action$: ActionsObservable<PostActionsTypes>) => action$
 .pipe(
     ofType(PostActions.LoadPosts),
-    switchMap((action) => {
+    switchMap(() => {
         return fromPromise(axiosInstance.get(baseUrl))
             .pipe(
                 map((res: AxiosResponse<Post[]>) => AddPosts(res.data)),

@@ -5,7 +5,7 @@ import {TextField} from "@material-ui/core";
 import {Widget} from "../../models/widget.interface";
 
 function TextWidget(
-    { onChange, name, multiline, value }: Widget & { onChange: Function },
+    { onChange, name, multiline, value, type }: Widget & { onChange: Function },
 ) {
 
     return(
@@ -15,6 +15,7 @@ function TextWidget(
             multiline={multiline}
             id={name}
             name={name}
+            type={type ? type : 'text'}
             label={_.startCase(name)}
             variant="outlined"
             value={value}/>

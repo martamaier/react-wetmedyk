@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import axiosInstance from "../../services/interceptor";
-import {CURRENT_ENV} from "../../environment";
-import {AxiosResponse} from "axios";
 import {User} from "../models/user.interface";
 import DataTable from "../../shared/table.component";
 import {LinearProgress} from "@material-ui/core";
 import {DataTypes} from "../../models/data-table.interface";
+import {useDispatch, useSelector} from "react-redux";
+import {getIsLoading, getUsers} from "../../store/users-store/selectors";
+import {AddUser, LoadUsers} from "../../store/users-store/actions";
+import {FormModes} from "../models/form-modes.types";
+import UserForm from "../forms/user-form.component";
 
 function UsersManager() {
-    const [users, setUsers] = useState<User[]>([]);
+    const users = useSelector(getUsers);
+    const isLoading = useSelector(getIsLoading);
+    const dispatch = useDispatch();
     const columns: string[] = ['userName', 'dateCreated'];
     const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.date];
-
-    const getUsers = () => {
-        axiosInstance.get(`${CURRENT_ENV}/users`).then((res: AxiosResponse<User[]>) => {
-            setUsers(res.data);
-        });
-    }
+    const [formMode, setFormMode] = useState<FormModes | null>(null);
 
     const handleDelete = (id: User) => {
         if (users.length !== 1) {
@@ -26,8 +25,19 @@ function UsersManager() {
         }
     }
 
+    const handleAdd = () => {
+        setFormMode(FormModes.Add);
+    }
+
+    const handleSaveUser = (user: User) => {
+        dispatch(AddUser(user));
+        console.log(user);
+    }
+
     useEffect(() => {
-        getUsers();
+        if (!users.length && !isLoading) {
+            dispatch(LoadUsers());
+        }
     }, []);
 
     return (
@@ -38,12 +48,15 @@ function UsersManager() {
                     columns={columns}
                     columnTypes={columnTypes}
                     data={users}
-                    onAdd={() => {}}
+                    onAdd={handleAdd}
                     onEdit={() => {}}
                     onDelete={handleDelete} /> : <LinearProgress />
             }
+            {
+                formMode && <UserForm onSubmit={handleSaveUser} />
+            }
         </>
-    )
+    );
 }
 
 export default UsersManager;
