@@ -10,6 +10,6 @@ export const INITIAL_STATE: LocationState = {
     locations: [],
     isLoading: false,
     errorMessage: null,
-    selected: null,
+    selected: 1,
     isSaving: false,
 }
