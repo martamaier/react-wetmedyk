@@ -45,14 +45,12 @@ function UserForm({ onSubmit }: UserFormInterface) {
     }
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        console.log(event.currentTarget);
         event.preventDefault();
         const newUser: Partial<User> = buildUser({
             userName: formValues.userName.value,
             password: formValues.password.value,
         });
 
-        console.log(newUser);
         onSubmit(newUser);
     }
 

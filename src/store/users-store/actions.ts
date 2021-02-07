@@ -6,6 +6,8 @@ export enum UsersActions {
     AddUser = '[Users] Add User',
     AddUserSuccess = '[Users] Add User Success',
     AddUserError = '[Users] Add User Error',
+    DeleteUser = '[Users] Delete User',
+    DeleteUserSuccess = '[Users] Delete User Success',
 }
 
 export interface UsersActionsTypes {
@@ -44,5 +46,19 @@ export function AddUserError(payload: string): UsersActionsTypes {
     return {
         payload,
         type: UsersActions.AddUserError,
+    }
+}
+
+export function DeleteUser(payload: number): UsersActionsTypes {
+    return {
+        payload,
+        type: UsersActions.DeleteUser,
+    }
+}
+
+export function DeleteUserSuccess(payload: number): UsersActionsTypes {
+    return {
+        payload,
+        type: UsersActions.DeleteUserSuccess,
     }
 }

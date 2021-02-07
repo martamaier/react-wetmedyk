@@ -1,6 +1,6 @@
 import {CURRENT_ENV} from "../../environment";
 import {ActionsObservable, ofType} from "redux-observable";
-import {AddUserError, AddUsers, AddUserSuccess, UsersActions, UsersActionsTypes} from "./actions";
+import {AddUserError, AddUsers, AddUserSuccess, DeleteUserSuccess, UsersActions, UsersActionsTypes} from "./actions";
 import {switchMap, map, catchError} from "rxjs/operators";
 import {fromPromise} from "rxjs/internal-compatibility";
 import axiosInstance from "../../services/interceptor";
@@ -29,6 +29,17 @@ export const addUser$ = (action$: ActionsObservable<UsersActionsTypes>) => actio
                 .pipe(
                     map((res: AxiosResponse<User>) => AddUserSuccess(res.data)),
                     catchError((err: Error) => of(AddUserError(err.message))),
+                );
+        }),
+    );
+
+export const deleteUser$ = (action$: ActionsObservable<UsersActionsTypes>) => action$
+    .pipe(
+        ofType(UsersActions.DeleteUser),
+        switchMap((action) => {
+            return fromPromise(axiosInstance.delete(`${baseUrl}/${action.payload}`))
+                .pipe(
+                    map((res: AxiosResponse<User>) => DeleteUserSuccess(res.data.id)),
                 );
         }),
     );

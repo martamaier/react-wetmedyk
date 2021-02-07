@@ -21,7 +21,7 @@ import { ModalState } from "./modal-store";
 import {FileState} from "./files-store";
 import {addFile$, deleteFile$, loadFiles$} from "./files-store/effects";
 import user from './users-store/reducer';
-import {addUser$, loadUsers$} from "./users-store/effects";
+import {addUser$, deleteUser$, loadUsers$} from "./users-store/effects";
 import {UsersState} from "./users-store";
 
 export default combineReducers({
@@ -56,6 +56,7 @@ export const rootEpic = combineEpics(
     addFile$,
     loadUsers$,
     addUser$,
+    deleteUser$,
     );
 
 export interface RootState {

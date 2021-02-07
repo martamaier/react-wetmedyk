@@ -5,7 +5,7 @@ import {LinearProgress} from "@material-ui/core";
 import {DataTypes} from "../../models/data-table.interface";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsLoading, getUsers} from "../../store/users-store/selectors";
-import {AddUser, LoadUsers} from "../../store/users-store/actions";
+import {AddUser, DeleteUser, LoadUsers} from "../../store/users-store/actions";
 import {FormModes} from "../models/form-modes.types";
 import UserForm from "../forms/user-form.component";
 
@@ -17,11 +17,11 @@ function UsersManager() {
     const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.date];
     const [formMode, setFormMode] = useState<FormModes | null>(null);
 
-    const handleDelete = (id: User) => {
+    const handleDelete = (user: User) => {
         if (users.length !== 1) {
-            console.log('can remove ', id);
+            dispatch(DeleteUser(user.id));
         } else {
-            console.log('cannot remove ', id);
+            console.log('cannot remove ', user);
         }
     }
 
@@ -31,7 +31,6 @@ function UsersManager() {
 
     const handleSaveUser = (user: User) => {
         dispatch(AddUser(user));
-        console.log(user);
     }
 
     useEffect(() => {
