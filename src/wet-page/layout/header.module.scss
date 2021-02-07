@@ -1,9 +1,65 @@
 @import "src/scss/variables";
 @import "src/scss/mixins";
 
+.navbar {
+  background-color: $secondary-red;
+  padding: 1.5rem 0;
+  @include container-position;
+  &Wrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      align-self: center;
+      justify-self: center;
+      width: 25rem;
+      height: auto;
+    }
+    .toggle {
+      & span {
+        width: 4rem;
+        height: 4rem;
+      }
+      width: 6rem;
+      height: 6rem;
+    }
+    &Items {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-grow: 1;
+      font-size: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      @media (max-width: 991px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      &Item {
+        color: $white;
+        cursor: pointer;
+        font-weight: lighter;
+        transition: all .4s;
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+        &:hover {
+          color: $butterScotch;
+        }
+        @media (max-width: 991px) {
+          margin: 1rem;
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+}
+
 header {
   @include container-position;
-  padding: 1.5rem 0;
   background-color: $secondary-red;
   .headerWrapper {
     display: flex;
