@@ -4,14 +4,15 @@ import {
     AddEmployeeSuccess,
     DeleteEmployeeSuccess,
     EmployeeActions,
-    EmployeeActionsTypes, UpdateEmployeeSuccess
+    EmployeeActionsTypes, EmployeeError, UpdateEmployeeSuccess
 } from "./actions";
-import {map, switchMap} from "rxjs/operators";
+import {catchError, map, switchMap} from "rxjs/operators";
 import axiosInstance from "../../services/interceptor";
 import {CURRENT_ENV} from "../../environment";
 import {fromPromise} from "rxjs/internal-compatibility";
 import {AxiosResponse} from "axios";
 import {Employee} from "../../models/employee.interface";
+import {of} from "rxjs";
 
 const baseUrl = `${CURRENT_ENV}/employees`;
 
@@ -22,6 +23,7 @@ export const loadEmployees$ = (action$: ActionsObservable<EmployeeActionsTypes>)
             return fromPromise(axiosInstance.get(baseUrl))
                 .pipe(
                     map((res: AxiosResponse<Employee[]>) => AddEmployees(res.data)),
+                    catchError((error: Error) => of(EmployeeError(error.message))),
                 );
         }),
     );

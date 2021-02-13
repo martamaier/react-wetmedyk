@@ -19,6 +19,7 @@ export default function(
                 ...newState,
                 services: [...newState.services, ...action.payload as PrimaryServiceCard[]],
                 isLoading: false,
+                errorMessage: null,
             }
         default:
             return newState;

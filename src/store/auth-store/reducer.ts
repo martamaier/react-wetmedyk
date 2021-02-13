@@ -11,7 +11,7 @@ export default function (state: AuthState = INITIAL_STATE, action: AuthActionsTy
                 user: {
                     ...action.payload as AuthToken,
                 },
-                errorMessage: '',
+                errorMessage: null,
             }
 
         case AuthActions.LogOutSuccess:

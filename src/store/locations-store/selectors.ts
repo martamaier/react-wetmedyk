@@ -10,3 +10,4 @@ export const getSelectedLocation = createSelector(
     (id: number | null, locations: Location[]): Location | null =>
         !id ? null : locations.find((location: Location) => location.id === id) || null
 );
+export const getLocationError = (state: RootState): string | null => state.location.errorMessage;

@@ -22,6 +22,7 @@ export default function(
                  ...(action.payload as Employee[]),
              ],
              isLoading: false,
+             errorMessage: null,
          }
         case EmployeeActions.UpdateEmployee:
         case EmployeeActions.AddEmployee:
@@ -37,6 +38,7 @@ export default function(
                 ...newState,
                 employees,
                 isSaving: false,
+                errorMessage: null,
             }
         case EmployeeActions.SelectEmployee:
             return {
@@ -47,6 +49,13 @@ export default function(
             return {
                 ...newState,
                 employees: newState.employees.filter(employee => employee.id !== action.payload)
+            }
+        case EmployeeActions.EmployeeError:
+            return {
+                ...newState,
+                isLoading: false,
+                isSaving: false,
+                errorMessage: action.payload,
             }
         default:
             return state;

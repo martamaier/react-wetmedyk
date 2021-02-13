@@ -20,6 +20,7 @@ export default function (
                 ...newState,
                 posts: [...newState.posts, ...action.payload as Post[]],
                 isLoading: false,
+                errorMessage: null,
             }
         case PostActions.SetSelectedPost:
             return {
@@ -41,12 +42,14 @@ export default function (
                 ...newState,
                 posts,
                 isSaving: false,
+                errorMessage: null,
             }
         case PostActions.DeletePostSuccess:
             return {
                 ...newState,
                 isSaving: false,
                 posts: newState.posts.filter((post: Post) => post.id !== action.payload),
+                errorMessage: null,
             }
         default:
             return state;

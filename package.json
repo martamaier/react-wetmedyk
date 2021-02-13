@@ -5,6 +5,7 @@
   "homepage": "http://server493514.nazwa.pl/staging/build/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -52,14 +53,14 @@
   },
   "devDependencies": {
     "@material-ui/icons": "^4.9.1",
+    "@types/jest": "^24.9.1",
     "@types/lodash": "^4.14.161",
+    "@types/node": "^12.12.62",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
     "@types/redux": "^3.6.0",
-    "@types/redux-form": "^8.3.0",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.62",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8"
+    "@types/redux-form": "^8.3.0"
   }
 }

@@ -16,6 +16,7 @@ export default function (
                 ...state,
                 isLoading: false,
                 files: [...state.files, ...action.payload as string[]],
+                errorMessage: null,
             }
         case FileActions.DeleteFile:
         case FileActions.AddFile:
@@ -28,12 +29,14 @@ export default function (
                 ...state,
                 isSaving: false,
                 files: state.files.filter((file: string) => file !== action.payload),
+                errorMessage: null,
             }
         case FileActions.AddFileSuccess:
             return {
                 ...state,
                 isSaving: false,
                 files: [...state.files, action.payload],
+                errorMessage: null,
             }
         case FileActions.FetchError:
             return {

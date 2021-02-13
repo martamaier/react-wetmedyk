@@ -20,6 +20,7 @@ export default function (
                 ...newState,
                 locations: [...newState.locations, ...action.payload as Location[]],
                 isLoading: false,
+                errorMessage: null,
             }
         case LocationActions.SelectLocation:
             return {
@@ -36,6 +37,7 @@ export default function (
                 ...newState,
                 isSaving: false,
                 locations: newState.locations.filter((location: Location) => location.id !== action.payload),
+                errorMessage: null,
             }
         case LocationActions.AddLocation:
         case LocationActions.UpdateLocation:
@@ -48,6 +50,7 @@ export default function (
                 ...newState,
                 isSaving: false,
                 locations: [...newState.locations, action.payload],
+                errorMessage: null,
             }
         case LocationActions.UpdateLocationSuccess:
             const newLocation = (action.payload as Location);
@@ -55,6 +58,7 @@ export default function (
                 ...newState,
                 isSaving: false,
                 locations: _.sortBy([...newState.locations.filter((location: Location) => location.id !== newLocation.id), newLocation], 'id'),
+                errorMessage: null,
             }
         default:
             return newState;

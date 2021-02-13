@@ -18,6 +18,7 @@ export default function (
                 ...state,
                 isLoading: false,
                 users: [...state.users, ...action.payload as User[]],
+                errorMessage: null,
             }
         case UsersActions.AddUser:
         case UsersActions.DeleteUser:
@@ -30,6 +31,7 @@ export default function (
                 ...state,
                 isSaving: false,
                 users: [...state.users, action.payload],
+                errorMessage: null,
             }
         case UsersActions.AddUserError:
             return {
@@ -42,6 +44,7 @@ export default function (
                 ...state,
                 isSaving: false,
                 users: state.users.filter((user: User) => user.id !== action.payload),
+                errorMessage: null,
             }
         default:
             return state;

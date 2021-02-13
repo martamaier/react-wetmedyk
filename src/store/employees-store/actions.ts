@@ -12,11 +12,12 @@ export enum EmployeeActions {
     DeleteEmployeeSuccess = '[Employees] Delete Employee Success',
     DeleteEmployees = '[Employees] Delete Employees',
     SelectEmployee = '[Employees] Set Selected Employee',
+    EmployeeError = '[Employees] Employee Error',
 }
 
 export interface EmployeeActionsTypes {
     type: EmployeeActions;
-    payload?: Employee | number | Employee[] | null;
+    payload?: Employee | number | Employee[] | null | string;
 }
 
 export function LoadEmployees(): EmployeeActionsTypes {
@@ -93,5 +94,12 @@ export function UpdateEmployeeSuccess(payload: Employee): EmployeeActionsTypes {
     return {
         payload,
         type: EmployeeActions.UpdateEmployeeSuccess,
+    }
+}
+
+export function EmployeeError(payload: string): EmployeeActionsTypes {
+    return {
+        payload,
+        type: EmployeeActions.EmployeeError,
     }
 }
