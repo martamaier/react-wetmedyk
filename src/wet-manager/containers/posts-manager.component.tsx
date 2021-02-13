@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DataTable from "../../shared/table.component";
-import {LinearProgress} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsLoading, getPosts, getSelectedPost} from "../../store/posts-store/selectors";
 import {AddPost, DeletePost, LoadPosts, SetSelectedPost, UpdatePost} from "../../store/posts-store/actions";
@@ -9,10 +8,11 @@ import {getUserName} from "../../store/auth-store/selectors";
 import {Post} from "../../models/post.interface";
 import {FormModes} from "../models/form-modes.types";
 import {DataTypes} from "../../models/data-table.interface";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import {DataFetchProps} from "../models/data-fetch-props.interface";
+import {DataFetchInterface} from "../models/data-fetch.interface";
 
-function PostsManager() {
-    const posts = useSelector(getPosts);
-    const isLoading = useSelector(getIsLoading);
+function PostsManager({ data }: DataFetchProps<Post>) {
     const selectedPost = useSelector(getSelectedPost);
     const userName = useSelector(getUserName);
     const dispatch = useDispatch();
@@ -38,33 +38,31 @@ function PostsManager() {
         dispatch(formMode === FormModes.Add ? AddPost(post) : UpdatePost(post));
     }
 
-    useEffect(() => {
-        if (!posts.length && !isLoading) {
-            dispatch(LoadPosts());
-        }
-    }, []);
-
     return (
         <>
             <p>Posts Manager</p>
-            {
-                !isLoading ? <DataTable
+            <DataTable
                     columnTypes={columnTypes}
                     columns={columns}
-                    data={posts}
+                    data={data || []}
                     onAdd={handleAddPost}
                     onDelete={handleDeletePost}
-                    onEdit={handleEditPost} /> : <LinearProgress/>
-            }
+                    onEdit={handleEditPost} />
             {
                 (selectedPost || formMode) && <PostForm
                     onSubmit={handleUpdatePost}
                     userName={userName}
-                    post={selectedPost} />
+                    data={selectedPost} />
             }
         </>
 
     )
 }
 
-export default PostsManager;
+const options: DataFetchInterface<Post> = {
+    dataLoader: LoadPosts,
+    dataSelector: getPosts,
+    loadingSelector: getIsLoading,
+};
+
+export default withDataFetch(PostsManager, options);

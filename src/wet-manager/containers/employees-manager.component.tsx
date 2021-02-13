@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Employee} from "../../models/employee.interface";
 import DataTable from "../../shared/table.component";
-import {LinearProgress} from "@material-ui/core";
 import EmployeeForm from "../forms/employee-form.component";
 import {useDispatch, useSelector} from "react-redux";
 import {getEmployees, getIsLoading, getSelectedEmployee} from "../../store/employees-store/selectors";
@@ -14,11 +13,12 @@ import {
 } from "../../store/employees-store/actions";
 import {DataTypes} from "../../models/data-table.interface";
 import {FormModes} from "../models/form-modes.types";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import {DataFetchProps} from "../models/data-fetch-props.interface";
+import {DataFetchInterface} from "../models/data-fetch.interface";
 
-function EmployeesManager() {
+function EmployeesManager({ data }: DataFetchProps<Employee>) {
     const dispatch = useDispatch();
-    const employees = useSelector(getEmployees);
-    const isLoading = useSelector(getIsLoading);
     const selectedEmployee = useSelector(getSelectedEmployee);
     const [formMode, setFormMode] = useState<FormModes | null>(null);
 
@@ -38,32 +38,31 @@ function EmployeesManager() {
     const columns: string[] = ['photo', 'firstName', 'lastName', 'title'];
     const columnTypes: DataTypes[] = [DataTypes.image, DataTypes.text, DataTypes.text, DataTypes.text];
 
-    useEffect(() => {
-        if (!employees.length && !isLoading) {
-            dispatch(LoadEmployees())
-        }
-    }, []);
-
     return (
         <>
             <p>Employees Manager</p>
-            {!isLoading ?
             <DataTable
                 columnTypes={columnTypes}
                 columns={columns}
-                data={employees}
+                data={data || []}
                 onAdd={handleAddEmployee}
                 onDelete={handleDeleteEmployee}
-                onEdit={handleEditEmployee}/> : <LinearProgress/>}
+                onEdit={handleEditEmployee}/>
             {
                 (selectedEmployee || formMode) &&
                 <EmployeeForm
                     onSubmit={handleUpdateEmployee}
-                    employee={selectedEmployee}
+                    data={selectedEmployee}
                 />
             }
         </>
     );
 }
 
-export default EmployeesManager;
+const options: DataFetchInterface<Employee> = {
+    dataLoader: LoadEmployees,
+    loadingSelector: getIsLoading,
+    dataSelector: getEmployees,
+};
+
+export default withDataFetch(EmployeesManager, options);

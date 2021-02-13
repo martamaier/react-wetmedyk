@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DataTable from "../../shared/table.component";
-import {LinearProgress} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsLoading, getLocations, getSelectedLocation} from "../../store/locations-store/selectors";
 import {
@@ -13,11 +12,12 @@ import {
 import {Location} from "../../models/location.interface";
 import {FormModes} from "../models/form-modes.types";
 import LocationForm from "../forms/location-form.component";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import {DataFetchProps} from "../models/data-fetch-props.interface";
+import {DataFetchInterface} from "../models/data-fetch.interface";
 
-function LocationsManager() {
+function LocationsManager({ data }: DataFetchProps<Location>) {
     const dispatch = useDispatch();
-    const locations = useSelector(getLocations);
-    const isLoading = useSelector(getIsLoading);
     const selectedLocation = useSelector(getSelectedLocation);
     const [formMode, setFormMode] = useState<FormModes | null>(null);
     const columns: string[] = ['name', 'street', 'city', 'zipCode', 'phone', 'openHours'];
@@ -40,33 +40,30 @@ function LocationsManager() {
         dispatch(DeleteLocation(id));
     }
 
-    useEffect(()=> {
-        if (!locations.length && !isLoading) {
-            dispatch(LoadLocations());
-        }
-    }, [dispatch, locations, isLoading])
-
     return (
         <>
             <p>Locations Manager</p>
-            {!isLoading ?
                 <DataTable
                     columnTypes={[]}
                     columns={columns}
-                    data={locations}
+                    data={data || []}
                     onAdd={handleAddLocation}
                     onDelete={handleDeleteLocation}
-                    onEdit={handleEditLocation} /> : <LinearProgress/>
-            }
-
+                    onEdit={handleEditLocation} />
             {
                 (selectedLocation || formMode) &&
                     <LocationForm
-                        location={selectedLocation}
+                        data={selectedLocation}
                         onSubmit={handleUpdateLocation} />
             }
         </>
     );
 }
 
-export default LocationsManager;
+const options: DataFetchInterface<Location> = {
+    dataSelector: getLocations,
+    loadingSelector: getIsLoading,
+    dataLoader: LoadLocations,
+};
+
+export default withDataFetch(LocationsManager, options);

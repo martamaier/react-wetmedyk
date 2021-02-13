@@ -1,16 +1,17 @@
-import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 import ImageCard from "../components/image-card.component";
 import classes from './files-manager.module.scss';
 import FileWidget from "../../shared/widgets/file-widget.component";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getFiles, getIsLoading} from "../../store/files-store/selectors";
 import {AddFile, DeleteFile, LoadFiles} from "../../store/files-store/actions";
 import {Button} from "@material-ui/core";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import {DataFetchProps} from "../models/data-fetch-props.interface";
+import {DataFetchInterface} from "../models/data-fetch.interface";
 
-function FilesManager () {
+function FilesManager({ data }: DataFetchProps<any>) {
     const dispatch = useDispatch();
-    const images = useSelector(getFiles);
-    const isLoading = useSelector(getIsLoading);
     const [formValue, setFormValue] = useState<string>('');
 
     const handleUploadImage = (event: FormEvent<HTMLFormElement>) => {
@@ -30,25 +31,19 @@ function FilesManager () {
         setFormValue(event.currentTarget.value);
     }
 
-    useEffect(() => {
-        if (!images.length && !isLoading) {
-            dispatch(LoadFiles());
-        }
-    }, []);
-
     return (
         <>
             <p>Files Manager</p>
             <form className={classes.form} onSubmit={handleUploadImage}>
                 <FileWidget value={formValue} name="photo" multiline={false} onChange={handleChange} />
                 <Button type="submit"
-                        disabled={!!images.find((image: string) => formValue.includes(image)) || !formValue.length}
+                        disabled={!!data?.find((image: string) => formValue.includes(image)) || !formValue.length}
                         variant="contained"
                         color="primary" >Upload Image</Button>
             </form>
             <div className={classes.imageContainer}>
                 {
-                    images.map((image: string) => (
+                    (data || []).map((image: string) => (
                         <ImageCard
                             onDelete={handleDelete}
                             key={image}
@@ -60,4 +55,10 @@ function FilesManager () {
     );
 }
 
-export default FilesManager;
+const options: DataFetchInterface<any> = {
+    dataLoader: LoadFiles,
+    dataSelector: getFiles,
+    loadingSelector: getIsLoading,
+};
+
+export default withDataFetch(FilesManager, options);

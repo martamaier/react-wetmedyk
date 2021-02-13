@@ -1,24 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {User} from "../models/user.interface";
 import DataTable from "../../shared/table.component";
-import {LinearProgress} from "@material-ui/core";
 import {DataTypes} from "../../models/data-table.interface";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getIsLoading, getUsers} from "../../store/users-store/selectors";
 import {AddUser, DeleteUser, LoadUsers} from "../../store/users-store/actions";
 import {FormModes} from "../models/form-modes.types";
 import UserForm from "../forms/user-form.component";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import {DataFetchProps} from "../models/data-fetch-props.interface";
+import {DataFetchInterface} from "../models/data-fetch.interface";
 
-function UsersManager() {
-    const users = useSelector(getUsers);
-    const isLoading = useSelector(getIsLoading);
+function UsersManager( { data }: DataFetchProps<User>) {
+
     const dispatch = useDispatch();
     const columns: string[] = ['userName', 'dateCreated'];
     const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.date];
     const [formMode, setFormMode] = useState<FormModes | null>(null);
 
     const handleDelete = (user: User) => {
-        if (users.length !== 1) {
+        if (data?.length !== 1) {
             dispatch(DeleteUser(user.id));
         } else {
             console.log('cannot remove ', user);
@@ -33,29 +34,27 @@ function UsersManager() {
         dispatch(AddUser(user));
     }
 
-    useEffect(() => {
-        if (!users.length && !isLoading) {
-            dispatch(LoadUsers());
-        }
-    }, []);
-
     return (
         <>
             <p>Users Manager</p>
-            {
-                users.length ? <DataTable
+            <DataTable
                     columns={columns}
                     columnTypes={columnTypes}
-                    data={users}
+                    data={data || []}
                     onAdd={handleAdd}
                     onEdit={() => {}}
-                    onDelete={handleDelete} /> : <LinearProgress />
-            }
+                    onDelete={handleDelete} />
             {
-                formMode && <UserForm onSubmit={handleSaveUser} />
+                formMode && <UserForm data={null} onSubmit={handleSaveUser} />
             }
         </>
     );
 }
 
-export default UsersManager;
+const options: DataFetchInterface<User> = {
+    dataSelector: getUsers,
+    loadingSelector: getIsLoading,
+    dataLoader: LoadUsers,
+};
+
+export default withDataFetch(UsersManager, options);
