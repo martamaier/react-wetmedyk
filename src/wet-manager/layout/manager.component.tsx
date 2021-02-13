@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import {useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -43,17 +43,6 @@ function Manager() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
-    useEffect(() => {
-        const html = document.querySelector('html');
-        const header = document.querySelector('header');
-        // @ts-ignore
-        html.style.fontSize = '100%'
-        // @ts-ignore
-        header.style.padding = '0';
-        // @ts-ignore
-        header.style.alignItems = 'unset';
-    }, []);
 
     return (
         <BrowserRouter>

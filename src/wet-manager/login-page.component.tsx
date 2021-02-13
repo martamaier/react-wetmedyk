@@ -94,10 +94,10 @@ function LoginPage() {
                 </Typography>
             </Box>
             {
-                error?.length && <ErrorMessage text={error}/>
+                error && error.length && <ErrorMessage text={error}/>
             }
             {
-                !_.isEmpty(authState.user) ? <Redirect to="/manager"/> : null
+                !_.isEmpty(authState.user) && <Redirect to="/manager"/>
             }
         </Container>
     );
