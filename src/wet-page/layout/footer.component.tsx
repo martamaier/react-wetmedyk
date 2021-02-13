@@ -3,14 +3,16 @@ import logo from "../../images/logo.png";
 import styles from './footer.module.scss';
 import {Col, Container, Row} from "react-bootstrap";
 import {Location} from "../../models/location.interface";
-import {useSelector} from "react-redux";
-import {getLocations} from "../../store/locations-store/selectors";
+import {getIsLoading, getLocations} from "../../store/locations-store/selectors";
 import CustomExpandLess from "../../shared/custom-expand-less.component";
 import {scrollToElement} from "../../utils/scroller";
+import {DataFetchInterface} from "../../wet-manager/models/data-fetch.interface";
+import withDataFetch from "../../wet-manager/shared/hoc/with-data-fetch.component";
+import {LoadLocations} from "../../store/locations-store/actions";
+import {DataFetchProps} from "../../wet-manager/models/data-fetch-props.interface";
 
-function Footer() {
+function Footer({ data }: DataFetchProps<Location>) {
     const copyrights = '@ 2020 Wetmedyk. All rights reserved.';
-    const locations = useSelector(getLocations);
 
     return (
         <footer>
@@ -21,7 +23,7 @@ function Footer() {
                             <img src={logo} alt=""/>
                         </Col>
                         {
-                            locations.map((location: Location) => (
+                            (data || []).map((location: Location) => (
                                 <Col key={location.id} md={4} className={styles.footerWrapperLocations}>
                                     <div className={styles.location}>
                                         <h3>{location.name}</h3>
@@ -42,4 +44,10 @@ function Footer() {
         </footer>);
 }
 
-export default Footer;
+const options: DataFetchInterface<Location> = {
+    dataLoader: LoadLocations,
+    dataSelector: getLocations,
+    loadingSelector: getIsLoading,
+};
+
+export default withDataFetch(Footer, options);

@@ -6,7 +6,7 @@ import {DataFetchInterface} from "../../models/data-fetch.interface";
 function withDataFetch<T>(
     WrappedComponent: ComponentType<T>, { dataSelector, loadingSelector, dataLoader }: DataFetchInterface<T>,
 ) {
-    return (props: T) => {
+    return (props: any) => {
         const dispatch = useDispatch();
         const data = useSelector(dataSelector);
         const isLoading = useSelector(loadingSelector);
