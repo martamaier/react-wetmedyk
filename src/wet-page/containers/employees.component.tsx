@@ -1,17 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Employee} from "../../models/employee.interface";
 import EmployeeCard from "../components/employee.component";
 import '../../scss/_utilities.scss';
 import {Container} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
 import {LoadEmployees} from "../../store/employees-store/actions";
 import {getEmployees, getIsLoading} from "../../store/employees-store/selectors";
 import classes from './employees.module.scss';
-import withDataFetch from "../../wet-manager/shared/hoc/with-data-fetch.component";
-import {DataFetchInterface} from "../../wet-manager/models/data-fetch.interface";
-import {DataFetchProps} from "../../wet-manager/models/data-fetch-props.interface";
 
-function Employees({ data }: DataFetchProps<Employee>) {
-    const heading =  'O nas';
+function Employees() {
+    const dispatch = useDispatch();
+    const employees = useSelector(getEmployees);
+    const isLoading = useSelector(getIsLoading);
+    const {heading} = {
+        heading: 'O nas',
+    }
+
+    useEffect(() => {
+        if (!employees.length && !isLoading) {
+            dispatch(LoadEmployees());
+        }
+    }, [dispatch, employees, isLoading])
 
     return (
         <section id={'employees'} className={['sectionPadding', classes.employees].join(' ')}>
@@ -21,7 +30,7 @@ function Employees({ data }: DataFetchProps<Employee>) {
                 </div>
                 <div className={classes.employeesContainerWrapper}>
                     {
-                        (data || []).map((employee: Employee) => (
+                        employees.map((employee: Employee) => (
                             <EmployeeCard
                                 key={employee.id}
                                 employee={employee}
@@ -33,11 +42,5 @@ function Employees({ data }: DataFetchProps<Employee>) {
         </section>);
 }
 
-const options: DataFetchInterface<Employee> = {
-    dataSelector: getEmployees,
-    loadingSelector: getIsLoading,
-    dataLoader: LoadEmployees,
-}
-
-export default withDataFetch(Employees, options);
+export default Employees;
 
