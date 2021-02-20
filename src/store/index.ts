@@ -14,7 +14,7 @@ import { PostState } from "./posts-store";
 import {addPost$, deletePost$, loadPosts$, updatePost$} from "./posts-store/effects";
 import { ServiceState } from "./services-store";
 import service from './services-store/reducer';
-import { loadServices$ } from "./services-store/effects";
+import {addService$, deleteService$, loadServices$, updateService$} from "./services-store/effects";
 import modal from './modal-store/reducer';
 import file from './files-store/reducer';
 import { ModalState } from "./modal-store";
@@ -57,6 +57,9 @@ export const rootEpic = combineEpics(
     loadUsers$,
     addUser$,
     deleteUser$,
+    addService$,
+    updateService$,
+    deleteService$,
     );
 
 export interface RootState {

@@ -21,6 +21,35 @@ export default function(
                 isLoading: false,
                 errorMessage: null,
             }
+        case ServiceActions.AddService:
+        case ServiceActions.UpdateService:
+        case ServiceActions.DeleteService:
+            return {
+                ...newState,
+                isSaving: true,
+            }
+        case ServiceActions.AddServiceSuccess:
+            return {
+                ...newState,
+                isSaving: false,
+                services: [...newState.services, action.payload],
+            }
+        case ServiceActions.UpdateServiceSuccess:
+            const payload = action.payload as PrimaryServiceCard;
+            const newServices = [...newState.services.filter((service: PrimaryServiceCard) => service.id !== payload.id), payload];
+            return {
+                ...newState,
+                isSaving: false,
+                services: _.sortBy(newServices, 'id'),
+            }
+        case ServiceActions.DeleteServiceSuccess:
+            const id = (action.payload as PrimaryServiceCard).id;
+            const services = newState.services.filter((service: PrimaryServiceCard) => service.id !== id);
+            return {
+                ...newState,
+                services,
+                isSaving: false,
+            }
         default:
             return newState;
     }
