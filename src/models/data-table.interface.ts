@@ -5,6 +5,7 @@ export interface DataTableInterface<T> {
     onAdd: Function;
     onEdit: Function;
     onDelete: Function;
+    valueMap?: { [key: string]: string } | null,
 }
 
 export enum DataTypes {
@@ -12,5 +13,7 @@ export enum DataTypes {
     text = 'text',
     number = 'number',
     date = 'date',
+    array = 'array',
+    mappedArray = 'mappedArray',
 }
 

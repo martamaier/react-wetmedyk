@@ -24,12 +24,22 @@ const useStyles = makeStyles((theme) => ({
     buttonGroup: {
         display: 'flex',
         justifyContent: 'flex-end',
+    },
+    list: {
+        margin: 0,
+        padding: 0,
+    },
+    listItem: {
+        fontSize: '0.875rem',
+        fontWeight: 400,
+        lineHeight: 1.43,
+        listStyle: 'none',
     }
 }));
 
 
 
-function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes }: DataTableInterface<T>) {
+function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes, valueMap }: DataTableInterface<T>) {
     const classes = useStyles();
     const [selected, setSelected] = useState<number | null>(null);
     const handleSelection = (selectedId: number) => {
@@ -57,6 +67,21 @@ function DataTable<T>({ data, onAdd, onEdit, onDelete, columns, columnTypes }: D
                 return <Avatar alt="avatar" src={(row as any)[columnName]}/>
             case DataTypes.date:
                 return <span>{new Date(Number.parseFloat(row[columnName])).toString()}</span>;
+            case DataTypes.array:
+            case DataTypes.mappedArray:
+                return (<>
+                    {
+                        Array.isArray(row[columnName]) ?
+                            <ul className={classes.list}>
+                                {
+                                    row[columnName].map((item: string) => (
+                                        <li className={classes.listItem}
+                                            key={item}>{valueMap && columnType === DataTypes.mappedArray ? valueMap[item] : item}</li>))
+                                }
+                            </ul>
+                            : row[columnName]
+                    }
+                </>);
             case DataTypes.text:
             default:
                 return (row as any)[columnName];

@@ -26,6 +26,7 @@ import { AuthState } from "../../store/auth-store";
 import { LogOutAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import FilesManager from "../containers/files-manager.component";
+import ServicesManager from "../containers/services-manager";
 
 function Manager() {
     const classes = useStyles();
@@ -104,6 +105,7 @@ function Manager() {
                     <Route path="/manager/users" component={UsersManager}/>
                     <Route path="/manager/subscribers" component={SubscribersManager}/>
                     <Route path="/manager/files" component={FilesManager}/>
+                    <Route path="/manager/services" component={ServicesManager}/>
                 </main>
             </div>
         </BrowserRouter>

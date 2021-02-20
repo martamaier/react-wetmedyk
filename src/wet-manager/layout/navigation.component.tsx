@@ -2,7 +2,7 @@ import React from 'react';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {AttachFile, LocationOn, PersonPin, PostAdd, SupervisorAccount} from "@material-ui/icons";
+import {AttachFile, LocationOn, PersonPin, Pets, PostAdd, SupervisorAccount} from "@material-ui/icons";
 import ListItemText from "@material-ui/core/ListItemText";
 import {NavLink} from "react-router-dom";
 import {ManagerRoutes} from "../models/manager-routes.interface";
@@ -30,10 +30,15 @@ const routes: ManagerRoutes[] = [
         displayName: 'Users',
     },
     {
+        path: '/manager/services',
+        icon: <Pets />,
+        displayName: 'Services',
+    },
+    {
         path: '/manager/files',
         icon: <AttachFile />,
         displayName: 'Files',
-    }
+    },
 ];
 
 function Navigation() {
