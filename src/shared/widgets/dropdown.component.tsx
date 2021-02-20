@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import FormControl from "@material-ui/core/FormControl";
 import {InputLabel, Select} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -42,7 +42,7 @@ function Dropdown({ items, onChange, value, styling, label }: DropdownProps) {
                             id="demo-simple-select-outlined"
                             value={value}
                             classes={customStyling ? { iconOutlined: classes.iconOutlined } : {}}
-                            onChange={onChange}>
+                            onChange={(event: ChangeEvent<{ value: unknown }>) => onChange({ currentTarget: { value: event.target.value } }, label)}>
                         {
                             items.map(({ value, name }: DropdownItem) => (
                                 <MenuItem

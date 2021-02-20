@@ -21,8 +21,8 @@ function PrimaryServices() {
     const locations = useSelector(getLocations);
     const [displayServices, setDisplayServices] = useState<PrimaryServiceCard[]>([]);
 
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        dispatch(SelectLocation(event.target.value as any));
+    const handleChange = (event: { currentTarget: { value: unknown } }, name: string) => {
+        dispatch(SelectLocation(event.currentTarget.value as any));
     };
 
     const openModal = (id: number | null = null) => {

@@ -1,3 +1,5 @@
+import {DropdownItem} from "../shared/widgets/dropdown.component";
+
 export enum INPUT_TYPE {
     text = 'text',
     password = 'password',
@@ -10,4 +12,5 @@ export interface Widget {
     multiline: boolean;
     select?: boolean;
     type?: INPUT_TYPE | null;
+    items?: DropdownItem[];
 }

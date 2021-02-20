@@ -6,10 +6,14 @@ import TextWidget from "../../../shared/widgets/text-widget.component";
 import FormButtons from "../form-buttons.component";
 import * as _ from "lodash";
 import {BaseForm, FormInterface, FormState} from "../../models/form.interface";
+import Dropdown, {STYLING_TYPES} from "../../../shared/widgets/dropdown.component";
 
-function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, { formConfig, buildItem }: FormInterface<T>) {
+function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, {
+    formConfig,
+    buildItem
+}: FormInterface<T>) {
     return (props: T) => {
-        const { data, onSubmit, userName } = props;
+        const {data, onSubmit, userName} = props;
         const [fields, setFields] = useState<string[]>([]);
 
         const getInitialState = useCallback((initialState: FormState, values: T | null) => {
@@ -71,10 +75,18 @@ function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, { f
                         {
                             Object.values(formValues)
                                 .map((formElement: Widget) => (
-                                    <TextWidget
-                                        key={formElement.name}
-                                        {...formElement}
-                                        onChange={handleChange}/>
+                                    formElement?.select ?
+                                        <Dropdown
+                                            label={formElement.name}
+                                            key={formElement.name}
+                                            items={formElement?.items || []}
+                                            value={formElement.value}
+                                            styling={STYLING_TYPES.Default}
+                                            onChange={handleChange}/> :
+                                        <TextWidget
+                                            key={formElement.name}
+                                            {...formElement}
+                                            onChange={handleChange}/>
                                 ))
                         }
                         <FormButtons

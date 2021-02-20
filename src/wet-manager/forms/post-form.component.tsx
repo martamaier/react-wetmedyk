@@ -5,6 +5,8 @@ import {getCurrentDate, getCurrentUTCDate} from "../utils/date-formats";
 import Typography from "@material-ui/core/Typography";
 import withForm from "../shared/hoc/with-form.component";
 import {BaseForm, FormInterface, FormState} from "../models/form.interface";
+import {POST_STATUS_TYPES} from "../models/post-status.types";
+import {mapPostStatusesToDropdownItem} from "../../utils/dropdown-items-map";
 
 const formConfig = {
     title: {
@@ -17,6 +19,7 @@ const formConfig = {
         value: '',
         multiline: false,
         select: true,
+        items: Object.entries(POST_STATUS_TYPES).map(mapPostStatusesToDropdownItem),
     },
     content: {
         name: 'content',
