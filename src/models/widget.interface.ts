@@ -1,9 +1,13 @@
-export type InputType = 'text' | 'password';
+export enum INPUT_TYPE {
+    text = 'text',
+    password = 'password',
+    number = 'number',
+}
 
 export interface Widget {
     name: string;
-    value: string;
+    value: string | number;
     multiline: boolean;
     select?: boolean;
-    type?: InputType | null;
+    type?: INPUT_TYPE | null;
 }

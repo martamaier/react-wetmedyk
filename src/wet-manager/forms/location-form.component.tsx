@@ -45,13 +45,13 @@ const formConfig = {
 
 const buildLocation = (location: Location | null, form: FormState, userName: string = ''): Partial<Location> => {
     const changedValues: Partial<Location> = {
-        name: form.name.value,
-        street: form.street.value,
-        city: form.city.value,
-        zipCode: form.zipCode.value,
-        phone: form.phone.value,
-        openHours: form.openHours.value,
-        mapUrl: form.mapUrl.value,
+        name: String(form.name.value),
+        street: String(form.street.value),
+        city: String(form.city.value),
+        zipCode: String(form.zipCode.value),
+        phone: String(form.phone.value),
+        openHours: String(form.openHours.value),
+        mapUrl: String(form.mapUrl.value),
     };
 
     return _.merge({}, location ? location : {}, changedValues);

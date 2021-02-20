@@ -22,28 +22,40 @@ import { ReactComponent as Bathing } from './../images/bathing.svg';
 import { ReactComponent as Paw } from './../images/paw.svg';
 import classes from './services-icon.module.scss';
 
+export enum ICON_NAMES {
+    Veterinary = 'Veterinary',
+    Stethoscope = 'Stethoscope',
+    Health = 'Health',
+    HeartBeat = 'HeartBeat',
+    Tooth = 'Tooth',
+    Vaccine = 'Vaccine',
+    MedicalReport = 'MedicalReport',
+    Hospital = 'Hospital',
+    PetHouse = 'PetHouse',
+    Bathing = 'Bathing',
+}
 
-function ServicesIcon (props: { id: number }) {
-    switch (props.id) {
-        case 0:
+function ServicesIcon ({ name }: { name: string }) {
+    switch (name) {
+        case ICON_NAMES.Veterinary:
             return <Veterinary className={classes.icon} />;
-        case 1:
+        case ICON_NAMES.Stethoscope:
             return <Stethoscope className={classes.icon} />;
-        case 2:
+        case ICON_NAMES.Health:
             return <Health className={classes.icon} />;
-        case 5:
+        case ICON_NAMES.HeartBeat:
             return <HeartBeat className={classes.icon} />;
-        case 4:
+        case ICON_NAMES.Tooth:
             return <Tooth className={classes.icon} />;
-        case 3:
+        case ICON_NAMES.Vaccine:
             return <Vaccine className={classes.icon} />;
-        case 6:
+        case ICON_NAMES.MedicalReport:
             return <MedicalReport className={classes.icon} />;
-        case 7:
+        case ICON_NAMES.Hospital:
             return <Hospital className={classes.icon} />;
-        case 8:
+        case ICON_NAMES.PetHouse:
             return <PetHouse className={classes.icon} />;
-        case 9:
+        case ICON_NAMES.Bathing:
             return <Bathing className={classes.icon} />;
 
         default:

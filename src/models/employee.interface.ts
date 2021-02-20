@@ -5,4 +5,5 @@ export interface Employee {
     title: string;
     description: string;
     photo: string;
+    order: number;
 }

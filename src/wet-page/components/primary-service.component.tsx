@@ -3,11 +3,12 @@ import {PrimaryServiceCard} from "../../models/primary-service-card.interface";
 import classes from './primary-service.module.scss';
 import ServicesIcon from "../../shared/services-icon.component";
 
-function PrimaryService(props: PrimaryServiceCard & { handleClick: any }) {
-    const { id, title, description, details, handleClick } = props;
+function PrimaryService(
+    { title, description, details, handleClick, icon }: PrimaryServiceCard & { handleClick: any },
+) {
     return (
         <article className={classes.primaryService}>
-            <ServicesIcon id={id} />
+            <ServicesIcon name={icon} />
             <h3 className={classes.actionButton} onClick={handleClick}>{title}</h3>
             <h3 className={classes.nonActionButton}>{title}</h3>
             {

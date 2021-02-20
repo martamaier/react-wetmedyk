@@ -4,6 +4,7 @@ import {getCurrentUTCDate} from "../utils/date-formats";
 import withForm from "../shared/hoc/with-form.component";
 import Typography from "@material-ui/core/Typography";
 import {BaseForm, FormInterface, FormState} from "../models/form.interface";
+import {INPUT_TYPE} from "../../models/widget.interface";
 
 const formConfig: FormState = {
     userName: {
@@ -15,15 +16,15 @@ const formConfig: FormState = {
         name: 'password',
         value: '',
         multiline: false,
-        type: 'password',
+        type: INPUT_TYPE.password,
     }
 };
 
 const buildUser = (user: Partial<User>, form: FormState, userName: string): Partial<User> => {
     return {
         ...user,
-        userName: form.userName.value,
-        password: form.password.value,
+        userName: String(form.userName.value),
+        password: String(form.password.value),
         dateCreated: getCurrentUTCDate(),
     }
 }

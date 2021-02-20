@@ -35,13 +35,13 @@ const buildPost = (post: Post | null, form: FormState, userName: string): Partia
         guid: '',
     };
     const changedValues: Partial<Post> = {
-        title: form.title.value,
-        status: form.status.value,
-        content: form.content.value,
+        title: String(form.title.value),
+        status: String(form.status.value),
+        content: String(form.content.value),
         author: userName,
         modifiedGmt: dateGmt,
         modified: date,
-        name: _.kebabCase(form.title.value),
+        name: _.kebabCase(String(form.title.value)),
     };
     return _.merge({}, post ? post : postStarter, changedValues);
 }

@@ -3,11 +3,14 @@ import {Card, CardActionArea, CardActions, CardContent, CardMedia} from "@materi
 import classes from './image-card.module.scss';
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import {Delete} from "@material-ui/icons";
+import {Delete, Share} from "@material-ui/icons";
 import {getFilePath} from "../utils/file-handlers";
+// @ts-ignore
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 function ImageCard({ image, onDelete }: { image: string, onDelete: Function }) {
     const url = getFilePath(image);
+
     return (
         <Card className={classes.imageView}>
             <CardActionArea>
@@ -31,6 +34,11 @@ function ImageCard({ image, onDelete }: { image: string, onDelete: Function }) {
                 <IconButton onClick={() => onDelete(image)}>
                     <Delete />
                 </IconButton>
+                <CopyToClipboard text={url}>
+                    <IconButton>
+                        <Share />
+                    </IconButton>
+                </CopyToClipboard>
             </CardActions>
         </Card>
     );

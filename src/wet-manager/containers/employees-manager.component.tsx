@@ -35,8 +35,8 @@ function EmployeesManager({ data }: DataFetchProps<Employee>) {
         dispatch(formMode === FormModes.Add ? AddEmployee(employee) : UpdateEmployee(employee));
     }
 
-    const columns: string[] = ['photo', 'firstName', 'lastName', 'title'];
-    const columnTypes: DataTypes[] = [DataTypes.image, DataTypes.text, DataTypes.text, DataTypes.text];
+    const columns: string[] = ['photo', 'firstName', 'lastName', 'title', 'order'];
+    const columnTypes: DataTypes[] = [DataTypes.image, DataTypes.text, DataTypes.text, DataTypes.text, DataTypes.number];
 
     return (
         <>

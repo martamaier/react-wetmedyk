@@ -5,13 +5,16 @@ import { fromPromise } from "rxjs/internal-compatibility";
 import { AxiosResponse } from "axios";
 import axios from 'axios';
 import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
+import {CURRENT_ENV} from "../../environment";
+
+const baseUrl = `${CURRENT_ENV}/services`;
 
 export const loadServices$ = (action$: ActionsObservable<ServiceActionsTypes>) => action$
     .pipe(
         ofType(ServiceActions.LoadServices),
         take(1),
         switchMap((action) => {
-            return fromPromise(axios.get('/data/primary-services.json'))
+            return fromPromise(axios.get(baseUrl))
                 .pipe(
                     map((res: AxiosResponse<PrimaryServiceCard[]>) => AddServices(res.data)),
                 )
