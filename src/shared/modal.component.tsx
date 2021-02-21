@@ -23,7 +23,7 @@ function AppModal() {
                         <div className={styles.modal}>
                             <div className={styles.modalContent}>
                                 <div className={styles.modalContentImg}>
-                                    <img src={img} alt=""/>
+                                    {data?.image && <img src={img} alt=""/>}
                                 </div>
                                 <div className={styles.modalContentInfo}>
                                     <h3>{data.heading}</h3>

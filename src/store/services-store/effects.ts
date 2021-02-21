@@ -10,9 +10,9 @@ import {
 import { switchMap, map } from "rxjs/operators";
 import {fromPromise} from "rxjs/internal-compatibility";
 import { AxiosResponse } from "axios";
-import axios from 'axios';
 import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
 import {CURRENT_ENV} from "../../environment";
+import axiosInstance from "../../services/interceptor";
 
 const baseUrl = `${CURRENT_ENV}/services`;
 
@@ -20,7 +20,7 @@ export const loadServices$ = (action$: ActionsObservable<ServiceActionsTypes>) =
     .pipe(
         ofType(ServiceActions.LoadServices),
         switchMap(() => {
-            return fromPromise(axios.get(baseUrl))
+            return fromPromise(axiosInstance.get(baseUrl))
                 .pipe(
                     map((res: AxiosResponse<PrimaryServiceCard[]>) => AddServices(res.data)),
                 )
@@ -31,7 +31,7 @@ export const addService$ = (action$: ActionsObservable<ServiceActionsTypes>) => 
     .pipe(
         ofType(ServiceActions.AddService),
         switchMap((action) => {
-            return fromPromise(axios.post(baseUrl, action.payload))
+            return fromPromise(axiosInstance.post(baseUrl, action.payload))
                 .pipe(
                     map((res: AxiosResponse<PrimaryServiceCard>) => AddServiceSuccess(res.data)),
                 );
@@ -43,7 +43,7 @@ export const updateService$ = (action$: ActionsObservable<ServiceActionsTypes>) 
         ofType(ServiceActions.UpdateService),
         switchMap((action) => {
             const id = (action.payload as PrimaryServiceCard).id;
-            return fromPromise(axios.put(`${baseUrl}/${id}`))
+            return fromPromise(axiosInstance.put(`${baseUrl}/${id}`, action.payload))
                 .pipe(
                     map((res: AxiosResponse<PrimaryServiceCard>) => UpdateServiceSuccess(res.data)),
                 );
@@ -54,7 +54,7 @@ export const deleteService$ = (action$: ActionsObservable<ServiceActionsTypes>) 
     .pipe(
         ofType(ServiceActions.DeleteService),
         switchMap((action) => {
-            return fromPromise(axios.delete(`${baseUrl}/${action.payload}`))
+            return fromPromise(axiosInstance.delete(`${baseUrl}/${action.payload}`))
                 .pipe(
                     map(() => DeleteServiceSuccess(action.payload as number)),
                 );

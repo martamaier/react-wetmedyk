@@ -4,6 +4,7 @@ import {DropdownItem} from "./dropdown.component";
 import {Checkbox, FormControlLabel} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import * as _ from 'lodash';
+import classes from './checkbox-widget.module.scss';
 
 function CheckboxWidget({items, name, value, onChange}: Widget & { onChange: Function }) {
     const [checkboxes, setCheckboxes] = useState<number[]>(Array.isArray(value) ? value : []);
@@ -31,17 +32,19 @@ function CheckboxWidget({items, name, value, onChange}: Widget & { onChange: Fun
 
     return (
         <>
-            <Typography>{getStartCase(name)}</Typography>
-            {
-                items?.map((check: DropdownItem) => (
-                    <FormControlLabel
-                        onChange={(event, checked) => handleChange(checked, check.value)}
-                        key={check.name}
-                        control={<Checkbox checked={!!checkboxes.find(element => element === check.value)} name={check.name}/>}
-                        label={getStartCase(check.name)}/>
+            <Typography className={classes.label}>{getStartCase(name)}</Typography>
+            <div className={classes.checkboxWrapper}>
+                {
+                    items?.map((check: DropdownItem) => (
+                        <FormControlLabel
+                            onChange={(event, checked) => handleChange(checked, check.value)}
+                            key={check.name}
+                            control={<Checkbox checked={!!checkboxes.find(element => element === check.value)} name={check.name}/>}
+                            label={check.name}/>
 
-                ))
-            }
+                    ))
+                }
+            </div>
         </>
     );
 }
