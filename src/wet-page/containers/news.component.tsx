@@ -6,12 +6,12 @@ import {Post} from "../../models/post.interface";
 import {mapPostToModalItem, ModalItem} from "../../models/modal-data.interface";
 import {useDispatch, useSelector} from "react-redux";
 import {LoadPosts} from "../../store/posts-store/actions";
-import {getIsLoading, getPosts} from "../../store/posts-store/selectors";
+import {getIsLoading, getPublishedPosts} from "../../store/posts-store/selectors";
 import {ModalState} from "../../store/modal-store";
 import {OpenModal} from "../../store/modal-store/actions";
 
 function News() {
-    const news = useSelector(getPosts);
+    const news = useSelector(getPublishedPosts);
     const isLoading = useSelector(getIsLoading);
     const dispatch = useDispatch();
     const heading = 'Aktualności';

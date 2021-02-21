@@ -41,7 +41,7 @@ const buildPost = (post: Post | null, form: FormState, userName: string): Partia
     };
     const changedValues: Partial<Post> = {
         title: String(form.title.value),
-        status: String(form.status.value),
+        status: String(form.status.value) as POST_STATUS_TYPES,
         content: String(form.content.value),
         author: userName,
         modifiedGmt: dateGmt,
