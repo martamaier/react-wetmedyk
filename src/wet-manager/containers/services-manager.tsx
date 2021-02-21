@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import withDataFetch from "../shared/hoc/with-data-fetch.component";
-import {DataFetchInterface} from "../models/data-fetch.interface";
 import {PrimaryServiceCard} from "../../models/primary-service-card.interface";
-import {getPrimaryServices} from "../../store/services-store/selectors";
-import {LoadServices} from "../../store/services-store/actions";
+import {getPrimaryServices, getSelectedService} from "../../store/services-store/selectors";
+import {
+    AddService,
+    DeleteService,
+    LoadServices,
+    SelectService,
+    UpdateService
+} from "../../store/services-store/actions";
 import {DataFetchProps} from "../models/data-fetch-props.interface";
 import DataTable from "../../shared/table.component";
 import {DataTypes} from "../../models/data-table.interface";
@@ -12,14 +16,39 @@ import {getIsLoading, getLocations} from "../../store/locations-store/selectors"
 import {LoadLocations} from "../../store/locations-store/actions";
 import {Location} from "../../models/location.interface";
 import * as _ from 'lodash';
+import {FormModes} from "../models/form-modes.types";
+import {DataFetchInterface} from "../models/data-fetch.interface";
+import withDataFetch from "../shared/hoc/with-data-fetch.component";
+import ServiceForm from "../forms/service-form.component";
+import {mapLocationToDropdownItem} from "../../utils/dropdown-items-map";
 
 function ServicesManager({ data }: DataFetchProps<PrimaryServiceCard>) {
     const columns: string[] = ['title', 'details', 'description', 'available'];
     const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.array, DataTypes.text, DataTypes.mappedArray];
     const locations = useSelector(getLocations);
     const isLoadingLocations = useSelector(getIsLoading);
+    const selectedService = useSelector(getSelectedService);
     const dispatch = useDispatch();
     const [valueMap, setValueMap] = useState({});
+    const [formMode, setFormMode] = useState<FormModes | null>(null);
+
+    const handleAddService = () => {
+        setFormMode(FormModes.Add);
+        dispatch(SelectService(null));
+    };
+
+    const handleDeleteService = ({ id }: PrimaryServiceCard) => {
+        dispatch(DeleteService(id));
+    };
+
+    const handleEditService = ({ id }: PrimaryServiceCard) => {
+        dispatch(SelectService(id));
+        setFormMode(FormModes.Edit);
+    };
+
+    const handleUpdateService = (service: PrimaryServiceCard) => {
+        dispatch(formMode === FormModes.Add ? AddService(service) : UpdateService(service));
+    };
 
     useEffect(() => {
         if (!locations.length && !isLoadingLocations) {
@@ -46,9 +75,15 @@ function ServicesManager({ data }: DataFetchProps<PrimaryServiceCard>) {
                 columnTypes={columnTypes}
                 data={data || []}
                 valueMap={valueMap}
-                onAdd={() => {}}
-                onEdit={() => {}}
-                onDelete={() => {}} />
+                onAdd={handleAddService}
+                onEdit={handleEditService}
+                onDelete={handleDeleteService} />
+            {
+                (selectedService || formMode) && <ServiceForm
+                    items={locations.map(mapLocationToDropdownItem)}
+                    data={selectedService}
+                    onSubmit={handleUpdateService} />
+            }
         </>
     );
 }

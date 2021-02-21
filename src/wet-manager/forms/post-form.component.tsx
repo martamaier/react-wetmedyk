@@ -7,6 +7,7 @@ import withForm from "../shared/hoc/with-form.component";
 import {BaseForm, FormInterface, FormState} from "../models/form.interface";
 import {POST_STATUS_TYPES} from "../models/post-status.types";
 import {mapPostStatusesToDropdownItem} from "../../utils/dropdown-items-map";
+import {WIDGET_TYPE} from "../../models/widget.interface";
 
 const formConfig = {
     title: {
@@ -20,6 +21,7 @@ const formConfig = {
         multiline: false,
         select: true,
         items: Object.entries(POST_STATUS_TYPES).map(mapPostStatusesToDropdownItem),
+        widgetType: WIDGET_TYPE.dropdown,
     },
     content: {
         name: 'content',

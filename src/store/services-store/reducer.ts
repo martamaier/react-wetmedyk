@@ -1,7 +1,7 @@
-import { INITIAL_STATE, ServiceState } from "./index";
-import { ServiceActions, ServiceActionsTypes } from "./actions";
+import {INITIAL_STATE, ServiceState} from "./index";
+import {ServiceActions, ServiceActionsTypes} from "./actions";
 import * as _ from 'lodash';
-import { PrimaryServiceCard } from "../../models/primary-service-card.interface";
+import {PrimaryServiceCard} from "../../models/primary-service-card.interface";
 
 export default function(
     state: ServiceState = INITIAL_STATE,
@@ -49,6 +49,11 @@ export default function(
                 ...newState,
                 services,
                 isSaving: false,
+            }
+        case ServiceActions.SelectService:
+            return {
+                ...newState,
+                selected: action.payload,
             }
         default:
             return newState;

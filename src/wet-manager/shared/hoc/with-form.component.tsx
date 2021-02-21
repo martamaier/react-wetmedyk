@@ -1,5 +1,5 @@
 import React, {ComponentType, FormEvent, useCallback, useEffect, useState} from 'react';
-import {Widget} from "../../../models/widget.interface";
+import {Widget, WIDGET_TYPE} from "../../../models/widget.interface";
 import {Card, CardContent} from "@material-ui/core";
 import styles from "../../forms/form.module.scss";
 import TextWidget from "../../../shared/widgets/text-widget.component";
@@ -7,6 +7,7 @@ import FormButtons from "../form-buttons.component";
 import * as _ from "lodash";
 import {BaseForm, FormInterface, FormState} from "../../models/form.interface";
 import Dropdown, {STYLING_TYPES} from "../../../shared/widgets/dropdown.component";
+import CheckboxWidget from "../../../shared/widgets/checkbox-widget";
 
 function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, {
     formConfig,
@@ -25,6 +26,7 @@ function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, {
                     prev[key] = {
                         ...initialState[key],
                         value,
+                        values: initialState[key].widgetType === WIDGET_TYPE.checkbox ? initialState[key].values : null,
                     }
                 }
 
@@ -67,6 +69,33 @@ function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, {
             setFields(Object.keys(formConfig));
         }, []);
 
+        const getWidgetType = (formElement: Widget) => {
+            const {name, items, value, widgetType} = formElement;
+            switch (widgetType) {
+                case WIDGET_TYPE.checkbox:
+                    return <CheckboxWidget
+                        key={name}
+                        items={props.items ||items || []}
+                        name={name}
+                        value={value}
+                        onChange={handleChange}
+                        multiline={false}/>
+                case WIDGET_TYPE.dropdown:
+                    return <Dropdown
+                        label={name}
+                        key={name}
+                        items={items || []}
+                        value={value}
+                        styling={STYLING_TYPES.Default}
+                        onChange={handleChange}/>
+                default:
+                    return <TextWidget
+                        key={name}
+                        {...formElement}
+                        onChange={handleChange}/>
+            }
+        }
+
         return (
             <Card>
                 <CardContent>
@@ -74,20 +103,7 @@ function withForm<T extends BaseForm<T>>(WrappedComponent: ComponentType<T>, {
                     <form key={formValues.toString()} className={styles.form} onSubmit={handleSubmit}>
                         {
                             Object.values(formValues)
-                                .map((formElement: Widget) => (
-                                    formElement?.select ?
-                                        <Dropdown
-                                            label={formElement.name}
-                                            key={formElement.name}
-                                            items={formElement?.items || []}
-                                            value={formElement.value}
-                                            styling={STYLING_TYPES.Default}
-                                            onChange={handleChange}/> :
-                                        <TextWidget
-                                            key={formElement.name}
-                                            {...formElement}
-                                            onChange={handleChange}/>
-                                ))
+                                .map((formElement: Widget) => getWidgetType(formElement))
                         }
                         <FormButtons
                             isCreateForm={isCreateForm}

@@ -9,11 +9,12 @@ export enum ServiceActions {
     DeleteServiceSuccess = '[Services] Delete Service Success',
     UpdateService = '[Services] Update Service',
     UpdateServiceSuccess = '[Services] Update Service Success',
+    SelectService = '[Services] Select Service',
 }
 
 export interface ServiceActionsTypes {
     type: ServiceActions;
-    payload?: PrimaryServiceCard | PrimaryServiceCard[] | number;
+    payload?: PrimaryServiceCard | PrimaryServiceCard[] | number | null;
 }
 
 export function LoadServices(): ServiceActionsTypes {
@@ -68,5 +69,12 @@ export function DeleteServiceSuccess(payload: number): ServiceActionsTypes {
     return {
         payload,
         type: ServiceActions.DeleteServiceSuccess,
+    }
+}
+
+export function SelectService(payload: number | null): ServiceActionsTypes {
+    return {
+        payload,
+        type: ServiceActions.SelectService,
     }
 }

@@ -18,7 +18,7 @@ export default function (
         case PostActions.AddPosts:
             return {
                 ...newState,
-                posts: [...newState.posts, ...action.payload as Post[]],
+                posts: _.sortBy([...newState.posts, ...action.payload as Post[]], 'id'),
                 isLoading: false,
                 errorMessage: null,
             }

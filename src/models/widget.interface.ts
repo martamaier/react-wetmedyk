@@ -6,6 +6,12 @@ export enum INPUT_TYPE {
     number = 'number',
 }
 
+export enum WIDGET_TYPE {
+    text = 'text',
+    checkbox = 'checkbox',
+    dropdown = 'dropdown',
+}
+
 export interface Widget {
     name: string;
     value: string | number;
@@ -13,4 +19,6 @@ export interface Widget {
     select?: boolean;
     type?: INPUT_TYPE | null;
     items?: DropdownItem[];
+    widgetType?: WIDGET_TYPE;
+    values?: string[] | number[] | null;
 }
