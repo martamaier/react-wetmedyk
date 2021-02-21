@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoadEmployees} from "../../store/employees-store/actions";
 import {getEmployees, getIsLoading} from "../../store/employees-store/selectors";
 import classes from './employees.module.scss';
+import * as _ from 'lodash';
 
 function Employees() {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function Employees() {
                 </div>
                 <div className={classes.employeesContainerWrapper}>
                     {
-                        employees.map((employee: Employee) => (
+                        _.sortBy(employees, 'order').map((employee: Employee) => (
                             <EmployeeCard
                                 key={employee.id}
                                 employee={employee}
