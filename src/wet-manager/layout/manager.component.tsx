@@ -15,18 +15,20 @@ import {useStyles} from "./manager.styles";
 import Navigation from "./navigation.component";
 import {Route, useHistory} from "react-router";
 import EmployeesManager from "../containers/employees-manager.component";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Link} from "react-router-dom";
 import LocationsManager from "../containers/locations-manager.component";
 import PostsManager from "../containers/posts-manager.component";
 import UsersManager from "../containers/users-manager.component";
 import SubscribersManager from "../containers/subscribers-manager.component";
-import {PowerSettingsNew} from "@material-ui/icons";
+import {Person, PowerSettingsNew} from "@material-ui/icons";
 import styles from './manager.module.scss';
 import { AuthState } from "../../store/auth-store";
 import { LogOutAction } from "../../store/auth-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import FilesManager from "../containers/files-manager.component";
-import ServicesManager from "../containers/services-manager";
+import UserProfile from "../containers/user-profile.component";
+import ServicesManager from "../containers/services-manager.component";
+import CustomersManager from "../containers/customers-manager.component";
 
 function Manager() {
     const classes = useStyles();
@@ -72,6 +74,9 @@ function Manager() {
                             <Typography variant="h6" noWrap>
                                 {authState.user?.userName}
                             </Typography>
+                            <Link to="/manager/profile/1">
+                                <Person />
+                            </Link>
                             <PowerSettingsNew className={styles.logoutButton} onClick={logOut}/>
                         </div>
                     </Toolbar>
@@ -106,6 +111,9 @@ function Manager() {
                     <Route path="/manager/subscribers" component={SubscribersManager}/>
                     <Route path="/manager/files" component={FilesManager}/>
                     <Route path="/manager/services" component={ServicesManager}/>
+                    <Route path="/manager/profile/:id" component={UserProfile} />
+                    <Route exact path="/manager/customers" component={CustomersManager} />
+                    <Route path="/manager/customers/:id" component={UserProfile} />
                 </main>
             </div>
         </BrowserRouter>

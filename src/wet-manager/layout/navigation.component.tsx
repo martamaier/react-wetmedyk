@@ -2,7 +2,15 @@ import React from 'react';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {AttachFile, LocationOn, PersonPin, Pets, PostAdd, SupervisorAccount} from "@material-ui/icons";
+import {
+    AssignmentInd,
+    AttachFile,
+    LocationOn,
+    People,
+    PersonPin,
+    Pets,
+    PostAdd
+} from "@material-ui/icons";
 import ListItemText from "@material-ui/core/ListItemText";
 import {NavLink} from "react-router-dom";
 import {ManagerRoutes} from "../models/manager-routes.interface";
@@ -11,7 +19,7 @@ import classes from './navigation.module.scss';
 const routes: ManagerRoutes[] = [
     {
         path: '/manager/employees',
-        icon: <SupervisorAccount/>,
+        icon: <People />,
         displayName: 'Employees',
     },
     {
@@ -38,6 +46,11 @@ const routes: ManagerRoutes[] = [
         path: '/manager/files',
         icon: <AttachFile />,
         displayName: 'Files',
+    },
+    {
+        path: '/manager/customers',
+        icon: <AssignmentInd />,
+        displayName: 'Customers',
     },
 ];
 
