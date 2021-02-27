@@ -16,6 +16,7 @@ import {FormModes} from "../models/form-modes.types";
 import withDataFetch from "../shared/hoc/with-data-fetch.component";
 import {DataFetchProps} from "../models/data-fetch-props.interface";
 import {DataFetchInterface} from "../models/data-fetch.interface";
+import * as _ from 'lodash';
 
 function EmployeesManager({ data }: DataFetchProps<Employee>) {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function EmployeesManager({ data }: DataFetchProps<Employee>) {
             <DataTable
                 columnTypes={columnTypes}
                 columns={columns}
-                data={data || []}
+                data={_.sortBy(data, 'order') || []}
                 onAdd={handleAddEmployee}
                 onDelete={handleDeleteEmployee}
                 onEdit={handleEditEmployee}/>

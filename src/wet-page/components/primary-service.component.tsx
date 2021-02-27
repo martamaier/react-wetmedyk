@@ -7,10 +7,9 @@ function PrimaryService(
     { title, description, details, handleClick, icon }: PrimaryServiceCard & { handleClick: any },
 ) {
     return (
-        <article className={classes.primaryService}>
+        <article onClick={handleClick} className={classes.primaryService}>
             <ServicesIcon name={icon} />
-            <h3 className={classes.actionButton} onClick={handleClick}>{title}</h3>
-            <h3 className={classes.nonActionButton}>{title}</h3>
+            <h3 className={classes.actionButton}>{title}</h3>
             {
                 description.length ? <p>{description}</p> : null
             }

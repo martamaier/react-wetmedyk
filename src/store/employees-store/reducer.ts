@@ -33,7 +33,7 @@ export default function(
         case EmployeeActions.AddEmployeeSuccess:
         case EmployeeActions.UpdateEmployeeSuccess:
             const newEmployee = action.payload as Employee;
-            const employees = _.sortBy([...newState.employees.filter((employee: Employee) => employee.id !== newEmployee.id), newEmployee], 'id');
+            const employees = [...newState.employees.filter((employee: Employee) => employee.id !== newEmployee.id), newEmployee];
             return {
                 ...newState,
                 employees,

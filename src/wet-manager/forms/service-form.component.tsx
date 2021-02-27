@@ -37,7 +37,13 @@ const formConfig = {
         name: 'details',
         value: '',
         multiline: true,
-    }
+    },
+    order: {
+        name: 'order',
+        value: 0,
+        multiline: false,
+        type: INPUT_TYPE.number,
+    },
 };
 
 const buildItem = (service: PrimaryServiceCard | null, form: FormState, userName: string): Partial<PrimaryServiceCard> => {
@@ -51,7 +57,8 @@ const buildItem = (service: PrimaryServiceCard | null, form: FormState, userName
         available: String(form.available.value).split(',')
             .map(v => Number.parseFloat(v))
             .filter(Boolean) || [],
-        details: String(form.details.value).split(',').map((detail: string) => detail.trim()),
+        order: Number.parseFloat(String(form.order.value)),
+        details: String(form.details.value).split(';').map((detail: string) => detail.trim()),
     };
     return _.merge({}, service ? { id: service.id, image: '' } : serviceStarter, changedValues);
 };

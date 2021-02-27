@@ -23,8 +23,8 @@ import ServiceForm from "../forms/service-form.component";
 import {mapLocationToDropdownItem} from "../../utils/dropdown-items-map";
 
 function ServicesManager({ data }: DataFetchProps<PrimaryServiceCard>) {
-    const columns: string[] = ['title', 'details', 'description', 'available'];
-    const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.array, DataTypes.text, DataTypes.mappedArray];
+    const columns: string[] = ['title', 'details', 'description', 'available', 'order'];
+    const columnTypes: DataTypes[] = [DataTypes.text, DataTypes.array, DataTypes.text, DataTypes.mappedArray, DataTypes.number];
     const locations = useSelector(getLocations);
     const isLoadingLocations = useSelector(getIsLoading);
     const selectedService = useSelector(getSelectedService);
@@ -73,7 +73,7 @@ function ServicesManager({ data }: DataFetchProps<PrimaryServiceCard>) {
             <DataTable
                 columns={columns}
                 columnTypes={columnTypes}
-                data={data || []}
+                data={_.sortBy(data, 'order') || []}
                 valueMap={valueMap}
                 onAdd={handleAddService}
                 onEdit={handleEditService}

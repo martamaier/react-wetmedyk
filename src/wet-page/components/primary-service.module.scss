@@ -22,24 +22,6 @@
     display: none;
   }
 
-  & > .actionButton {
-    display: none;
-  }
-
-  & > .nonActionButton {
-    display: flex;
-  }
-
-  @media only screen and (min-width: 800px) {
-    .actionButton {
-      display: flex;
-    }
-
-    .nonActionButton {
-      display: none;
-    }
-  }
-
   h3 {
     margin-top: 1.5rem;
     font-weight: bold;

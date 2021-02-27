@@ -12,6 +12,7 @@ import Dropdown, {STYLING_TYPES} from "../../shared/widgets/dropdown.component";
 import {getLocations, getSelectedLocationId} from "../../store/locations-store/selectors";
 import {SelectLocation} from "../../store/locations-store/actions";
 import {mapLocationToDropdownItem} from "../../utils/dropdown-items-map";
+import * as _ from 'lodash';
 
 function PrimaryServices() {
     const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function PrimaryServices() {
             <Container>
                 <div className={styles.primaryServicesWrapper}>
                     {
-                        displayServices.map((service: PrimaryServiceCard) => (
+                        _.sortBy(displayServices, 'order').map((service: PrimaryServiceCard) => (
                             <PrimaryService
                                 key={service.id}
                                 {...service}

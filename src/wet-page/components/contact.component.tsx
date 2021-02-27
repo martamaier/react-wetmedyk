@@ -2,7 +2,7 @@ import React from 'react';
 import {Location} from '../../models/location.interface';
 import {Col, Container, Row} from "react-bootstrap";
 import classes from './contact.module.scss';
-import {LocationOn, PhonelinkRing, QueryBuilder} from "@material-ui/icons";
+import {LocationOn, Payment, PhonelinkRing, QueryBuilder} from "@material-ui/icons";
 import {stringToStartCase} from "../../utils/content-handlers";
 
 function Contact(
@@ -12,14 +12,22 @@ function Contact(
         {
             type: 'location',
             content: [street, `${zipCode} ${city}`],
+            icon: <LocationOn />,
         },
         {
             type: 'contact',
             content: [phone, 'kontakt@wetmedyk.pl'],
+            icon: <PhonelinkRing />,
         },
         {
             type: 'hour',
             content: openHours.split('<br/>'),
+            icon: <QueryBuilder />,
+        },
+        {
+            type: 'account-details',
+            content: ['Bank Millennium', '12 2332 2332 3232 2332 23232'],
+            icon: <Payment />
         }
     ];
     return (
@@ -28,19 +36,15 @@ function Contact(
                     src={mapUrl}
                     title={`${name} map`}/>
             <Container className="sectionPadding">
-                <Row>
+                <Row className={classes.iconsWrapper}>
                     <Col md={12}>
                         <h3 className={classes.heading}>{stringToStartCase(name)}</h3>
                     </Col>
                     {
-                        cards.map(({content, type}) => (
+                        cards.map(({content, type, icon }) => (
                             <Col key={type} md={4} className={classes.wrapper}>
                                 <div>
-                                    {
-                                        type === 'location' ?
-                                            <LocationOn /> :
-                                            (type === 'contact' ? <PhonelinkRing /> : <QueryBuilder />)
-                                    }
+                                    {icon}
                                     {
                                         content.map((text) => (
                                             <div key={String(text)}>{text}</div>
