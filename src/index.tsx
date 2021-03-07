@@ -10,12 +10,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducers, { rootEpic } from './store/index';
 import { createEpicMiddleware } from "redux-observable";
 import { LinearProgress } from "@material-ui/core";
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 const Manager = React.lazy(() => import("./wet-manager/layout/manager.component"));
 const Login = React.lazy(() => import("./wet-manager/login-page.component"));
 const epicMiddleware = createEpicMiddleware();
 // @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = composeWithDevTools || compose;
 
 function configureStore() {
     const store = createStore(
@@ -33,7 +34,7 @@ function configureStore() {
 
 ReactDOM.render(
     <Provider store={configureStore()}>
-        <BrowserRouter basename="/staging/build/">
+        <BrowserRouter>
             <App>
                 <Suspense fallback={<LinearProgress/>}>
                     <Switch>

@@ -1,7 +1,7 @@
 import {FileState, INITIAL_STATE} from "./index";
 import {FileActions, FileActionsTypes} from "./actions";
 
-export default function (
+export default function filesReducer(
     state: FileState = INITIAL_STATE,
     action: FileActionsTypes,
 ) {

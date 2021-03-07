@@ -3,7 +3,7 @@ import {LocationActions, LocationActionsTypes} from "./actions";
 import * as _ from "lodash";
 import {Location} from "../../models/location.interface";
 
-export default function (
+export default function locationsReducer(
     state: LocationState = INITIAL_STATE,
     action: LocationActionsTypes,
 ) {
@@ -18,7 +18,7 @@ export default function (
         case LocationActions.AddLocations:
             return {
                 ...newState,
-                locations: [...newState.locations, ...action.payload as Location[]],
+                locations: _.sortBy([...newState.locations, ...action.payload as Location[]], 'id'),
                 isLoading: false,
                 errorMessage: null,
             }

@@ -3,7 +3,7 @@ import {ServiceActions, ServiceActionsTypes} from "./actions";
 import * as _ from 'lodash';
 import {PrimaryServiceCard} from "../../models/primary-service-card.interface";
 
-export default function(
+export default function servicesReducer(
     state: ServiceState = INITIAL_STATE,
     action: ServiceActionsTypes,
 ) {

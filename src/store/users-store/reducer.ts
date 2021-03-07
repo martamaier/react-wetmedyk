@@ -2,7 +2,7 @@ import {INITIAL_STATE, UsersState} from "./index";
 import {UsersActions, UsersActionsTypes} from "./actions";
 import {User} from "../../wet-manager/models/user.interface";
 
-export default function (
+export default function usersReducer(
     state: UsersState = INITIAL_STATE,
     action: UsersActionsTypes
 ) {

@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import { EmployeeState, INITIAL_STATE } from "./index";
 import { EmployeeActions, EmployeeActionsTypes } from "./actions";
 
-export default function(
+export default function employeesReducer(
     state: EmployeeState = INITIAL_STATE,
     action: EmployeeActionsTypes,
 ) {

@@ -3,7 +3,7 @@ import {PostActions, PostActionsTypes} from "./actions";
 import * as _ from 'lodash';
 import {Post} from "../../models/post.interface";
 
-export default function (
+export default function postsReducer(
     state: PostState = INITIAL_STATE,
     action: PostActionsTypes
 ) {

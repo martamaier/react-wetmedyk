@@ -26,7 +26,7 @@ function Contact(
         },
         {
             type: 'account-details',
-            content: ['Bank Millennium', '12 2332 2332 3232 2332 23232'],
+            content: ['Alior Bank', '30 2490 0005 0000 4530 5323 7410'],
             icon: <Payment />
         }
     ];
