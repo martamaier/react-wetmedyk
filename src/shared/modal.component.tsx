@@ -28,7 +28,16 @@ function AppModal() {
                                 <div className={styles.modalContentInfo}>
                                     <h3>{data.heading}</h3>
                                     <h4>{data.subHeading}</h4>
-                                    <p>{data.description}</p>
+                                    <div>
+                                        {
+                                            data.description
+                                                .split(';')
+                                                .map((sentence: string, index: number) => (
+                                                    <div key={index}>{sentence}</div>
+                                                    )
+                                                )
+                                        }
+                                    </div>
                                 </div>
 
                             </div>
