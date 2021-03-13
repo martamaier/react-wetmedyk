@@ -9,6 +9,7 @@ import {LoadPosts} from "../../store/posts-store/actions";
 import {getIsLoading, getPublishedPosts} from "../../store/posts-store/selectors";
 import {ModalState} from "../../store/modal-store";
 import {OpenModal} from "../../store/modal-store/actions";
+import * as _ from 'lodash';
 
 function News() {
     const news = useSelector(getPublishedPosts);
@@ -34,7 +35,7 @@ function News() {
         <section id={'news'} className={classes.news}>
             <h2>{heading}</h2>
             <div className={classes.newsContainer}>
-                {news.map((post: Post) => (
+                {_.sortBy(news, 'date').map((post: Post) => (
                     <PostCard key={post.id} post={post} onClick={openModal}/>
                 ))}
             </div>

@@ -1,4 +1,4 @@
-import {CURRENT_ENV} from "../../environment";
+import {ENVIRONMENT} from "../../environment";
 
-export const getFilePath = (image: string) => `${CURRENT_ENV}/images/${image}`;
+export const getFilePath = (image: string) => `${ENVIRONMENT.s3}/${image}`;
 
