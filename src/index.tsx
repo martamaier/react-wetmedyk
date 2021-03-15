@@ -11,6 +11,7 @@ import reducers, { rootEpic } from './store/index';
 import { createEpicMiddleware } from "redux-observable";
 import { LinearProgress } from "@material-ui/core";
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import {Redirect} from "react-router";
 
 const Manager = React.lazy(() => import("./wet-manager/layout/manager.component"));
 const Login = React.lazy(() => import("./wet-manager/login-page.component"));
@@ -41,6 +42,7 @@ ReactDOM.render(
                         <Route exact path="/" component={MainPage} />
                         <GuardedRoute path="/manager" component={Manager} />
                         <Route path="/login" component={Login} />
+                        <Redirect from="*" to="/" />
                     </Switch>
                 </Suspense>
             </App>

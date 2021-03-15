@@ -35,7 +35,7 @@ function News() {
         <section id={'news'} className={classes.news}>
             <h2>{heading}</h2>
             <div className={classes.newsContainer}>
-                {_.sortBy(news, 'date').map((post: Post) => (
+                {_.sortBy(news, 'id').reverse().map((post: Post) => (
                     <PostCard key={post.id} post={post} onClick={openModal}/>
                 ))}
             </div>
